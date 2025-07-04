@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fm_radio/Databases/live_database.dart';
 
 class RecentCard extends StatelessWidget {
   final String imageUrl;

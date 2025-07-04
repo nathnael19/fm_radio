@@ -1,8 +1,7 @@
+import 'package:ethio_fm_radio/Home/News/news_page.dart';
+import 'package:ethio_fm_radio/Home/Podcast/podcast_page.dart';
+import 'package:ethio_fm_radio/Home/components/live_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fm_radio/Home/Podcast/podcast_page.dart';
-import 'package:fm_radio/Home/components/live_page.dart';
-import 'package:fm_radio/Home/News/news_page.dart';
-import 'package:fm_radio/Home/Podcast/podcast_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
