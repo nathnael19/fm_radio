@@ -1,10 +1,5 @@
-import 'package:ethio_fm_radio/Auth/create-account.dart';
-import 'package:ethio_fm_radio/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/Onboarding/wellcome.dart';
 import 'package:flutter/material.dart';
-
-import 'OnBoardPage/dicover-podcast-onboard.dart';
-import 'OnBoardPage/newsonboard.dart';
-import 'OnBoardPage/wellcome.dart' show BoardingWidget;
 
 void main() {
   runApp(const MyApp());

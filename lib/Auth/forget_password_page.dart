@@ -168,7 +168,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 builder: (context) => const SigninPage(),
                               ),
                             );
-                            ;
                           },
                           child: const Text(
                             "Sign in",

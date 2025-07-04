@@ -1,7 +1,6 @@
-import 'package:ethio_fm_radio/OnBoardPage/account_page.dart';
 import 'package:ethio_fm_radio/Auth/create-account.dart';
 import 'package:ethio_fm_radio/Auth/forget_password_page.dart';
-import 'package:ethio_fm_radio/OnBoardPage/photo.dart';
+import 'package:ethio_fm_radio/Onboarding/photo.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatefulWidget {
