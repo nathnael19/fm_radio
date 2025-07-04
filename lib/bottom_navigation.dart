@@ -1,9 +1,9 @@
+import 'package:ethio_fm_radio/Download/download_page.dart';
+import 'package:ethio_fm_radio/Group/group_page.dart';
+import 'package:ethio_fm_radio/Home/Live/home_page.dart';
+import 'package:ethio_fm_radio/Profile/profile_page.dart';
+import 'package:ethio_fm_radio/Saved/saved_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fm_radio/Download/download_page.dart';
-import 'package:fm_radio/Group/group_page.dart';
-import 'package:fm_radio/Home/Live/home_page.dart';
-import 'package:fm_radio/Profile/profile_page.dart';
-import 'package:fm_radio/Saved/saved_page.dart';
 
 class MyBottomNavigation extends StatefulWidget {
   const MyBottomNavigation({super.key});

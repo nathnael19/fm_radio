@@ -1,8 +1,8 @@
+import 'package:ethio_fm_radio/Databases/group_page_database.dart';
+import 'package:ethio_fm_radio/Group/explore_group_chat.dart';
+import 'package:ethio_fm_radio/Group/my_group_chat.dart';
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:fm_radio/Databases/group_page_database.dart';
-import 'package:fm_radio/Group/explore_group_chat.dart';
-import 'package:fm_radio/Group/my_group_chat.dart';
-import 'package:fm_radio/bottom_navigation.dart';
 
 class GroupPage extends StatefulWidget {
   const GroupPage({super.key});

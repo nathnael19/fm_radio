@@ -1,5 +1,5 @@
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:fm_radio/bottom_navigation.dart';
 
 class SavedPage extends StatelessWidget {
   const SavedPage({super.key});

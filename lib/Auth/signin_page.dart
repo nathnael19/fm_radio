@@ -1,6 +1,7 @@
 import 'package:ethio_fm_radio/Auth/create-account.dart';
 import 'package:ethio_fm_radio/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatefulWidget {
@@ -118,6 +119,13 @@ class _SigninPageState extends State<SigninPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           // TODO: Add login logic here
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              // builder: (context) => const MyBottomNavigation(),
+                              builder: (context) => const MyBottomNavigation(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff80011F),
