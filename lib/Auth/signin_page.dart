@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Auth/create-account.dart';
+import 'package:ethio_fm_radio/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
@@ -118,11 +118,9 @@ class _SigninPageState extends State<SigninPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // TODO: Add login logic here
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              // builder: (context) => const MyBottomNavigation(),
                               builder: (context) => const MyBottomNavigation(),
                             ),
                           );

@@ -194,9 +194,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // TODO: Add sign-up logic
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff80011F),
                           padding: const EdgeInsets.symmetric(vertical: 14),

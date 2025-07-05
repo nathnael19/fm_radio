@@ -43,10 +43,10 @@ class _EnterCodePageState extends State<EnterCodePage> {
   void _onConfirm() {
     String code = _controllers.map((e) => e.text).join();
     if (code.length == 6) {
-      print("Entered Code: $code");
-      ScaffoldMessenger.of(
+      Navigator.push(
         context,
-      ).showSnackBar(SnackBar(content: Text("Code entered: $code")));
+        MaterialPageRoute(builder: (context) => const SigninPage()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please enter all 6 digits")),
@@ -168,14 +168,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext) => const SigninPage(),
-                          ),
-                        );
-                      },
+                      onPressed: _onConfirm,
                       child: const Text(
                         "Confirm",
                         style: TextStyle(fontSize: 18, color: Colors.white),
