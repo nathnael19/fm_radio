@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/my_page_view.dart';
+import 'package:ethio_fm_radio/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MyPageView());
+    return MaterialApp(
+      theme: myThemeData,
+      debugShowCheckedModeBanner: false,
+      home: MyPageView(),
+    );
   }
 }
