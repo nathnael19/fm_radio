@@ -55,13 +55,13 @@ class _LivePageState extends State<LivePage> {
                       right: 24,
                       bottom: 9,
                     ),
-                    height: 270,
+                    height: 310,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           height: 270,
-                          margin: const EdgeInsets.only(right: 16, top: 16),
+                          margin: const EdgeInsets.only(right: 6, top: 16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [

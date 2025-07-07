@@ -9,7 +9,7 @@ class SideContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300 * 0.21,
-      height: 255,
+      height: 285,
       margin: EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
         color: Colors.black54,
