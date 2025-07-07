@@ -89,11 +89,14 @@ class _LivePageState extends State<LivePage> {
                 ],
               ),
             ),
-            LiveTabBars(
-              recentPrograms: recentPrograms,
-              currency: currency,
-              wheathers: wheathers,
-              todaysProgram: todaysProgram,
+            // Wrap LiveTabBars with Expanded to avoid layout errors
+            Expanded(
+              child: LiveTabBars(
+                recentPrograms: recentPrograms,
+                currency: currency,
+                wheathers: wheathers,
+                todaysProgram: todaysProgram,
+              ),
             ),
           ],
         ),

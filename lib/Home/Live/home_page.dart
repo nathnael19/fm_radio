@@ -10,79 +10,92 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double mobileWidth = MediaQuery.of(context).size.width;
     double mobileHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
-        body: Expanded(
-          child: DefaultTabController(
-            length: 3,
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  color: Color(0xff80011F),
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Image.asset("assets/icons/logo.png"),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: TabBar(
-                          labelColor: Colors.white,
-                          dividerColor: Colors.transparent,
-                          unselectedLabelColor: Colors.white,
-                          indicatorColor: Colors.white,
-                          tabs: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 3),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.live_tv_rounded),
-                                  SizedBox(width: 5),
-                                  Text("ቀጥታ"),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 3),
-                              child: Text("ዜናዎች"),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 3),
-                              child: Text("ፖድካስቶች"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 10),
+              color: const Color(0xff80011F),
+              height: 40,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset("assets/icons/logo.png"),
                   ),
-                ),
-
-                //////////////
-                Expanded(
-                  child: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      LivePage(
-                        mobileWidth: mobileWidth,
-                        mobileHeight: mobileHeight,
-                      ),
-                      NewsPage(),
-                      PodcastPage(),
-                    ],
+                  Expanded(
+                    flex: 4,
+                    child: TabBar(
+                      controller: _tabController,
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.white70,
+                      indicatorColor: Colors.white,
+                      dividerColor: Colors.transparent,
+                      tabs: [
+                        _buildTab(0, "ቀጥታ", Icons.live_tv),
+                        _buildTab(1, "ዜናዎች", Icons.article),
+                        _buildTab(2, "ፖድካስቶች", Icons.podcasts),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  LivePage(
+                    mobileWidth: mobileWidth,
+                    mobileHeight: mobileHeight,
+                  ),
+                  const NewsPage(),
+                  const PodcastPage(),
+                ],
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTab(int index, String title, IconData icon) {
+    bool isSelected = _tabController.index == index;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (isSelected) Icon(icon, size: 16),
+          if (isSelected) const SizedBox(width: 4),
+          Text(title),
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Home/News/news_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -162,6 +163,20 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     );
   }
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (context) {
+        return NewsDetailPage();
+      },
+    );
+  }
+
   Widget _buildHorizontalCards() {
     return SizedBox(
       height: 260,
@@ -169,47 +184,50 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (context, index) {
-          return Container(
-            width: MediaQuery.of(context).size.width - 60,
-            margin: const EdgeInsets.only(right: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.grey[100],
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  blurRadius: 6,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(15),
+          return GestureDetector(
+            onTap: () => _showBottomSheet(context),
+            child: Container(
+              width: MediaQuery.of(context).size.width - 60,
+              margin: const EdgeInsets.only(right: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.grey[100],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 6,
+                    offset: const Offset(0, 4),
                   ),
-                  child: Image.asset(
-                    "assets/images/taa.png",
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 150,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች...",
-                    style: GoogleFonts.notoSansEthiopic(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(15),
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                    child: Image.asset(
+                      "assets/images/taa.png",
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 150,
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች...",
+                      style: GoogleFonts.notoSansEthiopic(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
