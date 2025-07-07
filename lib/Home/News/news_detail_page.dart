@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Home/News/comment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class NewsDetailPage extends StatelessWidget {
@@ -148,7 +149,7 @@ class NewsDetailPage extends StatelessWidget {
                       const SizedBox(width: 16),
                       const Text("400", style: TextStyle(fontSize: 13)),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => showCommentBottomSheet(context),
                         icon: Icon(
                           Icons.comment_outlined,
                           size: 20,
@@ -197,6 +198,15 @@ class NewsDetailPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showCommentBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const CommentBottomSheet(),
     );
   }
 }
