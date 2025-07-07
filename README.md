@@ -8,13 +8,7 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 
 ---
 
-## ✨ Screenshots
 
-| Onboarding | Auth Screens | Home Page | Bottom Overlay |
-|------------|---------------|-----------|----------------|
-| ![onboarding](assets/screens/onboarding.gif) | ![auth](assets/screens/auth.gif) | ![home](assets/screenshots/home.png) | ![overlay](assets/screenshots/overlay.png) |
-
----
 
 ## 🚀 Features
 
@@ -65,6 +59,15 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 - Install [Flutter SDK](https://flutter.dev/docs/get-started/install)
 - Android Studio or VS Code
 - Emulator or real device
+
+
+## ✨ Screenshots
+
+| Onboarding | Auth Screens | Home Page | Bottom Overlay |
+|------------|---------------|-----------|----------------|
+| ![onboarding](assets/screens/onboarding.gif) | ![auth](assets/screens/auth.gif) | ![home](assets/screenshots/home.png) | ![overlay](assets/screenshots/overlay.png) |
+
+---
 
 ### ✅ Installation Steps
 
