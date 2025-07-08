@@ -1,3 +1,6 @@
+import 'package:ethio_fm_radio/Auth/components/login_container.dart';
+import 'package:ethio_fm_radio/Auth/components/my_text_field.dart';
+import 'package:ethio_fm_radio/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Onboarding/photo.dart';
@@ -49,55 +52,17 @@ class _SigninPageState extends State<SigninPage> {
                     const SizedBox(height: 20),
 
                     // Email/Phone input field
-                    Text(
-                      "Email/Phone",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.sp,
-                        fontFamily: "Poppins",
-                        color: Color(0xff648CA3),
-                      ),
-                    ),
-                    TextField(
+                    MyTextField(
+                      hint: "Email/Phone",
                       controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: "Your answer",
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 11.sp,
-                          fontFamily: "Poppins",
-                          color: Color(0xff648CA3),
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
                     ),
 
                     SizedBox(height: 16.h),
 
-                    // Password input field
-                    Text(
-                      "Password",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.sp,
-                        fontFamily: "Poppins",
-                        color: Color(0xff648CA3),
-                      ),
-                    ),
-
-                    TextField(
+                    MyTextField(
+                      hint: "Password",
                       controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "***********",
-                        border: UnderlineInputBorder(),
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 11.sp,
-                          fontFamily: "Poppins",
-                          color: Color(0xff648CA3),
-                        ),
-                      ),
+                      isPass: true,
                     ),
 
                     SizedBox(height: 16.h),
@@ -129,84 +94,37 @@ class _SigninPageState extends State<SigninPage> {
                     SizedBox(height: 16.h),
 
                     // Login button
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16.w),
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MyBottomNavigation(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff80011F),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(44.r),
+                    LoginContainer(
+                      title: "Login",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyBottomNavigation(),
                           ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.h,
-                            horizontal: 20.w,
-                          ),
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
 
                     const SizedBox(height: 20),
 
                     //Sign up redirect link
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have an account? ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16.sp,
-                            color: Color(0xff001420),
+                    TextContainer(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CreactAccountPage(),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CreactAccountPage(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xff80011F),
-                              fontSize: 16,
-                              decorationColor: Color(0xff80011F),
-                              decorationThickness: 2,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      },
+                      leftText: "Don't have an account?",
+                      rightText: "Sign up",
                     ),
-
                     const SizedBox(height: 30),
                   ],
                 ),
               ),
-              // Title text
             ],
           ),
         ),
