@@ -23,7 +23,7 @@ class _NewsPageState extends State<NewsPage> {
       body: Column(
         children: [
           Container(
-            height: 10,
+            height: 15,
             decoration: BoxDecoration(
               color: Color(0xff80011F),
               borderRadius: BorderRadius.only(
