@@ -1,4 +1,3 @@
-import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ethio_fm_radio/my_page_view.dart';
@@ -26,10 +25,10 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           theme: myThemeData,
           debugShowCheckedModeBanner: false,
-          home: child, // ✅ Use the ScreenUtil-aware widget
+          home: child,
         );
       },
-      child: const SigninPage(),
+      child: const MyPageView(),
     );
   }
 }
