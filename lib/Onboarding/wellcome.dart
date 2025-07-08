@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingWidget extends StatefulWidget {
@@ -33,10 +34,9 @@ class _BoardingWidgetState extends State<BoardingWidget> {
         body: Column(
           children: [
             Container(
-              width: 43,
-              height: 32,
-              margin: const EdgeInsets.only(top: 28, left: 325),
+              margin: EdgeInsets.only(top: 10.h, right: 20.w),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -47,9 +47,13 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                         ),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       "Skip",
-                      style: TextStyle(color: Color(0xff1A0101), fontSize: 20),
+                      style: TextStyle(
+                        color: Color(0xff1A0101),
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ],
@@ -58,56 +62,57 @@ class _BoardingWidgetState extends State<BoardingWidget> {
             Image.asset(
               widget.imagePath,
               width: 390,
-              height: 350,
+              height: 350.h,
               fit: BoxFit.contain,
             ),
             Container(
               width: 344,
-              height: 216,
-              margin: const EdgeInsets.only(top: 44),
+              margin: EdgeInsets.only(top: 44.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color(0xff1A0101),
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 36.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
                     widget.subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color(0xff80011F),
-                      fontSize: 32,
+                      fontSize: 32.sp,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
-                  const SizedBox(height: 23),
+                  SizedBox(height: 32.h),
                   Text(
                     widget.description,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color(0xff1A0101),
-                      fontSize: 20,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 45, left: 40),
+              margin: EdgeInsets.only(top: 45.h, left: 20.w),
               width: 440,
-              height: 76,
+              // height: 76,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothPageIndicator(
                     controller: widget.pageController,
                     count: 3,
-                    effect: const WormEffect(
+                    effect: WormEffect(
                       activeDotColor: Color(0xff80011F),
-                      dotHeight: 14,
-                      dotWidth: 14,
+                      dotHeight: 14.h,
+                      dotWidth: 14.w,
                     ),
                   ),
                   GestureDetector(
@@ -129,20 +134,20 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                       }
                     },
                     child: Container(
-                      width: 200,
-                      height: 76,
-                      decoration: const BoxDecoration(
+                      width: 170.w,
+                      height: 76.h,
+                      decoration: BoxDecoration(
                         color: Color(0xff80011F),
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(54),
-                          bottomLeft: Radius.circular(54),
+                          topLeft: Radius.circular(54.r),
+                          bottomLeft: Radius.circular(54.r),
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Icon(
                           Icons.arrow_forward,
                           color: Colors.white,
-                          size: 22,
+                          size: 24.r,
                         ),
                       ),
                     ),
