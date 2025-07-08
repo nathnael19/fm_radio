@@ -1,5 +1,12 @@
+import 'package:ethio_fm_radio/Auth/components/login_container.dart';
+import 'package:ethio_fm_radio/Auth/components/my_divider.dart';
+import 'package:ethio_fm_radio/Auth/components/my_text_field.dart';
+import 'package:ethio_fm_radio/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreactAccountPage extends StatefulWidget {
   const CreactAccountPage({super.key});
@@ -27,38 +34,19 @@ class _SignUpPageState extends State<CreactAccountPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Top background image
-              Container(
-                height: 170,
-                decoration: BoxDecoration(
-                  color: const Color(0xff80011F),
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/back.png"),
-                  ),
-                ),
-                child: Center(
-                  child: Image.asset("assets/images/backover.png", width: 150),
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
+              MyPhoto(height: 191.h),
+              SizedBox(height: 27.h),
               Padding(
-                padding: EdgeInsets.all(15),
-
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Page title
-                    const Text(
+                    Text(
                       "Sign up",
                       style: TextStyle(
                         color: Color(0xff1A0101),
-                        fontSize: 36,
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: "Poppins",
                       ),
@@ -67,205 +55,63 @@ class _SignUpPageState extends State<CreactAccountPage> {
                     const SizedBox(height: 16),
 
                     //Full Name
-                    const Text(
-                      "Full Name",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: nameController,
-                      decoration: const InputDecoration(
-                        hintText: "Your Full Name",
-                        hintStyle: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
-                    ),
+                    MyTextField(hint: "Full Name", controller: nameController),
 
                     const SizedBox(height: 16),
 
                     // Email
-                    const Text(
-                      "Email",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        hintText: "Your Email",
-                        hintStyle: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
-                    ),
+                    MyTextField(hint: "Email", controller: emailController),
 
                     const SizedBox(height: 16),
 
                     //Phone Number
-                    const Text(
-                      "Phone number",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
+                    MyTextField(
+                      hint: "Phone Number",
                       controller: phoneController,
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
-                        hintText: "Your Phone Number",
-                        hintStyle: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
                     ),
-
                     const SizedBox(height: 16),
 
-                    //  Password
-                    const Text(
-                      "Password",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
+                    MyTextField(
+                      hint: "Password",
                       controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: "Your Password",
-                        hintStyle: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
                     ),
 
                     const SizedBox(height: 16),
 
-                    //Confirm Password
-                    const Text(
-                      "Confirm Password",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    TextField(
+                    MyTextField(
+                      hint: "Confirm Password",
                       controller: confirmPasswordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: "confirm your password",
-                        hintStyle: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: UnderlineInputBorder(),
-                      ),
                     ),
-
                     const SizedBox(height: 16),
 
+                    LoginContainer(
+                      title: "Create Account",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyBottomNavigation(),
+                          ),
+                        );
+                      },
+                    ),
                     // Account Button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff80011F),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: const Text(
-                          "Create account",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ),
-
                     const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Divider(
-                            thickness: 0.5,
-                            color: Colors.grey,
-                            endIndent: 10,
-                          ),
-                        ),
-                        Text(
-                          "or",
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const Expanded(
-                          child: Divider(
-                            thickness: 0.5,
-                            color: Colors.grey,
-                            indent: 10,
-                          ),
-                        ),
-                      ],
-                    ),
+
+                    MyDivider(),
 
                     // Already have account link
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Have an account? "),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SigninPage(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "Sign in",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                              color: Color(0xff80011F),
-                            ),
+                    TextContainer(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SigninPage(),
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      leftText: "Have an account?",
+                      rightText: "Sign in",
                     ),
                   ],
                 ),
