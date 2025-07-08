@@ -3,6 +3,7 @@ import 'package:ethio_fm_radio/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -27,19 +28,19 @@ class _SigninPageState extends State<SigninPage> {
             crossAxisAlignment: CrossAxisAlignment.start, //Align text to start
             children: [
               //Header image with background and logo overlay
-              MyPhoto(height: 247),
+              MyPhoto(height: 247.h),
 
-              const SizedBox(height: 27),
+              SizedBox(height: 27.h),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       "Sign in",
                       style: TextStyle(
                         color: Color(0xff1A0101),
-                        fontSize: 36,
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: "Poppins",
                       ),
@@ -48,45 +49,58 @@ class _SigninPageState extends State<SigninPage> {
                     const SizedBox(height: 20),
 
                     // Email/Phone input field
-                    const Text(
+                    Text(
                       "Email/Phone",
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                        fontSize: 12.sp,
                         fontFamily: "Poppins",
+                        color: Color(0xff648CA3),
                       ),
                     ),
-                    const SizedBox(height: 10),
                     TextField(
                       controller: emailController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: "Your answer",
+                        hintStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 11.sp,
+                          fontFamily: "Poppins",
+                          color: Color(0xff648CA3),
+                        ),
                         border: UnderlineInputBorder(),
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Password input field
-                    const Text(
+                    Text(
                       "Password",
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                        fontSize: 12.sp,
                         fontFamily: "Poppins",
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: "***********",
-                        border: UnderlineInputBorder(),
+                        color: Color(0xff648CA3),
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "***********",
+                        border: UnderlineInputBorder(),
+                        hintStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 11.sp,
+                          fontFamily: "Poppins",
+                          color: Color(0xff648CA3),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 16.h),
 
                     //  Forgot password link
                     Align(
@@ -100,21 +114,23 @@ class _SigninPageState extends State<SigninPage> {
                             ),
                           );
                         },
-                        child: const Text(
+                        child: Text(
                           "Forgot password?",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Color(0xff001420),
-                            fontSize: 14,
+                            fontSize: 14.sp,
+                            fontFamily: "Poppins",
                           ),
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 16.h),
 
                     // Login button
-                    SizedBox(
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16.w),
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
@@ -128,13 +144,22 @@ class _SigninPageState extends State<SigninPage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff80011F),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(44.r),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10.h,
+                            horizontal: 20.w,
+                          ),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -145,11 +170,11 @@ class _SigninPageState extends State<SigninPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           "Don't have an account? ",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: Color(0xff001420),
                           ),
                         ),
@@ -158,7 +183,6 @@ class _SigninPageState extends State<SigninPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // builder: (context) => const CreactAccountPage(),
                                 builder: (context) => const CreactAccountPage(),
                               ),
                             );
@@ -169,6 +193,9 @@ class _SigninPageState extends State<SigninPage> {
                               fontWeight: FontWeight.w700,
                               color: Color(0xff80011F),
                               fontSize: 16,
+                              decorationColor: Color(0xff80011F),
+                              decorationThickness: 2,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
