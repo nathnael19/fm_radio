@@ -3,6 +3,7 @@ import 'package:ethio_fm_radio/Home/components/recent_list_cards.dart';
 import 'package:ethio_fm_radio/Home/components/todays_list_cards.dart';
 import 'package:ethio_fm_radio/Home/components/whether_list_cards.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LiveTabBars extends StatefulWidget {
   const LiveTabBars({
@@ -39,15 +40,15 @@ class _MytTabBarState extends State<LiveTabBars> {
         children: [
           // Button TabBar
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 3),
-            height: 45,
+            margin: EdgeInsets.symmetric(vertical: 14.h),
+            height: 27.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: tabTitles.length,
               itemBuilder: (context, index) {
                 final isSelected = selectedIndex == index;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 6.w),
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -56,15 +57,26 @@ class _MytTabBarState extends State<LiveTabBars> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isSelected
-                          ? const Color(0xff4A0000)
+                          ? const Color(0xff80011F)
                           : Colors.grey[300],
-                      foregroundColor: isSelected ? Colors.white : Colors.black,
+                      foregroundColor: isSelected
+                          ? Colors.white
+                          : Color(0xff1A0101),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 4.h,
+                      ),
                     ),
-                    child: Text(tabTitles[index]),
+                    child: Text(
+                      tabTitles[index],
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 );
               },

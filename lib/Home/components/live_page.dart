@@ -4,6 +4,7 @@ import 'package:ethio_fm_radio/Home/components/live_tabbar.dart';
 import 'package:ethio_fm_radio/Home/components/overlay_play.dart';
 import 'package:ethio_fm_radio/Home/components/side_contaier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LivePage extends StatefulWidget {
   final double mobileHeight;
@@ -21,90 +22,87 @@ class LivePage extends StatefulWidget {
 class _LivePageState extends State<LivePage> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
+    return Column(
       children: [
-        Column(
-          children: [
-            Container(
-              width: widget.mobileWidth,
-              height: widget.mobileHeight * 0.44,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  stops: [1, 8],
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xff80011F), Color(0xff4A0000)],
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40),
-                ),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 12,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      left: 24,
-                      right: 24,
-                      bottom: 9,
-                    ),
-                    height: 310,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 270,
-                          margin: const EdgeInsets.only(right: 6, top: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                radius: 45,
-                                backgroundImage: AssetImage(
-                                  "assets/images/girl.png",
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              const Text("ታዲያስ አዲስ"),
-                              const SizedBox(height: 4),
-                              Image.asset("assets/images/soundwave.png"),
-                              const SizedBox(height: 6),
-                              LivePlayButtons(),
-                            ],
-                          ),
-                        ),
+        Container(
+          width: 390.w,
+          height: 348.h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xff80011F), Color(0xff4A0000)],
+            ),
 
-                        ///
-                        const SideContainer(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(40.r),
+              bottomRight: Radius.circular(40.r),
             ),
-            // Wrap LiveTabBars with Expanded to avoid layout errors
-            Expanded(
-              child: LiveTabBars(
-                recentPrograms: recentPrograms,
-                currency: currency,
-                wheathers: wheathers,
-                todaysProgram: todaysProgram,
-              ),
+          ),
+          child: Container(
+            margin: EdgeInsets.only(
+              left: 20.w,
+              right: 20.w,
+              bottom: 9.h,
+              top: 12.h,
             ),
-          ],
+            height: 288.h,
+            width: 344.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [LeftContainer(), SideContainer()],
+            ),
+          ),
         ),
-        const OverlayPlay(
-          imageUrl: "assets/images/girl.png",
-          title: "ታዲያስ አዲስ",
+        // Wrap LiveTabBars with Expanded to avoid layout errors
+        Expanded(
+          child: LiveTabBars(
+            recentPrograms: recentPrograms,
+            currency: currency,
+            wheathers: wheathers,
+            todaysProgram: todaysProgram,
+          ),
         ),
       ],
+    );
+  }
+}
+
+class LeftContainer extends StatelessWidget {
+  const LeftContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 256.h,
+      width: 272.w,
+      margin: EdgeInsets.only(right: 16.w, top: 10.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 50.r,
+            backgroundImage: AssetImage("assets/images/girl.png"),
+          ),
+          SizedBox(height: 6.h),
+          Text(
+            "ታዲያስ አዲስ",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              fontSize: 14.sp,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Image.asset(
+            "assets/images/soundwave.png",
+            width: 123.w,
+            height: 42.h,
+          ),
+          LivePlayButtons(),
+        ],
+      ),
     );
   }
 }
