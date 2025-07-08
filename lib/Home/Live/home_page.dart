@@ -2,6 +2,7 @@ import 'package:ethio_fm_radio/Home/News/news_page.dart';
 import 'package:ethio_fm_radio/Home/Podcast/podcast_page.dart';
 import 'package:ethio_fm_radio/Home/components/live_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,25 +31,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double mobileWidth = MediaQuery.of(context).size.width;
-    double mobileHeight = MediaQuery.of(context).size.height;
-
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
             Container(
-              padding: const EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 10.h),
               color: const Color(0xff80011F),
-              height: 40,
+              height: 60.h,
               child: Row(
                 children: [
-                  Expanded(
-                    flex: 1,
+                  Container(
+                    margin: EdgeInsets.only(left: 20.w),
                     child: Image.asset("assets/icons/logo.png"),
                   ),
-                  Expanded(
-                    flex: 4,
+                  SizedBox(
+                    width: 307.w,
                     child: TabBar(
                       controller: _tabController,
                       labelColor: Colors.white,
@@ -69,14 +67,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  LivePage(
-                    mobileWidth: mobileWidth,
-                    mobileHeight: mobileHeight,
-                  ),
-                  const NewsPage(),
-                  const PodcastPage(),
-                ],
+                children: [LivePage(), const NewsPage(), const PodcastPage()],
               ),
             ),
           ],
@@ -88,13 +79,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget _buildTab(int index, String title, IconData icon) {
     bool isSelected = _tabController.index == index;
     return Container(
-      margin: const EdgeInsets.only(bottom: 3),
+      margin: EdgeInsets.only(bottom: 3.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (isSelected) Icon(icon, size: 16),
-          if (isSelected) const SizedBox(width: 4),
-          Text(title),
+          if (isSelected) Icon(icon, size: 20.r),
+          if (isSelected) SizedBox(width: 5.w),
+          Text(
+            title,
+            style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

@@ -1,19 +1,12 @@
 import 'package:ethio_fm_radio/Databases/live_database.dart';
 import 'package:ethio_fm_radio/Home/components/live_play_buttons.dart';
 import 'package:ethio_fm_radio/Home/components/live_tabbar.dart';
-import 'package:ethio_fm_radio/Home/components/overlay_play.dart';
 import 'package:ethio_fm_radio/Home/components/side_contaier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LivePage extends StatefulWidget {
-  final double mobileHeight;
-  final double mobileWidth;
-  const LivePage({
-    super.key,
-    required this.mobileHeight,
-    required this.mobileWidth,
-  });
+  const LivePage({super.key});
 
   @override
   State<LivePage> createState() => _LivePageState();

@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Home/News/news_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewsPage extends StatefulWidget {
@@ -17,50 +18,65 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          height: 36,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: tabTitles.length,
-            itemBuilder: (context, index) {
-              bool isSelected = selectedIndex == index;
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 6,
-                    ),
-                    backgroundColor: isSelected
-                        ? const Color(0xff80011F)
-                        : Colors.grey[200],
-                    foregroundColor: isSelected ? Colors.white : Colors.black87,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    textStyle: GoogleFonts.notoSansEthiopic(fontSize: 13),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      _newsPageKey.currentState?.scrollToSection(index);
-                    });
-                  },
-                  child: Text(tabTitles[index]),
-                ),
-              );
-            },
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            height: 10,
+            decoration: BoxDecoration(
+              color: Color(0xff80011F),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(16.r),
+                bottomRight: Radius.circular(16.r),
+              ),
+            ),
           ),
-        ),
-        Expanded(child: NewsPageSelector(key: _newsPageKey)),
-      ],
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 3),
+            height: 30.h,
+            color: Colors.white,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: tabTitles.length,
+              itemBuilder: (context, index) {
+                bool isSelected = selectedIndex == index;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 2.h,
+                      ),
+                      backgroundColor: isSelected
+                          ? const Color(0xff80011F)
+                          : Colors.grey[200],
+                      foregroundColor: isSelected
+                          ? Colors.white
+                          : Colors.black87,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      textStyle: GoogleFonts.notoSansEthiopic(fontSize: 13),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _newsPageKey.currentState?.scrollToSection(index);
+                      });
+                    },
+                    child: Text(tabTitles[index]),
+                  ),
+                );
+              },
+            ),
+          ),
+          Expanded(child: NewsPageSelector(key: _newsPageKey)),
+        ],
+      ),
     );
   }
 }
@@ -107,32 +123,32 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         controller: _scrollController,
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionHeader("አርእስተ ዜና", key: _topNewsKey),
-            const SizedBox(height: 10),
+            SizedBox(height: 16.h),
             _buildHorizontalCards(),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 24.h),
             _buildSectionHeader("ስፖርት", key: _sportKey),
-            const SizedBox(height: 10),
+            SizedBox(height: 16.h),
             _buildSmallCards(),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 24.h),
             _buildSectionHeader("የውጪ ዜና", key: _worldKey),
-            const SizedBox(height: 10),
+            SizedBox(height: 16.h),
             _buildSmallCards(),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 24.h),
             _buildSectionHeader("ቢዝነስ", key: _businessKey),
-            const SizedBox(height: 10),
+            SizedBox(height: 16.h),
             _buildSmallCards(),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 24.h),
             _buildSectionHeader("ሌሎች", key: _otherKey),
-            const SizedBox(height: 10),
+            SizedBox(height: 16.h),
             _buildSmallCards(),
           ],
         ),
@@ -148,15 +164,16 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
         Text(
           title,
           style: GoogleFonts.notoSansEthiopic(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
         Text(
-          "ዛሬ",
+          "ሁሉንም ክፈት",
           style: GoogleFonts.notoSansEthiopic(
-            fontSize: 14,
-            color: Colors.grey[600],
+            fontSize: 12.sp,
+            color: Color(0xff1A0101),
+            decoration: TextDecoration.underline,
           ),
         ),
       ],
@@ -179,51 +196,54 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
   Widget _buildHorizontalCards() {
     return SizedBox(
-      height: 260,
+      width: 359.w,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => _showBottomSheet(context),
             child: Container(
-              width: MediaQuery.of(context).size.width - 60,
-              margin: const EdgeInsets.only(right: 20),
+              width: 340.w,
+              height: 242.h,
+              margin: EdgeInsets.only(right: 20.w),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.grey[100],
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    blurRadius: 6,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(color: Color(0xffEDE4E6), width: 1),
+                color: Colors.white,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(15),
-                    ),
-                    child: Image.asset(
-                      "assets/images/taa.png",
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 150,
-                    ),
+                  Image.asset(
+                    "assets/images/gambela.png",
+                    fit: BoxFit.fitWidth,
+                    height: 150.h,
+                    width: 340.w,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 5.h,
+                    ),
                     child: Text(
-                      "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች...",
+                      "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
                       style: GoogleFonts.notoSansEthiopic(
-                        fontSize: 16,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 8.w),
+                    child: Row(
+                      children: [
+                        Text("2 hr ago"),
+                        SizedBox(width: 10.w),
+                        Icon(Icons.rectangle, size: 10.r, color: Colors.grey),
+                        SizedBox(width: 5.w),
+                        Text("Ethio FM"),
+                      ],
                     ),
                   ),
                 ],
@@ -237,37 +257,66 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
   Widget _buildSmallCards() {
     return SizedBox(
-      height: 100,
+      height: 82.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
-            width: MediaQuery.of(context).size.width - 80,
-            margin: const EdgeInsets.only(right: 16),
-            padding: const EdgeInsets.all(6),
+            width: 330.w,
+            margin: EdgeInsets.only(right: 20.w),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(color: Color(0xffEDE4E6), width: 1),
             ),
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5.r),
                   child: Image.asset(
                     "assets/images/biden.png",
-                    width: 90,
-                    height: 90,
+                    width: 60.w,
+                    height: 60.w,
                     fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
-                    "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች...",
-                    style: GoogleFonts.notoSansEthiopic(fontSize: 13),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                  child: Column(
+                    children: [
+                      Text(
+                        "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
+                        maxLines: 2,
+                        style: GoogleFonts.notoSansEthiopic(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.g_mobiledata, size: 18.r),
+                              Text(
+                                "Source",
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Icon(Icons.more_vert, size: 20.r),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
