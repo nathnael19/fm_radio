@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SideContainerIcon extends StatelessWidget {
   final int number;
@@ -17,14 +18,14 @@ class SideContainerIcon extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onTap,
-          icon: Icon(icon, size: 24, color: Colors.white),
+          icon: Icon(icon, size: 24.r, color: Colors.white),
         ),
         Text(
           number.toString(),
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 10.sp,
             color: Colors.white,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

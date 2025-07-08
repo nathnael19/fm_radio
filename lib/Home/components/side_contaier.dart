@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Home/components/side_container_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SideContainer extends StatelessWidget {
@@ -8,12 +9,12 @@ class SideContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300 * 0.21,
-      height: 285,
-      margin: EdgeInsets.symmetric(vertical: 16),
+      width: 56.w,
+      height: 256.h,
+      margin: EdgeInsets.symmetric(vertical: 16.h),
       decoration: BoxDecoration(
         color: Colors.black54,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(55.r),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
