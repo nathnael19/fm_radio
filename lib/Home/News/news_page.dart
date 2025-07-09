@@ -25,7 +25,7 @@ class _NewsPageState extends State<NewsPage> {
           Container(
             height: 15,
             decoration: BoxDecoration(
-              color: Color(0xff80011F),
+              color: const Color(0xff80011F),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(16.r),
                 bottomRight: Radius.circular(16.r),
@@ -119,39 +119,37 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionHeader("አርእስተ ዜና", key: _topNewsKey),
-            SizedBox(height: 16.h),
-            _buildHorizontalCards(),
+    return SingleChildScrollView(
+      // 🟢 Removed nested Scaffold to avoid nested scrollable issues
+      controller: _scrollController,
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionHeader("አርእስተ ዜና", key: _topNewsKey),
+          SizedBox(height: 16.h),
+          _buildHorizontalCards(),
 
-            SizedBox(height: 24.h),
-            _buildSectionHeader("ስፖርት", key: _sportKey),
-            SizedBox(height: 16.h),
-            _buildSmallCards(),
+          SizedBox(height: 24.h),
+          _buildSectionHeader("ስፖርት", key: _sportKey),
+          SizedBox(height: 16.h),
+          _buildSmallCards(),
 
-            SizedBox(height: 24.h),
-            _buildSectionHeader("የውጪ ዜና", key: _worldKey),
-            SizedBox(height: 16.h),
-            _buildSmallCards(),
+          SizedBox(height: 24.h),
+          _buildSectionHeader("የውጪ ዜና", key: _worldKey),
+          SizedBox(height: 16.h),
+          _buildSmallCards(),
 
-            SizedBox(height: 24.h),
-            _buildSectionHeader("ቢዝነስ", key: _businessKey),
-            SizedBox(height: 16.h),
-            _buildSmallCards(),
+          SizedBox(height: 24.h),
+          _buildSectionHeader("ቢዝነስ", key: _businessKey),
+          SizedBox(height: 16.h),
+          _buildSmallCards(),
 
-            SizedBox(height: 24.h),
-            _buildSectionHeader("ሌሎች", key: _otherKey),
-            SizedBox(height: 16.h),
-            _buildSmallCards(),
-          ],
-        ),
+          SizedBox(height: 24.h),
+          _buildSectionHeader("ሌሎች", key: _otherKey),
+          SizedBox(height: 16.h),
+          _buildSmallCards(),
+        ],
       ),
     );
   }
@@ -172,7 +170,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           "ሁሉንም ክፈት",
           style: GoogleFonts.notoSansEthiopic(
             fontSize: 12.sp,
-            color: Color(0xff1A0101),
+            color: const Color(0xff1A0101),
             decoration: TextDecoration.underline,
           ),
         ),
@@ -196,9 +194,11 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
   Widget _buildHorizontalCards() {
     return SizedBox(
-      width: 359.w,
+      height: 242.h, // 🟢 Added height here
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        shrinkWrap: true, // 🟢 Allow it to fit inside Column
+        physics: const ClampingScrollPhysics(), // 🟢 Smooth scrolling
         itemCount: 2,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -209,11 +209,10 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
               margin: EdgeInsets.only(right: 20.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(color: Color(0xffEDE4E6), width: 1),
+                border: Border.all(color: const Color(0xffEDE4E6), width: 1),
                 color: Colors.white,
               ),
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
                     "assets/images/gambela.png",
@@ -238,11 +237,11 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                     margin: EdgeInsets.only(left: 8.w),
                     child: Row(
                       children: [
-                        Text("2 hr ago"),
+                        const Text("2 hr ago"),
                         SizedBox(width: 10.w),
                         Icon(Icons.rectangle, size: 10.r, color: Colors.grey),
                         SizedBox(width: 5.w),
-                        Text("Ethio FM"),
+                        const Text("Ethio FM"),
                       ],
                     ),
                   ),
@@ -260,6 +259,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
       height: 82.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        shrinkWrap: true, // 🟢 Fix: Allows rendering inside Column
+        physics: const ClampingScrollPhysics(), // 🟢 Fix scroll physics
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
@@ -269,7 +270,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: Color(0xffEDE4E6), width: 1),
+              border: Border.all(color: const Color(0xffEDE4E6), width: 1),
             ),
             child: Row(
               children: [

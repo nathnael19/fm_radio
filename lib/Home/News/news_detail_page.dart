@@ -7,7 +7,7 @@ class NewsDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 0.9,
+      heightFactor: 0.8,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

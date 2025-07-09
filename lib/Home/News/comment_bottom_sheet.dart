@@ -119,49 +119,6 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
           ),
 
           // Input field
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _commentController,
-                    decoration: InputDecoration(
-                      hintText: "Comment...",
-                      hintStyle: const TextStyle(fontSize: 14),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                IconButton(
-                  icon: const Icon(Icons.send, color: Colors.black54),
-                  onPressed: () {
-                    if (_commentController.text.isNotEmpty) {
-                      setState(() {
-                        comments.add({
-                          "username": "@you",
-                          "time": "Just now",
-                          "content": _commentController.text,
-                          "likes": "0",
-                        });
-                        _commentController.clear();
-                      });
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

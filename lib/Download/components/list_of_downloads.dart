@@ -10,6 +10,8 @@ class ListOfDownloads extends StatelessWidget {
   final String other;
   final IconData icon;
   final Color color;
+  final VoidCallback onTap;
+
   const ListOfDownloads({
     super.key,
     required this.imageUrl,
@@ -19,6 +21,7 @@ class ListOfDownloads extends StatelessWidget {
     required this.other,
     required this.icon,
     required this.color,
+    required this.onTap,
   });
 
   @override
@@ -65,7 +68,7 @@ class ListOfDownloads extends StatelessWidget {
         ],
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: onTap,
         icon: Icon(icon, size: 24.r, color: color),
       ),
     );

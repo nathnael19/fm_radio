@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
-      setState(() {});
+      setState(() {}); // rebuild tabs on index change
     });
   }
 
@@ -45,14 +45,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     margin: EdgeInsets.only(left: 20.w),
                     child: Image.asset("assets/icons/logo.png"),
                   ),
-                  SizedBox(
-                    width: 307.w,
+                  Expanded(
+                    // 🟢 FIX: make TabBar expand flexibly
                     child: TabBar(
                       controller: _tabController,
                       labelColor: Colors.white,
                       unselectedLabelColor: Colors.white70,
                       indicatorColor: Colors.white,
                       dividerColor: Colors.transparent,
+                      isScrollable: false, // 🟢 FIX: tabs fit evenly in width
                       tabs: [
                         _buildTab(0, "ቀጥታ", Icons.live_tv),
                         _buildTab(1, "ዜናዎች", Icons.article),
@@ -78,18 +79,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget _buildTab(int index, String title, IconData icon) {
     bool isSelected = _tabController.index == index;
-    return Container(
-      margin: EdgeInsets.only(bottom: 3.h),
-      child: Row(
-        children: [
-          if (isSelected) Icon(icon, size: 20.r),
-          if (isSelected) SizedBox(width: 5.w),
-          Text(
-            title,
-            style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center, // 🟢 Center icon+text
+      children: [
+        Icon(
+          icon,
+          size: 16.r,
+          color: isSelected ? Colors.white : Colors.white70,
+        ),
+        SizedBox(width: 4.w),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w600,
+            color: isSelected ? Colors.white : Colors.white70,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

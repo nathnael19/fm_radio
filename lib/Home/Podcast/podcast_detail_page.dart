@@ -86,6 +86,7 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
                 itemCount: 4,
                 itemBuilder: (BuildContext context, int index) {
                   return ListOfDownloads(
+                    onTap: () {},
                     icon: Icons.download_for_offline_outlined,
                     title: "የትም? (Yetim?)",
                     imageUrl: "assets/images/girl3.png",
