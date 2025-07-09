@@ -93,7 +93,7 @@ class _MytTabBarState extends State<LiveTabBars> {
                       recentPrograms: widget.recentPrograms,
                     );
                   case 1:
-                    return CurrencyListCards(currency: widget.currency);
+                    return CurrencyListCards();
                   case 2:
                     return WhetherListCards(wheather: widget.wheathers);
                   case 3:
