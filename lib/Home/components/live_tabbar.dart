@@ -95,7 +95,7 @@ class _MytTabBarState extends State<LiveTabBars> {
                   case 1:
                     return CurrencyListCards();
                   case 2:
-                    return WhetherListCards(wheather: widget.wheathers);
+                    return WhetherListCards();
                   case 3:
                     return TodaysListCards(todaysProgram: widget.todaysProgram);
                   default:
