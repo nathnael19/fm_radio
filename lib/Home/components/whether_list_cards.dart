@@ -18,6 +18,7 @@ class _WhetherListCardsState extends State<WhetherListCards> {
     "Awassa",
     "Gondar",
     "Bahir Dar",
+    "Nazret",
   ];
 
   @override
@@ -44,13 +45,14 @@ class _WhetherListCardsState extends State<WhetherListCards> {
               itemBuilder: (context, index) {
                 return Card(
                   margin: const EdgeInsets.symmetric(
-                    vertical: 6,
+                    vertical: 0.5,
                     horizontal: 10,
                   ),
                   child: ListTile(
                     tileColor: Colors.white,
+                    subtitle: Text("${weatherList[index][4]}"),
                     title: Text(
-                      "${weatherList[index][0]} — ${weatherList[index][4]}",
+                      "${weatherList[index][0]}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

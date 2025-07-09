@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:ethio_fm_radio/Home/components/currency_service.dart';
+import 'package:flutter/material.dart'; // Import the service
 
 class CurrencyListCards extends StatefulWidget {
   const CurrencyListCards({super.key});
@@ -24,28 +23,16 @@ class _CurrencyListCardsState extends State<CurrencyListCards> {
   @override
   void initState() {
     super.initState();
-    fetchData();
+    fetchRates();
   }
 
-  Future<void> fetchData() async {
+  Future<void> fetchRates() async {
     for (var currency in currencyInfo) {
       final code = currency[1];
-      final response = await http.get(
-        Uri.parse(
-          'https://v6.exchangerate-api.com/v6/4deebf1b88d7f727dd29ae08/latest/$code',
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        setState(() {
-          rates[code] = data["conversion_rates"]["ETB"];
-        });
-      } else {
-        setState(() {
-          rates[code] = -1;
-        });
-      }
+      final rate = await CurrencyService.getETBRate(code);
+      setState(() {
+        rates[code] = rate ?? -1;
+      });
     }
 
     setState(() {
