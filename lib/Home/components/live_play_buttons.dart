@@ -90,6 +90,19 @@ void _showBottomSheet(BuildContext context) {
                 ],
               ),
 
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                child: Text(
+                  "የዚህ ፕሮግራሞ ቀን", // Title text
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.h),
+
               // Content goes here
               TodayCard(
                 imageUrl: "assets/images/girl2.png",
