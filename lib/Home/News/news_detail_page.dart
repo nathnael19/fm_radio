@@ -1,62 +1,66 @@
 import 'package:ethio_fm_radio/Home/News/comment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NewsDetailPage extends StatelessWidget {
+class NewsDetailPage extends StatefulWidget {
   const NewsDetailPage({super.key});
+
+  @override
+  State<NewsDetailPage> createState() => _NewsDetailPageState();
+}
+
+class _NewsDetailPageState extends State<NewsDetailPage> {
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
       heightFactor: 0.8,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.r),
         child: Column(
           children: [
             // Drag Handle
             Container(
-              width: 40,
-              height: 5,
-              margin: const EdgeInsets.only(bottom: 12),
+              width: 60.w,
+              height: 5.h,
+              margin: EdgeInsets.only(bottom: 12.h),
               decoration: BoxDecoration(
                 color: Colors.grey[400],
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
               ),
             ),
 
             // Header
             SizedBox(
-              height: 60,
+              height: 60.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.access_time,
-                        size: 16,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(width: 5),
-                      const Text(
+                      Icon(Icons.access_time, size: 16.r, color: Colors.grey),
+                      SizedBox(width: 5.w),
+                      Text(
                         "2hr ago",
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
                       ),
-                      const SizedBox(width: 10),
-                      const Icon(Icons.radio, size: 16, color: Colors.grey),
-                      const SizedBox(width: 5),
-                      const Text(
+                      SizedBox(width: 10.w),
+                      Icon(Icons.radio, size: 16.r, color: Colors.grey),
+                      SizedBox(width: 5),
+                      Text(
                         "Ethio FM",
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
                       ),
                     ],
                   ),
                   Row(
                     children: [
-                      Image.asset("assets/images/soundwave.png", height: 30),
-                      const SizedBox(width: 10),
-                      const Icon(
+                      Image.asset("assets/images/soundwave.png", height: 30.h),
+                      SizedBox(width: 10.w),
+                      Icon(
                         Icons.pause_circle_filled,
-                        size: 28,
+                        size: 35.r,
                         color: Colors.black87,
                       ),
                     ],
@@ -73,31 +77,31 @@ class NewsDetailPage extends StatelessWidget {
                   children: [
                     // Image
                     Container(
-                      height: 200,
+                      height: 200.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         image: const DecorationImage(
                           image: AssetImage("assets/images/taa.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Title
-                    const Text(
+                    Text(
                       "በጋምቤላ ክልል በግንባታ ማእድን ላይ የተጋነነ የዋጋ ጭማሪ እየታየ ነዉ ተባለ ።",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.black,
-                        height: 1.4,
+                        height: 1.4.h,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
 
                     // Body Text
-                    const Text(
+                    Text(
                       """የግንባታ ማእድናቱን የዋጋ ተመን ማስተካከያ እየተደረገበት መሆኑንም ሰምተናል።
     ከ2015 አመት ጀምሮ በጋምቤላ ክልል ሁሉም ወረዳዎች ላይ የግንባታ ማእድናት ከፍተኛ ዋጋ እየተጠየቀባቸዉ ነዉ ተብሏል።
     
@@ -112,22 +116,23 @@ class NewsDetailPage extends StatelessWidget {
     ቁምነገር አየለ
     ሚያዚያ 7 ቀን 2017 ዓ.ም""",
                       style: TextStyle(
-                        fontSize: 14,
-                        height: 1.5,
+                        fontSize: 14.sp,
+                        height: 1.5.h,
                         color: Colors.black87,
                       ),
                       textAlign: TextAlign.start,
                     ),
+                    showCommentSection(context),
                   ],
                 ),
               ),
             ),
 
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
 
             // Footer: Likes, Comments, Share
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: 8.h),
               decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey.shade300)),
               ),
@@ -136,54 +141,58 @@ class NewsDetailPage extends StatelessWidget {
                   // Interaction Buttons
                   Row(
                     children: [
-                      const Text("400", style: TextStyle(fontSize: 13)),
+                      Text("400", style: TextStyle(fontSize: 13.sp)),
                       IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.thumb_up_alt_outlined,
-                          size: 20,
+                          size: 20.r,
                           color: Colors.grey,
                         ),
                       ),
 
-                      const SizedBox(width: 16),
-                      const Text("400", style: TextStyle(fontSize: 13)),
+                      SizedBox(width: 10.w),
+                      Text("400", style: TextStyle(fontSize: 13.sp)),
                       IconButton(
-                        onPressed: () => showCommentBottomSheet(context),
+                        onPressed: () {
+                          setState(() {
+                            isVisible = true;
+                          });
+                        },
                         icon: Icon(
                           Icons.comment_outlined,
-                          size: 20,
+                          size: 20.r,
                           color: Colors.grey,
                         ),
                       ),
 
-                      const SizedBox(width: 16),
-                      const Text("4", style: TextStyle(fontSize: 13)),
+                      SizedBox(width: 16.w),
+                      Text("4", style: TextStyle(fontSize: 13.sp)),
                       IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.send_outlined,
-                          size: 20,
+                          size: 20.r,
                           color: Colors.grey,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
 
                   // Comment Field
                   TextField(
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 12,
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 12.w,
                       ),
                       hintText: "Write a comment...",
                       hintStyle: const TextStyle(color: Colors.grey),
                       filled: true,
                       fillColor: Colors.grey.shade100,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                         borderSide: BorderSide.none,
                       ),
                       suffixIcon: IconButton(
@@ -201,12 +210,17 @@ class NewsDetailPage extends StatelessWidget {
     );
   }
 
-  void showCommentBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (_) => const CommentBottomSheet(),
-    );
+  Widget showCommentSection(BuildContext context) {
+    if (isVisible) {
+      return CommentBottomSheet(
+        onTap: () {
+          setState(() {
+            isVisible = false;
+          });
+        },
+      );
+    } else {
+      return SizedBox(height: 1.h);
+    }
   }
 }

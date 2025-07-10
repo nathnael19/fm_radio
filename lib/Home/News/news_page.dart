@@ -133,22 +133,22 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           SizedBox(height: 24.h),
           _buildSectionHeader("ስፖርት", key: _sportKey),
           SizedBox(height: 16.h),
-          _buildSmallCards(),
+          Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
           _buildSectionHeader("የውጪ ዜና", key: _worldKey),
           SizedBox(height: 16.h),
-          _buildSmallCards(),
+          Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
           _buildSectionHeader("ቢዝነስ", key: _businessKey),
           SizedBox(height: 16.h),
-          _buildSmallCards(),
+          Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
           _buildSectionHeader("ሌሎች", key: _otherKey),
           SizedBox(height: 16.h),
-          _buildSmallCards(),
+          Column(children: [_buildSmallCards(), _buildSmallCards()]),
         ],
       ),
     );
@@ -204,7 +204,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           return GestureDetector(
             onTap: () => _showBottomSheet(context),
             child: Container(
-              width: 340.w,
+              width: 350.w,
               height: 242.h,
               margin: EdgeInsets.only(right: 20.w),
               decoration: BoxDecoration(
@@ -264,7 +264,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
-            width: 330.w,
+            width: 350.w,
             margin: EdgeInsets.only(right: 20.w),
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(

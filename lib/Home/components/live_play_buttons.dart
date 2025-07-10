@@ -38,10 +38,10 @@ class LivePlayButtons extends StatelessWidget {
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
               child: Text(
                 "Tip Creator",
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
               ),
             ),
           ),
