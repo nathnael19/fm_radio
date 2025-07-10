@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Home/components/today_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +24,9 @@ class LivePlayButtons extends StatelessWidget {
         ),
         SizedBox(width: 3.w),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            _showBottomSheet(context);
+          },
           icon: Icon(
             Icons.calendar_month_outlined,
             size: 24.r,
@@ -49,4 +52,64 @@ class LivePlayButtons extends StatelessWidget {
       ],
     );
   }
+}
+
+void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    backgroundColor: Colors.white,
+    builder: (context) {
+      return SizedBox(
+        height: 300.h,
+        child: Padding(
+          padding: EdgeInsets.all(5.0.r),
+          child: Column(
+            children: [
+              // Drag Handle
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 60.w,
+                    height: 5.h,
+                    margin: EdgeInsets.only(bottom: 12.h),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.clear),
+                  ),
+                ],
+              ),
+
+              // Content goes here
+              TodayCard(
+                imageUrl: "assets/images/girl2.png",
+                title: "ታዲያስ አዲስ",
+                time: "04:00 PM",
+                icon: Icons.notifications,
+                onTap: () {},
+              ),
+              TodayCard(
+                imageUrl: "assets/images/girl2.png",
+                title: "ታዲያስ አዲስ",
+                time: "04:00 PM",
+                icon: Icons.notifications,
+                onTap: () {},
+              ),
+              SizedBox(height: 10.h),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
