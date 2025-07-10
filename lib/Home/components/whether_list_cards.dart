@@ -39,47 +39,51 @@ class _WhetherListCardsState extends State<WhetherListCards> {
   Widget build(BuildContext context) {
     return isLoading
         ? const Center(child: CircularProgressIndicator())
-        : Expanded(
-            child: ListView.builder(
-              itemCount: weatherList.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 0.5,
-                    horizontal: 10,
-                  ),
-                  child: ListTile(
-                    tileColor: Colors.white,
-                    subtitle: Text("${weatherList[index][4]}"),
-                    title: Text(
-                      "${weatherList[index][0]}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+        : Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: weatherList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 0.5,
+                        horizontal: 10,
                       ),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          weatherList[index][1],
-                          color: weatherList[index][3],
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          "${weatherList[index][2]}°",
+                      child: ListTile(
+                        tileColor: Colors.white,
+                        subtitle: Text("${weatherList[index][4]}"),
+                        title: Text(
+                          "${weatherList[index][0]}",
                           style: const TextStyle(
-                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              weatherList[index][1],
+                              color: weatherList[index][3],
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              "${weatherList[index][2]}°",
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
   }
 }

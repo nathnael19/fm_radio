@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "request": "attach",
+            "type": "dart",
+            "deviceId": "RZ8W10MH32T"
+
+        }
+    ]
+}

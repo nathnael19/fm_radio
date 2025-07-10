@@ -42,45 +42,48 @@ class _CurrencyListCardsState extends State<CurrencyListCards> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: currencyInfo.length,
-              itemBuilder: (context, index) {
-                final icon = currencyInfo[index][0];
-                final code = currencyInfo[index][1];
-                final name = currencyInfo[index][2];
-                final rate = rates[code];
-
-                return ListTile(
-                  tileColor: Colors.white,
-                  leading: Container(
-                    width: 65,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage(icon),
+    return Column(
+      children: [
+        Expanded(
+          child: isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: currencyInfo.length,
+                  itemBuilder: (context, index) {
+                    final icon = currencyInfo[index][0];
+                    final code = currencyInfo[index][1];
+                    final name = currencyInfo[index][2];
+                    final rate = rates[code];
+                    return ListTile(
+                      tileColor: Colors.white,
+                      leading: Container(
+                        width: 65,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: AssetImage(icon),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  title: Text(code),
-                  subtitle: Text(name),
-                  trailing: Text(
-                    rate == null
-                        ? "Loading..."
-                        : rate == -1
-                        ? "Error"
-                        : "${rate.toStringAsFixed(2)} ብር",
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                );
-              },
-            ),
+                      title: Text(code),
+                      subtitle: Text(name),
+                      trailing: Text(
+                        rate == null
+                            ? "Loading..."
+                            : rate == -1
+                            ? "Error"
+                            : "${rate.toStringAsFixed(2)} ብር",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+        ),
+      ],
     );
   }
 }

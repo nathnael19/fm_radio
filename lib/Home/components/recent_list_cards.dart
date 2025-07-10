@@ -7,21 +7,25 @@ class RecentListCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        itemCount: recentPrograms.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 0.75,
+    return Column(
+      children: [
+        Expanded(
+          child: GridView.builder(
+            itemCount: recentPrograms.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, index) {
+              return RecentCard(
+                imageUrl: recentPrograms[index][0],
+                title: recentPrograms[index][1],
+                subtitle: recentPrograms[index][2],
+              );
+            },
+          ),
         ),
-        itemBuilder: (context, index) {
-          return RecentCard(
-            imageUrl: recentPrograms[index][0],
-            title: recentPrograms[index][1],
-            subtitle: recentPrograms[index][2],
-          );
-        },
-      ),
+      ],
     );
   }
 }

@@ -41,6 +41,11 @@ dependencies:
   flutter_screenutil: ^5.9.3
   audioplayers: ^6.5.0
   http: ^1.4.0
+  just_audio: ^0.10.4
+  rxdart: ^0.28.0
+  cached_network_image: ^3.4.1
+  just_audio_background: ^0.0.1-beta.17
+  audio_video_progress_bar: ^2.0.3
 
 dev_dependencies:
   flutter_test:
