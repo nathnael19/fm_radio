@@ -63,32 +63,56 @@ void _showBottomSheet(BuildContext context) {
     backgroundColor: Colors.white,
     builder: (context) {
       return SizedBox(
-        height: 300.h,
+        height: 350.h,
         child: Padding(
           padding: EdgeInsets.all(5.0.r),
           child: Column(
             children: [
-              // Drag Handle
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              // Drag Handle & Cancel Button
+              Stack(
                 children: [
-                  Container(
-                    width: 60.w,
-                    height: 5.h,
-                    margin: EdgeInsets.only(bottom: 12.h),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[400],
-                      borderRadius: BorderRadius.circular(10.r),
+                  // Drag Handle (centered)
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 60.w,
+                      height: 5.h,
+                      margin: EdgeInsets.only(top: 8.h, bottom: 12.h),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[400],
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.clear),
+                  // Cancel button (top-right)
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.clear),
+                    ),
                   ),
                 ],
               ),
+
+              // Title text
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  child: Text(
+                    "የዚህ ፕሮግራሞ ቀን", // Title text
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.h),
 
               // Content goes here
               TodayCard(
