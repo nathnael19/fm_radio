@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:ethio_fm_radio/Databases/live_database.dart';
 import 'package:ethio_fm_radio/Home/Podcast/podcast_detail_page.dart';
 import 'package:ethio_fm_radio/Home/components/recent_card.dart';
@@ -12,7 +13,18 @@ class PodcastPage extends StatefulWidget {
 }
 
 class _PodcastPageState extends State<PodcastPage> {
+  late AudioPlayer audioPlayer;
   List recent = recentPrograms;
+  List<String> paths = [
+    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+  ];
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer = AudioPlayer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +32,9 @@ class _PodcastPageState extends State<PodcastPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          // Top container
           Container(
             decoration: BoxDecoration(
-              color: Color(0xff80011F),
+              color: const Color(0xff80011F),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(16.r),
                 bottomRight: Radius.circular(16.r),
@@ -31,34 +42,12 @@ class _PodcastPageState extends State<PodcastPage> {
             ),
             height: 15,
           ),
-
-          // Expanded scrollable content
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                bottom: 10,
-              ), // leave space for overlay
+              padding: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
-                  // Section 1
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("በኢትዮ ኤፍ ኤም 107.8 ብቻ"),
-                        Text(
-                          "ሁሉንም ክፈት",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  sectionHeader("በኢትዮ ኤፍ ኤም 107.8 ብቻ"),
                   GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     shrinkWrap: true,
@@ -75,7 +64,10 @@ class _PodcastPageState extends State<PodcastPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PodcastDetailPage(),
+                              builder: (context) => PodcastDetailPage(
+                                audioPlayer: audioPlayer,
+                                path: paths[index],
+                              ),
                             ),
                           );
                         },
@@ -87,26 +79,7 @@ class _PodcastPageState extends State<PodcastPage> {
                       );
                     },
                   ),
-
-                  // Section 2
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("ከአዘጋጆች"),
-                        Text(
-                          "ሁሉንም ክፈት",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  sectionHeader("ከአዘጋጆች"),
                   GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     shrinkWrap: true,
@@ -128,6 +101,22 @@ class _PodcastPageState extends State<PodcastPage> {
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding sectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title),
+          const Text(
+            "ሁሉንም ክፈት",
+            style: TextStyle(decoration: TextDecoration.underline),
           ),
         ],
       ),

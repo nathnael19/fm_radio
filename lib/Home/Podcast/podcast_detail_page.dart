@@ -1,26 +1,76 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:ethio_fm_radio/Download/components/list_of_downloads.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PodcastDetailPage extends StatefulWidget {
-  const PodcastDetailPage({super.key});
+  final String path;
+  final AudioPlayer audioPlayer;
+  const PodcastDetailPage({
+    super.key,
+    required this.audioPlayer,
+    required this.path,
+  });
 
   @override
   State<PodcastDetailPage> createState() => _PodcastDetailPageState();
 }
 
 class _PodcastDetailPageState extends State<PodcastDetailPage> {
-  double mynum = 0;
+  Duration _duration = Duration();
+  Duration _position = Duration();
+  bool isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    setupAudio();
+  }
+
+  Future<void> setupAudio() async {
+    widget.audioPlayer.onDurationChanged.listen((d) {
+      if (mounted) {
+        setState(() {
+          _duration = d;
+        });
+      }
+    });
+
+    widget.audioPlayer.onPositionChanged.listen((p) {
+      if (mounted) {
+        setState(() {
+          _position = p;
+        });
+      }
+    });
+
+    await widget.audioPlayer.setSourceUrl(widget.path);
+    await widget.audioPlayer.resume(); // 🔥 START PLAYING to get duration
+    setState(() {
+      isPlaying = true;
+    });
+  }
+
+  String formatTime(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return duration.inHours > 0
+        ? "$hours:$minutes:$seconds"
+        : "$minutes:$seconds";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffAA2424),
+        backgroundColor: const Color(0xffAA2424),
         foregroundColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -34,53 +84,61 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
               height: 266.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                // color: Colors.white,
-                image: DecorationImage(
+                image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage("assets/images/girl6.png"),
                 ),
               ),
             ),
-            Text(
+            const Text(
               "የህይወት ታሪክ የተለየ ነው",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 350.w,
-                  child: Slider(
-                    min: 0,
-                    max: 56,
-                    value: mynum,
-                    onChanged: (c) {
-                      setState(() {
-                        mynum = c;
-                      });
-                    },
-                  ),
-                ),
+                _duration.inSeconds > 0
+                    ? SizedBox(
+                        width: 350.w,
+                        child: Slider(
+                          min: 0.0,
+                          max: _duration.inSeconds.toDouble(),
+                          value: _position.inSeconds.toDouble().clamp(
+                            0.0,
+                            _duration.inSeconds.toDouble(),
+                          ),
+                          onChanged: (double value) {
+                            widget.audioPlayer.seek(
+                              Duration(seconds: value.toInt()),
+                            );
+                          },
+                        ),
+                      )
+                    : const Padding(
+                        padding: EdgeInsets.all(12),
+                        child: CircularProgressIndicator(color: Colors.white),
+                      ),
                 SizedBox(
                   width: 325.w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${mynum.toInt().toString()}:00",
-                        style: TextStyle(color: Colors.white),
+                        formatTime(_position),
+                        style: const TextStyle(color: Colors.white),
                       ),
-                      Text("56:00", style: TextStyle(color: Colors.white)),
+                      Text(
+                        formatTime(_duration),
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
-
             playButtons(),
             likeAndCommentButtons(),
-
-            Text("ክፍሎች"),
+            const Text("ክፍሎች", style: TextStyle(color: Colors.white)),
             Expanded(
               child: ListView.builder(
                 itemCount: 4,
@@ -111,43 +169,39 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("400", style: TextStyle(color: Colors.white)),
+              const Text("400", style: TextStyle(color: Colors.white)),
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.thumb_up, color: Colors.white),
+                icon: const Icon(Icons.thumb_up, color: Colors.white),
               ),
             ],
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("20", style: TextStyle(color: Colors.white)),
+              const Text("20", style: TextStyle(color: Colors.white)),
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.message, color: Colors.white),
+                icon: const Icon(Icons.message, color: Colors.white),
               ),
             ],
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("4", style: TextStyle(color: Colors.white)),
+              const Text("4", style: TextStyle(color: Colors.white)),
               IconButton(
                 onPressed: () {},
-                icon: Icon(FontAwesomeIcons.share, color: Colors.white),
+                icon: const Icon(FontAwesomeIcons.share, color: Colors.white),
               ),
             ],
           ),
-
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.bookmark, color: Colors.white),
+            icon: const Icon(Icons.bookmark, color: Colors.white),
           ),
           Container(
             decoration: BoxDecoration(
-              color: Color(0xffEDE4E6),
+              color: const Color(0xffEDE4E6),
               borderRadius: BorderRadius.circular(8.r),
             ),
             child: Center(
@@ -183,15 +237,36 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
             ),
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.restore_outlined, size: 30.r, color: Colors.white),
+            onPressed: () async {
+              await widget.audioPlayer.seek(
+                _position - const Duration(seconds: 10),
+              );
+            },
+            icon: Icon(Icons.replay_10, size: 30.r, color: Colors.white),
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.pause_circle, size: 78.r, color: Colors.white),
+            onPressed: () async {
+              if (isPlaying) {
+                await widget.audioPlayer.pause();
+              } else {
+                await widget.audioPlayer.resume();
+              }
+              setState(() {
+                isPlaying = !isPlaying;
+              });
+            },
+            icon: Icon(
+              isPlaying ? Icons.pause_circle : Icons.play_circle,
+              size: 78.r,
+              color: Colors.white,
+            ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await widget.audioPlayer.seek(
+                _position + const Duration(seconds: 10),
+              );
+            },
             icon: Icon(Icons.forward_10, size: 30.r, color: Colors.white),
           ),
           IconButton(
