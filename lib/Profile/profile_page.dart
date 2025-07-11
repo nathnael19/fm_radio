@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -118,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const Divider(indent: 15, endIndent: 15),
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: 8),
               child: Text("About FM", style: TextStyle(fontSize: 18)),
             ),
           ],
