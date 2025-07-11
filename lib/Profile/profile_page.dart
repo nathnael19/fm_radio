@@ -115,10 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const Divider(indent: 15, endIndent: 15),
 
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15.0,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
                 local.profile_page_about,
                 style: const TextStyle(fontSize: 18),
