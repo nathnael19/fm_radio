@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   final void Function(Locale)? onLocaleChange;
@@ -17,13 +18,32 @@ class _ProfilePageState extends State<ProfilePage> {
   bool _showLanguageOptions = false;
 
   @override
+  void initState() {
+    super.initState();
+    _loadSavedLanguage();
+  }
+
+  Future<void> _loadSavedLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? lang = prefs.getString('selectedLanguage');
+    setState(() {
+      _selectedLanguage = (lang == 'en') ? 'English' : 'አማርኛ';
+    });
+  }
+
+  Future<void> _saveLanguage(String langCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedLanguage', langCode);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(local.profile_page_title),
         centerTitle: true,
       ),
@@ -32,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Notifications
+            // Notifications toggle
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(local.profile_page_notification),
@@ -48,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const Divider(indent: 15, endIndent: 15),
 
-            // Language selector
+            // Language dropdown
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -85,22 +105,24 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     LanguageOption(
-                      label: "English",
-                      onTap: () {
+                      label: local.english,
+                      onTap: () async {
                         setState(() {
                           _selectedLanguage = local.english;
                           _showLanguageOptions = false;
                         });
+                        await _saveLanguage('en');
                         widget.onLocaleChange?.call(const Locale('en'));
                       },
                     ),
                     LanguageOption(
-                      label: "አማርኛ",
-                      onTap: () {
+                      label: local.amhric,
+                      onTap: () async {
                         setState(() {
                           _selectedLanguage = local.amhric;
                           _showLanguageOptions = false;
                         });
+                        await _saveLanguage('am');
                         widget.onLocaleChange?.call(const Locale('am'));
                       },
                     ),
