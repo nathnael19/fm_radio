@@ -1,8 +1,11 @@
 import 'package:ethio_fm_radio/Onboarding/wellcome.dart';
+import 'package:ethio_fm_radio/Profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class MyPageView extends StatefulWidget {
-  const MyPageView({super.key});
+  final void Function(Locale)? onLocaleChange;
+
+  const MyPageView({super.key, this.onLocaleChange});
 
   @override
   State<MyPageView> createState() => _MyPageViewState();
@@ -10,6 +13,13 @@ class MyPageView extends StatefulWidget {
 
 class _MyPageViewState extends State<MyPageView> {
   final PageController _pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    ProfilePage(onLocaleChange: widget.onLocaleChange); // ✅ inject callback
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageView(

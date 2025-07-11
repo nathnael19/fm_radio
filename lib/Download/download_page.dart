@@ -75,8 +75,7 @@ class DownloadPage extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () {
-                                  Navigator.pop(context); // Close the sheet
-                                  // 🟢 TODO: Add delete logic here
+                                  Navigator.pop(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(local.deleted_item_message),

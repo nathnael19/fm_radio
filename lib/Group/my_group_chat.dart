@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyGroupChat extends StatelessWidget {
   const MyGroupChat({super.key});
@@ -8,22 +9,22 @@ class MyGroupChat extends StatelessWidget {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: Colors.white.withAlpha(200),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Group 1", style: TextStyle(fontSize: 17)),
+            Text("Group 1", style: TextStyle(fontSize: 17.sp)),
             Text(
               "1.2k ${local.group_page_members}",
-              style: TextStyle(fontSize: 13),
+              style: TextStyle(fontSize: 13.sp),
             ),
           ],
         ),
       ),
       bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
         child: TextField(
           decoration: InputDecoration(
             border: InputBorder.none,
@@ -88,11 +89,13 @@ class GroupChatContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.all(10.r),
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: isSender ? Colors.grey.shade300 : Colors.white,
+        border: Border.all(color: Color(0xEDE4E6D1), width: 1.w),
+
+        borderRadius: BorderRadius.circular(8.r),
+        color: isSender ? Color(0xEDE4E6D1) : Colors.white,
       ),
       child: Column(
         children: [
@@ -101,21 +104,21 @@ class GroupChatContainer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(radius: 15),
-                  SizedBox(width: 10),
+                  CircleAvatar(radius: 15.r),
+                  SizedBox(width: 10.w),
                   Text(username),
                 ],
               ),
               Text("${time.toString()} hr ago"),
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Text(content),
           Row(
             children: [
               Text(noLike.toString()),
               IconButton(onPressed: () {}, icon: Icon(Icons.thumb_up)),
-              SizedBox(width: 20),
+              SizedBox(width: 20.w),
               Text(noDislike.toString()),
               IconButton(onPressed: () {}, icon: Icon(Icons.thumb_down)),
             ],
