@@ -1,24 +1,79 @@
 {
 
-    "appTitle": "Ethio FM Radio",
-    "play": "Play",
-    "pause": "Pause",
-    "liveRadio": "Live Radio",
-  
+  "@@locale": "en",
+"home_page_live_page_first_tab_bar": "Live",
+    "@home_page_live_page_first_tab_bar": {},
+    "home_page_live_page_second_tab_bar": "News",
+    "@home_page_live_page_second_tab_bar": {},
+    "home_page_live_page_third_tab_bar": "Podcasts",
+    "@home_page_live_page_third_tab_bar": {},
+    "home_page_live_page_bottom_tabbar_one": "Recent Live",
+    "@home_page_live_page_bottom_tabbar_one": {},
+    "home_page_live_page_bottom_tabbar_two": "Currency",
+    "@home_page_live_page_bottom_tabbar_two": {},
+    "home_page_live_page_bottom_tabbar_three": "Weather",
+    "@home_page_live_page_bottom_tabbar_three": {},
+    "home_page_live_page_bottom_tabbar_four": "Today's Programs",
+    "@home_page_live_page_bottom_tabbar_four": {},
+
+
+
+
+
+
+    "home_page_news_page_open_all": "Open All",
+    "@home_page_news_page_open_all": {},
+
+
+
     
-    "downloads": "Downloads",
-    "noDownloads": "No downloads available",
-    "downloadNow": "Download now",
-  
-   
-    "podcastTitle": "Podcast Details",
-    "duration": "Duration",
-    "author": "Author",
-    "listenNow": "Listen Now",
-  
- 
-    "english": "English",
-    "amharic": "Amharic",
-    "changeLanguage": "Change Language"
+
+    "profile_page_title": "Account",
+    "@profile_page_title": {},
+    "profile_page_notification": "Notifications",
+    "@profile_page_notification": {},
+    "profile_page_language": "Language",
+    "@profile_page_language": {},
+    "profile_page_about": "About FM Radio",
+    "@profile_page_about": {},
+
+
+
+    "saved_page_title": "Collections",
+    "@saved_page_title": {},
+    "saved_page_no_saved": "No saved files",
+    "@saved_page_no_saved": {},
+
+
+
+    "donwload_page_title": "Downloaded Files",
+    "@donwload_page_title": {},
+    "donwload_page_no_downloads": "No downloaded files",
+    "@donwload_page_no_downloads": {},
+
+
+    "group_page_title": "Groups",
+    "@group_page_title": {},
+    "group_page_no_groups": "No groups available",
+    "@group_page_no_groups": {},
+    "group_page_search_hint": "Group Name",
+    "@group_page_search_hint": {},
+    "group_page_my_groups": "My Groups",
+    "@group_page_my_groups": {},
+    "group_page_explore_groups": "Explore Groups",
+    "@group_page_explore_groups": {},
+    "group_page_search": "Search",
+    "@group_page_search": {},
+    "group_page_members": "Members",
+    "@group_page_members": {},
+    "group_page_join_text": "Join",
+    "@group_page_join_text": {},
+
+"amhric":"አማርኛ",
+"@amhric": {},
+"english":"English",
+"@english": {}
+    
+
   }
   

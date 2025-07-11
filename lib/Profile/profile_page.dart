@@ -1,9 +1,11 @@
-import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final void Function(Locale)? onLocaleChange;
+
+  const ProfilePage({super.key, this.onLocaleChange});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -11,24 +13,18 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool _switchValue = false;
-  String _selectedLanguage = "English";
+  String _selectedLanguage = "አማርኛ";
   bool _showLanguageOptions = false;
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyBottomNavigation()),
-            );
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
-        title: const Text("አካውንት"),
+        leading: BackButton(),
+        title: Text(local.profile_page_title),
         centerTitle: true,
       ),
       body: Padding(
@@ -36,12 +32,12 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Notifications toggle
+            // Notifications
             ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text("Notifications"),
+              title: Text(local.profile_page_notification),
               trailing: CupertinoSwitch(
-                activeTrackColor: Color(0xff80011F),
+                activeTrackColor: const Color(0xff80011F),
                 value: _switchValue,
                 onChanged: (v) {
                   setState(() {
@@ -52,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const Divider(indent: 15, endIndent: 15),
 
-            // Language dropdown
+            // Language selector
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -61,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
               },
               child: ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text("Language"),
+                title: Text(local.profile_page_language),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -80,7 +76,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
 
-            // Language list
             AnimatedCrossFade(
               duration: const Duration(milliseconds: 200),
               firstChild: const SizedBox.shrink(),
@@ -93,18 +88,20 @@ class _ProfilePageState extends State<ProfilePage> {
                       label: "English",
                       onTap: () {
                         setState(() {
-                          _selectedLanguage = "English";
+                          _selectedLanguage = local.english;
                           _showLanguageOptions = false;
                         });
+                        widget.onLocaleChange?.call(const Locale('en'));
                       },
                     ),
                     LanguageOption(
                       label: "አማርኛ",
                       onTap: () {
                         setState(() {
-                          _selectedLanguage = "አማርኛ";
+                          _selectedLanguage = local.amhric;
                           _showLanguageOptions = false;
                         });
+                        widget.onLocaleChange?.call(const Locale('am'));
                       },
                     ),
                   ],
@@ -117,9 +114,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
             const Divider(indent: 15, endIndent: 15),
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-              child: Text("About FM", style: TextStyle(fontSize: 18)),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15.0,
+                vertical: 8,
+              ),
+              child: Text(
+                local.profile_page_about,
+                style: const TextStyle(fontSize: 18),
+              ),
             ),
           ],
         ),
@@ -139,7 +142,7 @@ class LanguageOption extends StatelessWidget {
     return ListTile(
       title: Text(label),
       onTap: onTap,
-      contentPadding: EdgeInsets.symmetric(horizontal: 0),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0),
     );
   }
 }

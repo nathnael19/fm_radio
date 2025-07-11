@@ -2,6 +2,7 @@ import 'package:ethio_fm_radio/Home/components/currency_list_cards.dart';
 import 'package:ethio_fm_radio/Home/components/recent_list_cards.dart';
 import 'package:ethio_fm_radio/Home/components/todays_list_cards.dart';
 import 'package:ethio_fm_radio/Home/components/whether_list_cards.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,15 +27,15 @@ class LiveTabBars extends StatefulWidget {
 class _MytTabBarState extends State<LiveTabBars> {
   int selectedIndex = 0;
 
-  final List<String> tabTitles = [
-    "በቅርቡ የተላለፉ",
-    "ምንዛሬ",
-    "የአየር ሁኔታ",
-    "የዛሬ ፕሮግራሞች",
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+    List<String> tabTitles = [
+      local.home_page_live_page_bottom_tabbar_one,
+      local.home_page_live_page_bottom_tabbar_two,
+      local.home_page_live_page_bottom_tabbar_three,
+      local.home_page_live_page_bottom_tabbar_four,
+    ];
     return Expanded(
       child: Column(
         children: [

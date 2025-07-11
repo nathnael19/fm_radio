@@ -98,89 +98,161 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
-  /// No description provided for @appTitle.
+  /// No description provided for @home_page_live_page_first_tab_bar.
   ///
   /// In en, this message translates to:
-  /// **'Ethio FM Radio'**
-  String get appTitle;
+  /// **'Live'**
+  String get home_page_live_page_first_tab_bar;
 
-  /// No description provided for @play.
+  /// No description provided for @home_page_live_page_second_tab_bar.
   ///
   /// In en, this message translates to:
-  /// **'Play'**
-  String get play;
+  /// **'News'**
+  String get home_page_live_page_second_tab_bar;
 
-  /// No description provided for @pause.
+  /// No description provided for @home_page_live_page_third_tab_bar.
   ///
   /// In en, this message translates to:
-  /// **'Pause'**
-  String get pause;
+  /// **'Podcasts'**
+  String get home_page_live_page_third_tab_bar;
 
-  /// No description provided for @liveRadio.
+  /// No description provided for @home_page_live_page_bottom_tabbar_one.
   ///
   /// In en, this message translates to:
-  /// **'Live Radio'**
-  String get liveRadio;
+  /// **'Recent Live'**
+  String get home_page_live_page_bottom_tabbar_one;
 
-  /// No description provided for @downloads.
+  /// No description provided for @home_page_live_page_bottom_tabbar_two.
   ///
   /// In en, this message translates to:
-  /// **'Downloads'**
-  String get downloads;
+  /// **'Currency'**
+  String get home_page_live_page_bottom_tabbar_two;
 
-  /// No description provided for @noDownloads.
+  /// No description provided for @home_page_live_page_bottom_tabbar_three.
   ///
   /// In en, this message translates to:
-  /// **'No downloads available'**
-  String get noDownloads;
+  /// **'Weather'**
+  String get home_page_live_page_bottom_tabbar_three;
 
-  /// No description provided for @downloadNow.
+  /// No description provided for @home_page_live_page_bottom_tabbar_four.
   ///
   /// In en, this message translates to:
-  /// **'Download now'**
-  String get downloadNow;
+  /// **'Today\'s Programs'**
+  String get home_page_live_page_bottom_tabbar_four;
 
-  /// No description provided for @podcastTitle.
+  /// No description provided for @home_page_news_page_open_all.
   ///
   /// In en, this message translates to:
-  /// **'Podcast Details'**
-  String get podcastTitle;
+  /// **'Open All'**
+  String get home_page_news_page_open_all;
 
-  /// No description provided for @duration.
+  /// No description provided for @profile_page_title.
   ///
   /// In en, this message translates to:
-  /// **'Duration'**
-  String get duration;
+  /// **'Account'**
+  String get profile_page_title;
 
-  /// No description provided for @author.
+  /// No description provided for @profile_page_notification.
   ///
   /// In en, this message translates to:
-  /// **'Author'**
-  String get author;
+  /// **'Notifications'**
+  String get profile_page_notification;
 
-  /// No description provided for @listenNow.
+  /// No description provided for @profile_page_language.
   ///
   /// In en, this message translates to:
-  /// **'Listen Now'**
-  String get listenNow;
+  /// **'Language'**
+  String get profile_page_language;
+
+  /// No description provided for @profile_page_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About FM Radio'**
+  String get profile_page_about;
+
+  /// No description provided for @saved_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Collections'**
+  String get saved_page_title;
+
+  /// No description provided for @saved_page_no_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved files'**
+  String get saved_page_no_saved;
+
+  /// No description provided for @donwload_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded Files'**
+  String get donwload_page_title;
+
+  /// No description provided for @donwload_page_no_downloads.
+  ///
+  /// In en, this message translates to:
+  /// **'No downloaded files'**
+  String get donwload_page_no_downloads;
+
+  /// No description provided for @group_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get group_page_title;
+
+  /// No description provided for @group_page_no_groups.
+  ///
+  /// In en, this message translates to:
+  /// **'No groups available'**
+  String get group_page_no_groups;
+
+  /// No description provided for @group_page_search_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Name'**
+  String get group_page_search_hint;
+
+  /// No description provided for @group_page_my_groups.
+  ///
+  /// In en, this message translates to:
+  /// **'My Groups'**
+  String get group_page_my_groups;
+
+  /// No description provided for @group_page_explore_groups.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Groups'**
+  String get group_page_explore_groups;
+
+  /// No description provided for @group_page_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get group_page_search;
+
+  /// No description provided for @group_page_members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get group_page_members;
+
+  /// No description provided for @group_page_join_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get group_page_join_text;
+
+  /// No description provided for @amhric.
+  ///
+  /// In en, this message translates to:
+  /// **'አማርኛ'**
+  String get amhric;
 
   /// No description provided for @english.
   ///
   /// In en, this message translates to:
   /// **'English'**
   String get english;
-
-  /// No description provided for @amharic.
-  ///
-  /// In en, this message translates to:
-  /// **'Amharic'**
-  String get amharic;
-
-  /// No description provided for @changeLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Change Language'**
-  String get changeLanguage;
 }
 
 class _AppLocalizationsDelegate
