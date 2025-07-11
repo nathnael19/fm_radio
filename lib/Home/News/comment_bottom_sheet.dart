@@ -36,7 +36,8 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                 ),
                 IconButton(
                   onPressed: widget.onTap,
-                  icon: Icon(Icons.touch_app),
+                  // icon: Icon(Icons.unfold_more_outlined),
+                  icon: Icon(Icons.close_fullscreen_outlined),
                 ),
               ],
             ),
