@@ -18,7 +18,8 @@ Future<List<List<dynamic>>> fetchWeatherForCities(List<String> cities) async {
         String cityName = data['location']['name'];
         double temp = data['current']['temp_c'];
         String condition = data['current']['condition']['text'];
-        String icon = data['current']['condition']['icon'];
+        // ignore: prefer_interpolation_to_compose_strings
+        String icon = "https:" + data['current']['condition']['icon'];
 
         tempList.add([cityName, icon, temp, Colors.blue, condition]);
       } else {
