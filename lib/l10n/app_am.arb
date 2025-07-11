@@ -1,0 +1,80 @@
+{
+  "@@locale": "am",
+
+  "home_page_live_page_first_tab_bar": "ቀጥታ",
+  "@home_page_live_page_first_tab_bar": {},
+
+  "home_page_live_page_second_tab_bar": "ዜና",
+  "@home_page_live_page_second_tab_bar": {},
+
+  "home_page_live_page_third_tab_bar": "ፖድካስቶች",
+  "@home_page_live_page_third_tab_bar": {},
+
+  "home_page_live_page_bottom_tabbar_one": "የቅርብ ጊዜ ቀጥታ",
+  "@home_page_live_page_bottom_tabbar_one": {},
+
+  "home_page_live_page_bottom_tabbar_two": "ገንዘብ ሁኔታ",
+  "@home_page_live_page_bottom_tabbar_two": {},
+
+  "home_page_live_page_bottom_tabbar_three": "የአየር ንብረት",
+  "@home_page_live_page_bottom_tabbar_three": {},
+
+  "home_page_live_page_bottom_tabbar_four": "የዛሬ ፕሮግራሞች",
+  "@home_page_live_page_bottom_tabbar_four": {},
+
+  "home_page_news_page_open_all": "ሁሉንም ክፈት",
+  "@home_page_news_page_open_all": {},
+
+  "profile_page_title": "አካውንት",
+  "@profile_page_title": {},
+
+  "profile_page_notification": "ማሳወቂያዎች",
+  "@profile_page_notification": {},
+
+  "profile_page_language": "ቋንቋ",
+  "@profile_page_language": {},
+
+  "profile_page_about": "ስለ FM ሬድዮ",
+  "@profile_page_about": {},
+
+  "saved_page_title": "ስብስቦች",
+  "@saved_page_title": {},
+
+  "saved_page_no_saved": "አልተያዙ ፋይሎች የሉም",
+  "@saved_page_no_saved": {},
+
+  "donwload_page_title": "የወሰዱ ፋይሎች",
+  "@donwload_page_title": {},
+
+  "donwload_page_no_downloads": "የተወሰዱ ፋይሎች የሉም",
+  "@donwload_page_no_downloads": {},
+
+  "group_page_title": "ቡድኖች",
+  "@group_page_title": {},
+
+  "group_page_no_groups": "ቡድኖች አልተገኙም",
+  "@group_page_no_groups": {},
+
+  "group_page_search_hint": "የቡድን ስም",
+  "@group_page_search_hint": {},
+
+  "group_page_my_groups": "የእኔ ቡድኖች",
+  "@group_page_my_groups": {},
+
+  "group_page_explore_groups": "ቡድኖችን ፈልግ",
+  "@group_page_explore_groups": {},
+
+  "group_page_search": "ፈልግ",
+  "@group_page_search": {},
+
+  "group_page_members": "አባላት",
+  "@group_page_members": {},
+
+  "group_page_join_text": "ተቀላቅል",
+  "@group_page_join_text": {},
+
+  "amhric":"አማርኛ",
+"@amhric": {},
+"english":"English",
+"@english": {}
+}

@@ -1,6 +1,7 @@
 import 'package:ethio_fm_radio/Home/News/news_page.dart';
 import 'package:ethio_fm_radio/Home/Podcast/podcast_page.dart';
 import 'package:ethio_fm_radio/Home/components/live_page.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -55,9 +57,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       dividerColor: Colors.transparent,
                       isScrollable: false, // 🟢 FIX: tabs fit evenly in width
                       tabs: [
-                        _buildTab(0, "ቀጥታ", Icons.live_tv),
-                        _buildTab(1, "ዜናዎች", Icons.article),
-                        _buildTab(2, "ፖድካስቶች", Icons.podcasts),
+                        _buildTab(
+                          0,
+                          local.home_page_live_page_first_tab_bar,
+                          Icons.live_tv,
+                        ),
+                        _buildTab(
+                          1,
+                          local.home_page_live_page_second_tab_bar,
+                          Icons.article,
+                        ),
+                        _buildTab(
+                          2,
+                          local.home_page_live_page_third_tab_bar,
+                          Icons.podcasts,
+                        ),
                       ],
                     ),
                   ),

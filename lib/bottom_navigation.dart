@@ -6,7 +6,9 @@ import 'package:ethio_fm_radio/Saved/saved_page.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  const MyBottomNavigation({super.key});
+  final void Function(Locale)? onLocaleChange;
+
+  const MyBottomNavigation({super.key, this.onLocaleChange});
 
   @override
   State<MyBottomNavigation> createState() => _MyBottomNavigationState();
@@ -23,20 +25,27 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
     Icons.person_outline,
   ];
 
-  List pages = [
-    HomePage(),
-    GroupPage(),
-    DownloadPage(),
-    SavedPage(),
-    ProfilePage(),
-  ];
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      const HomePage(),
+      const GroupPage(),
+      const DownloadPage(),
+      const SavedPage(),
+      ProfilePage(onLocaleChange: widget.onLocaleChange), // ✅ inject callback
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[_selectedIndex],
+      body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(color: Color(0xff1A0101)),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: const BoxDecoration(color: Color(0xff1A0101)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(_icons.length, (index) {
@@ -48,15 +57,15 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
                 });
               },
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 250),
-                padding: EdgeInsets.all(10),
+                duration: const Duration(milliseconds: 250),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: isSelected ? Colors.white : Colors.transparent,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   _icons[index],
-                  color: isSelected ? Color(0xff4A0000) : Colors.white,
+                  color: isSelected ? const Color(0xff4A0000) : Colors.white,
                   size: 28,
                 ),
               ),

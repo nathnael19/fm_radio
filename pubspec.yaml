@@ -46,6 +46,9 @@ dependencies:
   cached_network_image: ^3.4.1
   just_audio_background: ^0.0.1-beta.17
   audio_video_progress_bar: ^2.0.3
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +66,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
