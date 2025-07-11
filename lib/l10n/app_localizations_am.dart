@@ -45,10 +45,10 @@ class AppLocalizationsAm extends AppLocalizations {
   String get home_page_news_page_fifth_tab_bar => 'ሌሎች';
 
   @override
-  String get deleted_item_message => 'This item has been deleted';
+  String get deleted_item_message => 'ፋይሉ ተሰርዟል።';
 
   @override
-  String get donwload_page_delete_item => 'Delete';
+  String get donwload_page_delete_item => 'አጥፋ';
 
   @override
   String get home_page_news_page_open_all => 'ሁሉንም ክፈት';

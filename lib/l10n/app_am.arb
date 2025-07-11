@@ -94,5 +94,11 @@
 "@english": {},
 
 "breaking_news": "አርእስተ ዜና",
-  "@breaking_news": {}
+  "@breaking_news": {},
+
+
+   "deleted_item_message": "ፋይሉ ተሰርዟል።",
+    "@deleted_item_message": {},
+    "donwload_page_delete_item":"አጥፋ",
+    "@donwload_page_delete_item": {}
 }
