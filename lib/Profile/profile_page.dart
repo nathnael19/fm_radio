@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
             context,
             MaterialPageRoute(builder: (context) => const MyBottomNavigation()),
           ),
-          child: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          child: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
         ),
         title: Text(local.profile_page_title),
         centerTitle: true,
