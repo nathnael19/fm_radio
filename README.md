@@ -65,7 +65,7 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 
 | Onboarding | Auth Screens | Home Page | Bottom Overlay |
 |------------|---------------|-----------|----------------|
-| ![onboarding](assets/screens/onboarding.gif) | ![auth](assets/screens/auth.gif) | ![home](assets/screenshots/home.png) | ![overlay](assets/screenshots/overlay.png) |
+| ![onboarding](assets/Screenshot/s1.jpg) | ![auth](assets/Screenshot/s2.jpg) | ![home](assets/Screenshot/s3.jpg) | ![overlay](assets/Screenshot/s4.jpg) |
 
 ---
 
