@@ -306,6 +306,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                 SizedBox(width: 8.w),
                 Expanded(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
@@ -324,6 +325,15 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                               Icon(Icons.g_mobiledata, size: 18.r),
                               Text(
                                 "Source",
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(width: 20.w),
+
+                              Text(
+                                "2h ago",
                                 style: TextStyle(
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.w400,
