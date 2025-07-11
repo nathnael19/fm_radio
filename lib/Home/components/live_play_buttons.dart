@@ -91,20 +91,23 @@ void _showBottomSheet(BuildContext context) {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(Icons.clear),
+                      child: Icon(Icons.close_fullscreen_rounded),
                     ),
                   ),
                 ],
               ),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: Text(
-                  "የዚህ ፕሮግራሞ ቀን", // Title text
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  child: Text(
+                    "የዚህ ፕሮግራሞ ቀን", // Title text
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
                 ),
               ),

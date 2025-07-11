@@ -20,20 +20,24 @@ class SideContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SideContainerIcon(icon: Icons.abc, number: 400, onTap: () {}),
           SideContainerIcon(
-            icon: Icons.message_outlined,
+            icon: Icons.thumb_up_off_alt,
+            number: 400,
+            onTap: () {},
+          ),
+          SideContainerIcon(
+            icon: Icons.messenger_outline,
             number: 400,
             onTap: () {
               _showBottomSheet(context);
             },
           ),
+          SideContainerIcon(icon: Icons.send, number: 400, onTap: () {}),
           SideContainerIcon(
-            icon: FontAwesomeIcons.share,
+            icon: Icons.bookmark_outline_rounded,
             number: 400,
             onTap: () {},
           ),
-          SideContainerIcon(icon: Icons.bookmark, number: 400, onTap: () {}),
         ],
       ),
     );
@@ -48,7 +52,7 @@ class SideContainer extends StatelessWidget {
       ),
       builder: (context) {
         return FractionallySizedBox(
-          heightFactor: 0.9,
+          heightFactor: 0.8,
           child: Padding(
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(
@@ -72,7 +76,11 @@ class SideContainer extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        CommentBottomSheet(onTap: () {}),
+                        CommentBottomSheet(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
                         // Add more comments if needed
                       ],
                     ),
