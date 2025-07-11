@@ -19,6 +19,9 @@ class _WhetherListCardsState extends State<WhetherListCards> {
     "Gondar",
     "Bahir Dar",
     "Nazret",
+    "Dubai",
+    "Canada",
+    "United States of America",
   ];
 
   @override

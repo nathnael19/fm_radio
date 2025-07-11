@@ -20,6 +20,7 @@ class _PodcastPageState extends State<PodcastPage> {
     "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
   ];
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +48,7 @@ class _PodcastPageState extends State<PodcastPage> {
               padding: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
-                  sectionHeader("በኢትዮ ኤፍ ኤም 107.8 ብቻ"),
+                  sectionHeader("በኢትዮ ኤፍ ኤም 107.8 ብቻ", paths[0]),
                   GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     shrinkWrap: true,
@@ -79,7 +80,7 @@ class _PodcastPageState extends State<PodcastPage> {
                       );
                     },
                   ),
-                  sectionHeader("ከአዘጋጆች"),
+                  sectionHeader("ከአዘጋጆች", paths[1]),
                   GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     shrinkWrap: true,
@@ -107,16 +108,32 @@ class _PodcastPageState extends State<PodcastPage> {
     );
   }
 
-  Padding sectionHeader(String title) {
+  Padding sectionHeader(String title, String pathToPlay) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(title),
-          const Text(
-            "ሁሉንም ክፈት",
-            style: TextStyle(decoration: TextDecoration.underline),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PodcastDetailPage(
+                    audioPlayer: audioPlayer,
+                    path: pathToPlay,
+                  ),
+                ),
+              );
+            },
+            child: const Text(
+              "ሁሉንም ክፈት",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                color: Colors.blue,
+              ),
+            ),
           ),
         ],
       ),
