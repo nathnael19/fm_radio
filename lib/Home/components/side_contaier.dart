@@ -2,7 +2,7 @@ import 'package:ethio_fm_radio/Home/News/comment_bottom_sheet.dart';
 import 'package:ethio_fm_radio/Home/components/side_container_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SideContainer extends StatelessWidget {
   const SideContainer({super.key});
@@ -120,9 +120,7 @@ class SideContainer extends StatelessWidget {
                       SizedBox(width: 8.w),
                       IconButton(
                         icon: Icon(Icons.send, color: Colors.blueAccent),
-                        onPressed: () {
-                          // TODO: Handle send action
-                        },
+                        onPressed: () {},
                       ),
                     ],
                   ),

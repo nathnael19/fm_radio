@@ -6,7 +6,7 @@ import 'package:ethio_fm_radio/Saved/saved_page.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange;
+  final void Function(Locale)? onLocaleChange; // ✅ Add locale change callback
 
   const MyBottomNavigation({super.key, this.onLocaleChange});
 
@@ -35,7 +35,9 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
       const GroupPage(),
       const DownloadPage(),
       const SavedPage(),
-      ProfilePage(onLocaleChange: widget.onLocaleChange), // ✅ inject callback
+      ProfilePage(
+        onLocaleChange: widget.onLocaleChange, // ✅ Pass callback here
+      ),
     ];
   }
 

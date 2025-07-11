@@ -1,4 +1,3 @@
-import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
@@ -43,17 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyBottomNavigation()),
-          ),
-          child: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
-        ),
-        title: Text(local.profile_page_title),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text(local.profile_page_title), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(

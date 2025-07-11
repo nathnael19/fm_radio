@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Home/components/wether_service.dart';
-import 'package:flutter/material.dart'; // Make sure this import matches your folder structure
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Make sure this import matches your folder structure
 
 class WhetherListCards extends StatefulWidget {
   const WhetherListCards({super.key});
@@ -19,9 +20,7 @@ class _WhetherListCardsState extends State<WhetherListCards> {
     "Gondar",
     "Bahir Dar",
     "Nazret",
-    "Dubai",
-    "Canada",
-    "United States of America",
+    "Asebe Teferi",
   ];
 
   @override
@@ -49,9 +48,9 @@ class _WhetherListCardsState extends State<WhetherListCards> {
                   itemCount: weatherList.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 0.5,
-                        horizontal: 10,
+                      margin: EdgeInsets.symmetric(
+                        vertical: 0.5.h,
+                        horizontal: 10.w,
                       ),
                       child: ListTile(
                         tileColor: Colors.white,
@@ -66,15 +65,24 @@ class _WhetherListCardsState extends State<WhetherListCards> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              weatherList[index][1],
-                              color: weatherList[index][3],
+                            // ImageIcon(
+                            //   AssetImage(weatherList[index][1]),
+                            //   color: weatherList[index][3],
+                            // ),
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Image.network(
+                                weatherList[index][1],
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                            const SizedBox(width: 6),
+
+                            SizedBox(width: 6.w),
                             Text(
                               "${weatherList[index][2]}°",
-                              style: const TextStyle(
-                                fontSize: 15,
+                              style: TextStyle(
+                                fontSize: 15.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
