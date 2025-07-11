@@ -48,7 +48,7 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
 
           Expanded(
             child: ListView.builder(
-              // shrinkWrap: true,
+              shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: 5,
               itemBuilder: (context, index) {
