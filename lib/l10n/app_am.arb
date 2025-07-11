@@ -1,0 +1,25 @@
+{
+    
+    "@@locale": "am",
+    "appTitle": "ኢትዮ ኤፍ ኤም ሬድዮ",
+    "@appTitle": {},
+    "play": "ተጫውቷል",
+    "pause": "ማቆም",
+    "liveRadio": "ቀጥታ ሬድዮ",
+  
+ 
+    "downloads": "የተወሰኑ ፋይሎች",
+    "noDownloads": "ምንም የተወሰነ ፋይል የለም",
+    "downloadNow": "አሁን አውርድ",
+  
+ 
+    "podcastTitle": "የፖድካስት ዝርዝር",
+    "duration": "ቆይታ ጊዜ",
+    "author": "ደራሲ",
+    "listenNow": "አሁን ስማ",
+  
+    "english": "እንግሊዝኛ",
+    "amharic": "አማርኛ",
+    "changeLanguage": "ቋንቋ ቀይር"
+  }
+  

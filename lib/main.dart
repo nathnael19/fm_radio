@@ -1,7 +1,9 @@
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ethio_fm_radio/theme/theme_data.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +28,10 @@ class _MyAppState extends State<MyApp> {
           theme: myThemeData,
           debugShowCheckedModeBanner: false,
           home: child,
+
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('am', ''), // Set the default locale to Amharic
         );
       },
       child: const MyBottomNavigation(),

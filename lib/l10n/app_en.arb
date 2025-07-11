@@ -1,0 +1,24 @@
+{
+
+    "appTitle": "Ethio FM Radio",
+    "play": "Play",
+    "pause": "Pause",
+    "liveRadio": "Live Radio",
+  
+    
+    "downloads": "Downloads",
+    "noDownloads": "No downloads available",
+    "downloadNow": "Download now",
+  
+   
+    "podcastTitle": "Podcast Details",
+    "duration": "Duration",
+    "author": "Author",
+    "listenNow": "Listen Now",
+  
+ 
+    "english": "English",
+    "amharic": "Amharic",
+    "changeLanguage": "Change Language"
+  }
+  
