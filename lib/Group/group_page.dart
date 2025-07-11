@@ -2,6 +2,7 @@ import 'package:ethio_fm_radio/Databases/group_page_database.dart';
 import 'package:ethio_fm_radio/Group/explore_group_chat.dart';
 import 'package:ethio_fm_radio/Group/my_group_chat.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class GroupPage extends StatefulWidget {
@@ -15,10 +16,11 @@ class _GroupPageState extends State<GroupPage> {
   final groupSearchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     double mobileWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("መወያያ"),
+        title: Text(local.group_page_title),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
@@ -49,8 +51,14 @@ class _GroupPageState extends State<GroupPage> {
                   dividerColor: Colors.transparent,
                   unselectedLabelColor: Colors.black,
                   tabs: [
-                    TopBar(mobileWidth: mobileWidth, title: "My Group"),
-                    TopBar(mobileWidth: mobileWidth, title: "Explore Groups"),
+                    TopBar(
+                      mobileWidth: mobileWidth,
+                      title: local.group_page_my_groups,
+                    ),
+                    TopBar(
+                      mobileWidth: mobileWidth,
+                      title: local.group_page_explore_groups,
+                    ),
                   ],
                 ),
               ),
@@ -141,6 +149,7 @@ class GroupNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Expanded(
       child: ListView.builder(
         itemCount: groupNews.length,
@@ -176,7 +185,7 @@ class GroupNews extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {},
                           child: Text(
-                            "Join",
+                            local.group_page_join_text,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -279,6 +288,7 @@ class MySearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -295,7 +305,7 @@ class MySearchWidget extends StatelessWidget {
                 child: TextField(
                   controller: groupSearchController,
                   decoration: InputDecoration(
-                    hintText: "Group Name",
+                    hintText: local.group_page_search_hint,
                     hintStyle: TextStyle(fontSize: 15),
                     prefixIcon: Icon(Icons.search),
                     border: InputBorder.none,
@@ -309,7 +319,7 @@ class MySearchWidget extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(left: 10),
               child: Text(
-                "Search",
+                local.group_page_search,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
               ),
             ),

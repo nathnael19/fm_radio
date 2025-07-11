@@ -140,6 +140,48 @@ abstract class AppLocalizations {
   /// **'Today\'s Programs'**
   String get home_page_live_page_bottom_tabbar_four;
 
+  /// No description provided for @home_page_news_page_first_tab_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get home_page_news_page_first_tab_bar;
+
+  /// No description provided for @home_page_news_page_second_tab_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports'**
+  String get home_page_news_page_second_tab_bar;
+
+  /// No description provided for @home_page_news_page_third_tab_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Foreign News'**
+  String get home_page_news_page_third_tab_bar;
+
+  /// No description provided for @home_page_news_page_fourth_tab_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Business'**
+  String get home_page_news_page_fourth_tab_bar;
+
+  /// No description provided for @home_page_news_page_fifth_tab_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get home_page_news_page_fifth_tab_bar;
+
+  /// No description provided for @deleted_item_message.
+  ///
+  /// In en, this message translates to:
+  /// **'This item has been deleted'**
+  String get deleted_item_message;
+
+  /// No description provided for @donwload_page_delete_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get donwload_page_delete_item;
+
   /// No description provided for @home_page_news_page_open_all.
   ///
   /// In en, this message translates to:
@@ -253,6 +295,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @breaking_news.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaking News'**
+  String get breaking_news;
 }
 
 class _AppLocalizationsDelegate

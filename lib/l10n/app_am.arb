@@ -4,8 +4,23 @@
   "home_page_live_page_first_tab_bar": "ቀጥታ",
   "@home_page_live_page_first_tab_bar": {},
 
-  "home_page_live_page_second_tab_bar": "ዜና",
+  "home_page_live_page_second_tab_bar": "ዜናዎች",
   "@home_page_live_page_second_tab_bar": {},
+
+  "home_page_news_page_first_tab_bar": "ሁሉንም",
+  "@home_page_news_page_first_tab_bar": {},
+
+  "home_page_news_page_second_tab_bar": "ስፖርት",
+  "@home_page_news_page_second_tab_bar": {},
+
+  "home_page_news_page_third_tab_bar": "የውጪ ዜና",
+  "@home_page_news_page_third_tab_bar": {},
+
+  "home_page_news_page_fourth_tab_bar": "ቢዝነስ",
+  "@home_page_news_page_fourth_tab_bar": {},
+
+  "home_page_news_page_fifth_tab_bar": "ሌሎች",
+  "@home_page_news_page_fifth_tab_bar": {},
 
   "home_page_live_page_third_tab_bar": "ፖድካስቶች",
   "@home_page_live_page_third_tab_bar": {},
@@ -76,5 +91,8 @@
   "amhric":"አማርኛ",
 "@amhric": {},
 "english":"English",
-"@english": {}
+"@english": {},
+
+"breaking_news": "አርእስተ ዜና",
+  "@breaking_news": {}
 }

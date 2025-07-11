@@ -16,9 +16,26 @@
     "home_page_live_page_bottom_tabbar_four": "Today's Programs",
     "@home_page_live_page_bottom_tabbar_four": {},
 
+ "home_page_news_page_first_tab_bar": "All",
+  "@home_page_news_page_first_tab_bar": {},
+
+  "home_page_news_page_second_tab_bar": "Sports",
+  "@home_page_news_page_second_tab_bar": {},
+
+  "home_page_news_page_third_tab_bar": "Foreign News",
+  "@home_page_news_page_third_tab_bar": {},
+
+  "home_page_news_page_fourth_tab_bar": "Business",
+  "@home_page_news_page_fourth_tab_bar": {},
+
+  "home_page_news_page_fifth_tab_bar": "Others",
+  "@home_page_news_page_fifth_tab_bar": {},
 
 
-
+  "deleted_item_message": "This item has been deleted",
+    "@deleted_item_message": {},
+    "donwload_page_delete_item":"Delete",
+    "@donwload_page_delete_item": {},
 
 
     "home_page_news_page_open_all": "Open All",
@@ -74,6 +91,8 @@
 "english":"English",
 "@english": {}
     
+,"breaking_news": "Breaking News",
+    "@breaking_news": {}
 
   }
   

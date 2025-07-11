@@ -12,7 +12,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get home_page_live_page_first_tab_bar => 'ቀጥታ';
 
   @override
-  String get home_page_live_page_second_tab_bar => 'ዜና';
+  String get home_page_live_page_second_tab_bar => 'ዜናዎች';
 
   @override
   String get home_page_live_page_third_tab_bar => 'ፖድካስቶች';
@@ -28,6 +28,27 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get home_page_live_page_bottom_tabbar_four => 'የዛሬ ፕሮግራሞች';
+
+  @override
+  String get home_page_news_page_first_tab_bar => 'ሁሉንም';
+
+  @override
+  String get home_page_news_page_second_tab_bar => 'ስፖርት';
+
+  @override
+  String get home_page_news_page_third_tab_bar => 'የውጪ ዜና';
+
+  @override
+  String get home_page_news_page_fourth_tab_bar => 'ቢዝነስ';
+
+  @override
+  String get home_page_news_page_fifth_tab_bar => 'ሌሎች';
+
+  @override
+  String get deleted_item_message => 'This item has been deleted';
+
+  @override
+  String get donwload_page_delete_item => 'Delete';
 
   @override
   String get home_page_news_page_open_all => 'ሁሉንም ክፈት';
@@ -85,4 +106,7 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get breaking_news => 'አርእስተ ዜና';
 }

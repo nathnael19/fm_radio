@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Download/components/list_of_downloads.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,7 @@ class DownloadPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -21,7 +23,10 @@ class DownloadPage extends StatelessWidget {
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text("የወረዱ", style: GoogleFonts.notoSansEthiopic()),
+        title: Text(
+          local.donwload_page_title,
+          style: GoogleFonts.notoSansEthiopic(),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -62,7 +67,7 @@ class DownloadPage extends StatelessWidget {
                                   color: Colors.black,
                                 ),
                                 title: Text(
-                                  "አጥፋ",
+                                  local.donwload_page_delete_item,
                                   style: GoogleFonts.notoSansEthiopic(
                                     fontSize: 18,
                                     color: Colors.black,
@@ -73,7 +78,9 @@ class DownloadPage extends StatelessWidget {
                                   Navigator.pop(context); // Close the sheet
                                   // 🟢 TODO: Add delete logic here
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("Item deleted")),
+                                    SnackBar(
+                                      content: Text(local.deleted_item_message),
+                                    ),
                                   );
                                 },
                               ),

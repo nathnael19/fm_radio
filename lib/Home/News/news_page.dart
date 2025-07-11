@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/Home/News/news_detail_page.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,10 +15,16 @@ class _NewsPageState extends State<NewsPage> {
   int selectedIndex = 0;
   final _newsPageKey = GlobalKey<_NewsPageSelectorState>();
 
-  final List<String> tabTitles = ["ሁሉንም", "ስፖርት", "የውጪ ዜና", "ቢዝነስ", "ሌሎች"];
-
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+    final List<String> tabTitles = [
+      local.home_page_news_page_first_tab_bar,
+      local.home_page_news_page_second_tab_bar,
+      local.home_page_news_page_third_tab_bar,
+      local.home_page_news_page_fourth_tab_bar,
+      local.home_page_news_page_fifth_tab_bar,
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -119,6 +126,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       // 🟢 Removed nested Scaffold to avoid nested scrollable issues
       controller: _scrollController,
@@ -126,27 +134,39 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionHeader("አርእስተ ዜና", key: _topNewsKey),
+          _buildSectionHeader(local.breaking_news, key: _topNewsKey),
           SizedBox(height: 16.h),
           _buildHorizontalCards(),
 
           SizedBox(height: 24.h),
-          _buildSectionHeader("ስፖርት", key: _sportKey),
+          _buildSectionHeader(
+            local.home_page_news_page_second_tab_bar,
+            key: _sportKey,
+          ),
           SizedBox(height: 16.h),
           Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
-          _buildSectionHeader("የውጪ ዜና", key: _worldKey),
+          _buildSectionHeader(
+            local.home_page_news_page_third_tab_bar,
+            key: _worldKey,
+          ),
           SizedBox(height: 16.h),
           Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
-          _buildSectionHeader("ቢዝነስ", key: _businessKey),
+          _buildSectionHeader(
+            local.home_page_news_page_fourth_tab_bar,
+            key: _businessKey,
+          ),
           SizedBox(height: 16.h),
           Column(children: [_buildSmallCards(), _buildSmallCards()]),
 
           SizedBox(height: 24.h),
-          _buildSectionHeader("ሌሎች", key: _otherKey),
+          _buildSectionHeader(
+            local.home_page_news_page_fifth_tab_bar,
+            key: _otherKey,
+          ),
           SizedBox(height: 16.h),
           Column(children: [_buildSmallCards(), _buildSmallCards()]),
         ],
@@ -167,7 +187,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           ),
         ),
         Text(
-          "ሁሉንም ክፈት",
+          AppLocalizations.of(context)!.home_page_news_page_open_all,
           style: GoogleFonts.notoSansEthiopic(
             fontSize: 12.sp,
             color: const Color(0xff1A0101),

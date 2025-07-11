@@ -30,6 +30,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_page_live_page_bottom_tabbar_four => 'Today\'s Programs';
 
   @override
+  String get home_page_news_page_first_tab_bar => 'All';
+
+  @override
+  String get home_page_news_page_second_tab_bar => 'Sports';
+
+  @override
+  String get home_page_news_page_third_tab_bar => 'Foreign News';
+
+  @override
+  String get home_page_news_page_fourth_tab_bar => 'Business';
+
+  @override
+  String get home_page_news_page_fifth_tab_bar => 'Others';
+
+  @override
+  String get deleted_item_message => 'This item has been deleted';
+
+  @override
+  String get donwload_page_delete_item => 'Delete';
+
+  @override
   String get home_page_news_page_open_all => 'Open All';
 
   @override
@@ -85,4 +106,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get breaking_news => 'Breaking News';
 }

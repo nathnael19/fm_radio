@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MyGroupChat extends StatelessWidget {
@@ -5,6 +6,7 @@ class MyGroupChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white.withAlpha(200),
       appBar: AppBar(
@@ -13,7 +15,10 @@ class MyGroupChat extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Group 1", style: TextStyle(fontSize: 17)),
-            Text("1.2k Members", style: TextStyle(fontSize: 13)),
+            Text(
+              "1.2k ${local.group_page_members}",
+              style: TextStyle(fontSize: 13),
+            ),
           ],
         ),
       ),
