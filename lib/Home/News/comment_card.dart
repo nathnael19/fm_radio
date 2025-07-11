@@ -63,7 +63,6 @@ class CommentCard extends StatelessWidget {
             Icon(Icons.more_vert, size: 18.r),
           ],
         ),
-        Divider(),
       ],
     );
   }
