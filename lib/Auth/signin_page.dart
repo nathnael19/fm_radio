@@ -106,7 +106,7 @@ class _SigninPageState extends State<SigninPage> {
                       },
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     //Sign up redirect link
                     TextContainer(
@@ -121,7 +121,7 @@ class _SigninPageState extends State<SigninPage> {
                       leftText: "Don't have an account?",
                       rightText: "Sign up",
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                   ],
                 ),
               ),

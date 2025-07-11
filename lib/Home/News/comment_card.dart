@@ -8,6 +8,7 @@ class CommentCard extends StatelessWidget {
   final int number;
   final VoidCallback onTap;
   final VoidCallback onMoreTap;
+  final VoidCallback onReplyTap;
 
   const CommentCard({
     super.key,
@@ -17,6 +18,7 @@ class CommentCard extends StatelessWidget {
     required this.number,
     required this.onTap,
     required this.onMoreTap,
+    required this.onReplyTap,
   });
 
   @override
@@ -55,12 +57,15 @@ class CommentCard extends StatelessWidget {
               ),
             ),
             SizedBox(width: 16.w),
-            IconButton(
-              onPressed: onMoreTap,
-              icon: Icon(Icons.reply, size: 16.r, color: Colors.black54),
+            GestureDetector(
+              onTap: onReplyTap,
+              child: Icon(Icons.reply, size: 16.r, color: Colors.black54),
             ),
             Spacer(),
-            Icon(Icons.more_vert, size: 18.r),
+            GestureDetector(
+              onTap: onMoreTap,
+              child: Icon(Icons.more_vert, size: 18.r),
+            ),
           ],
         ),
       ],

@@ -1,9 +1,8 @@
+import 'package:ethio_fm_radio/my_page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ethio_fm_radio/theme/theme_data.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
-import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -56,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: _locale,
-          home: MyBottomNavigation(onLocaleChange: _setLocale),
+          home: MyPageView(onLocaleChange: _setLocale),
         );
       },
     );

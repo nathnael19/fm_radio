@@ -1,14 +1,11 @@
 import 'package:ethio_fm_radio/Download/download_page.dart';
 import 'package:ethio_fm_radio/Group/group_page.dart';
 import 'package:ethio_fm_radio/Home/Live/home_page.dart';
-import 'package:ethio_fm_radio/Profile/profile_page.dart';
 import 'package:ethio_fm_radio/Saved/saved_page.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange;
-
-  const MyBottomNavigation({super.key, this.onLocaleChange});
+  const MyBottomNavigation({super.key});
 
   @override
   State<MyBottomNavigation> createState() => _MyBottomNavigationState();
@@ -35,7 +32,6 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
       const GroupPage(),
       const DownloadPage(),
       const SavedPage(),
-      ProfilePage(onLocaleChange: widget.onLocaleChange), // ✅ inject callback
     ];
   }
 
