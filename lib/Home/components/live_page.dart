@@ -5,14 +5,9 @@ import 'package:ethio_fm_radio/Home/components/side_contaier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LivePage extends StatefulWidget {
+class LivePage extends StatelessWidget {
   const LivePage({super.key});
 
-  @override
-  State<LivePage> createState() => _LivePageState();
-}
-
-class _LivePageState extends State<LivePage> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +21,6 @@ class _LivePageState extends State<LivePage> {
               end: Alignment.bottomCenter,
               colors: [Color(0xff80011F), Color(0xff4A0000)],
             ),
-
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(40.r),
               bottomRight: Radius.circular(40.r),
@@ -47,8 +41,8 @@ class _LivePageState extends State<LivePage> {
             ),
           ),
         ),
-        // Wrap LiveTabBars with Expanded to avoid layout errors
-        Expanded(
+        // Use Flexible to avoid nested Expanded errors
+        Flexible(
           child: LiveTabBars(
             recentPrograms: recentPrograms,
             currency: currency,
