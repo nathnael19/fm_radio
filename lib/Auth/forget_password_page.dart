@@ -3,6 +3,7 @@ import 'package:ethio_fm_radio/Auth/components/my_divider.dart';
 import 'package:ethio_fm_radio/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Auth/reset_page.dart';
+import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Onboarding/photo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -90,7 +91,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                     // Back to Sign In link
                     TextContainer(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SigninPage(),
+                          ),
+                        );
+                      },
                       leftText: "Have an Account?",
                       rightText: "Sign in",
                     ),

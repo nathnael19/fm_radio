@@ -2,14 +2,17 @@ import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:svg_flutter/svg.dart';
 
 class BoardingWidget extends StatefulWidget {
   final String imagePath;
+  final String circleBack; // Your circular background image path
   final String title;
   final String subtitle;
   final String description;
   final PageController pageController;
   final bool isLastPage;
+  final double angle;
 
   const BoardingWidget({
     super.key,
@@ -18,7 +21,9 @@ class BoardingWidget extends StatefulWidget {
     required this.subtitle,
     required this.description,
     required this.pageController,
+    required this.angle,
     required this.isLastPage,
+    required this.circleBack,
   });
 
   @override
@@ -33,6 +38,7 @@ class _BoardingWidgetState extends State<BoardingWidget> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
+            // Skip Button
             Container(
               margin: EdgeInsets.only(top: 10.h, right: 20.w),
               child: Row(
@@ -59,12 +65,32 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                 ],
               ),
             ),
-            Image.asset(
-              widget.imagePath,
-              width: 390,
-              height: 350.h,
-              fit: BoxFit.contain,
+            // Stack with Circular Background and Main Image
+            Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                // Circle Background
+                Transform.rotate(
+                  angle: widget
+                      .angle, // Rotation angle in radians (e.g., 0.5 = ~28 degrees)
+                  child: SvgPicture.asset(
+                    widget.circleBack, // circular shape image
+                    width: 300.w,
+                    height: 220.h,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+
+                // Main Illustration
+                Image.asset(
+                  widget.imagePath,
+                  width: 390,
+                  height: 350.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
             ),
+            // Title, Subtitle, and Description
             Container(
               width: 344,
               margin: EdgeInsets.only(top: 44.h),
@@ -99,10 +125,10 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                 ],
               ),
             ),
+            // Bottom Section: Indicator and Next Button
             Container(
               margin: EdgeInsets.only(top: 45.h, left: 20.w),
               width: 440,
-              // height: 76,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -118,7 +144,7 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                   GestureDetector(
                     onTap: () {
                       if (widget.isLastPage) {
-                        // Go to SignupPage
+                        // Go to SigninPage
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

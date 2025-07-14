@@ -51,6 +51,7 @@ dependencies:
   intl: ^0.20.2
   shared_preferences: ^2.5.3
   flutter_bloc: ^9.1.1
+  svg_flutter: ^0.0.1
 
 dev_dependencies:
   flutter_test:

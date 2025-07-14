@@ -20,7 +20,9 @@ class _MyPageViewState extends State<MyPageView> {
       controller: _pageController,
       children: [
         BoardingWidget(
+          angle: -0.35,
           pageController: _pageController,
+          circleBack: "assets/icons/backcircle.svg",
           isLastPage: false,
           imagePath: "assets/images/home.png",
           title: "Welcome to",
@@ -29,7 +31,10 @@ class _MyPageViewState extends State<MyPageView> {
               "Stay informed and inspired with the latest news and trending podcasts – all in one place",
         ),
         BoardingWidget(
+          angle: 0.2,
           pageController: _pageController,
+          circleBack: "assets/icons/backcircle.svg",
+
           isLastPage: false,
           imagePath: "assets/images/news.png",
           title: "News Aggregation",
@@ -37,60 +42,20 @@ class _MyPageViewState extends State<MyPageView> {
           description:
               "From global headlines to local updates – curated just for you.",
         ),
-        // ✅ LAST PAGE with button to go to LoginPage
-        Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/podcast.png", height: 300),
-              const SizedBox(height: 20),
-              const Text(
-                "Discover Podcasts",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Listen While You Live",
-                style: TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Text(
-                  "Explore powerful stories, interviews, and shows from your favorite creators",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red[700],
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                    vertical: 15,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const SigninPage(), // ✅ Go to LoginPage
-                    ),
-                  );
-                },
-                child: const Text(
-                  "Get Started",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
+        BoardingWidget(
+          angle: 1.2,
+          pageController: _pageController,
+          circleBack: "assets/icons/backcircle.svg",
+
+          isLastPage: true,
+          imagePath: "assets/images/podcast.png",
+          title: "Discover Podcasts",
+          subtitle: "All Your News in One Place",
+          description:
+              "Explore powerful stories, interviews, and shows from your favorite creators",
         ),
+
+        // ✅ LAST PAGE with button to go to LoginPage
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:ethio_fm_radio/Data/repositiory/wether_repository.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/wether/wether_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
+import 'package:ethio_fm_radio/my_page_view.dart';
 import 'package:ethio_fm_radio/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: _locale,
-            home: MyBottomNavigation(onLocaleChange: _setLocale),
+            home: MyPageView(),
           ),
         );
       },
