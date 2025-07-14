@@ -1,12 +1,12 @@
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ethio_fm_radio/cubit/language/language_cubit.dart';
 
 class ProfilePage extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange;
-
-  const ProfilePage({super.key, this.onLocaleChange});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -18,22 +18,14 @@ class _ProfilePageState extends State<ProfilePage> {
   bool _showLanguageOptions = false;
 
   @override
-  void initState() {
-    super.initState();
-    _loadSavedLanguage();
-  }
-
-  Future<void> _loadSavedLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    String? lang = prefs.getString('selectedLanguage');
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final currentLocale = context.read<LanguageCubit>().state;
     setState(() {
-      _selectedLanguage = (lang == 'en') ? 'English' : 'አማርኛ';
+      _selectedLanguage = currentLocale.languageCode == 'en'
+          ? 'English'
+          : 'አማርኛ';
     });
-  }
-
-  Future<void> _saveLanguage(String langCode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selectedLanguage', langCode);
   }
 
   @override
@@ -42,7 +34,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text(local.profile_page_title), centerTitle: true),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyBottomNavigation()),
+            );
+          },
+          icon: Icon(Icons.arrow_back_ios_sharp),
+        ),
+        title: Text(local.profile_page_title),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -102,24 +106,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     LanguageOption(
                       label: local.english,
-                      onTap: () async {
+                      onTap: () {
+                        context.read<LanguageCubit>().setLocale(
+                          const Locale('en'),
+                        );
                         setState(() {
                           _selectedLanguage = local.english;
                           _showLanguageOptions = false;
                         });
-                        await _saveLanguage('en');
-                        widget.onLocaleChange?.call(const Locale('en'));
                       },
                     ),
                     LanguageOption(
                       label: local.amhric,
-                      onTap: () async {
+                      onTap: () {
+                        context.read<LanguageCubit>().setLocale(
+                          const Locale('am'),
+                        );
                         setState(() {
                           _selectedLanguage = local.amhric;
                           _showLanguageOptions = false;
                         });
-                        await _saveLanguage('am');
-                        widget.onLocaleChange?.call(const Locale('am'));
                       },
                     ),
                   ],
