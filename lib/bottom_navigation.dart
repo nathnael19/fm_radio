@@ -35,9 +35,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
       const GroupPage(),
       const DownloadPage(),
       const SavedPage(),
-      ProfilePage(
-        onLocaleChange: widget.onLocaleChange, // ✅ Pass callback here
-      ),
+      const ProfilePage(),
     ];
   }
 

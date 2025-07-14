@@ -1,39 +1,65 @@
+import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ethio_fm_radio/cubit/language/language_cubit.dart';
 
 class ProfilePage extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange;
-
-  const ProfilePage({super.key, this.onLocaleChange});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _switchValue = false;
   String _selectedLanguage = "አማርኛ";
   bool _showLanguageOptions = false;
 
   @override
-  void initState() {
-    super.initState();
-    _loadSavedLanguage();
-  }
-
-  Future<void> _loadSavedLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    String? lang = prefs.getString('selectedLanguage');
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final currentLocale = context.read<LanguageCubit>().state;
     setState(() {
-      _selectedLanguage = (lang == 'en') ? 'English' : 'አማርኛ';
+      _selectedLanguage = currentLocale.languageCode == 'en'
+          ? 'English'
+          : 'አማርኛ';
     });
   }
 
-  Future<void> _saveLanguage(String langCode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selectedLanguage', langCode);
+  Future<void> _handleNotificationToggle(bool value) async {
+    final notificationCubit = context.read<NotificationCubit>();
+
+    if (value == true) {
+      // Ask for permission first
+      final shouldEnable = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Allow Notifications'),
+          content: const Text(
+            'Do you want to allow this app to send you notifications?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Allow'),
+            ),
+          ],
+        ),
+      );
+
+      if (shouldEnable == true) {
+        notificationCubit.toggleNotification(); // Turn on
+      }
+    } else {
+      // If turning off, allow directly
+      notificationCubit.toggleNotification(); // Turn off
+    }
   }
 
   @override
@@ -42,29 +68,43 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text(local.profile_page_title), centerTitle: true),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MyBottomNavigation(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back_ios_sharp),
+        ),
+        title: Text(local.profile_page_title),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Notifications toggle
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(local.profile_page_notification),
-              trailing: CupertinoSwitch(
-                activeTrackColor: const Color(0xff80011F),
-                value: _switchValue,
-                onChanged: (v) {
-                  setState(() {
-                    _switchValue = v;
-                  });
-                },
-              ),
+            /// Notifications toggle
+            BlocBuilder<NotificationCubit, bool>(
+              builder: (context, state) {
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(local.profile_page_notification),
+                  trailing: CupertinoSwitch(
+                    activeTrackColor: const Color(0xff80011F),
+                    value: state,
+                    onChanged: _handleNotificationToggle,
+                  ),
+                );
+              },
             ),
             const Divider(indent: 15, endIndent: 15),
 
-            // Language dropdown
+            /// Language dropdown
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -102,24 +142,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     LanguageOption(
                       label: local.english,
-                      onTap: () async {
+                      onTap: () {
+                        context.read<LanguageCubit>().setLocale(
+                          const Locale('en'),
+                        );
                         setState(() {
                           _selectedLanguage = local.english;
                           _showLanguageOptions = false;
                         });
-                        await _saveLanguage('en');
-                        widget.onLocaleChange?.call(const Locale('en'));
                       },
                     ),
                     LanguageOption(
                       label: local.amhric,
-                      onTap: () async {
+                      onTap: () {
+                        context.read<LanguageCubit>().setLocale(
+                          const Locale('am'),
+                        );
                         setState(() {
                           _selectedLanguage = local.amhric;
                           _showLanguageOptions = false;
                         });
-                        await _saveLanguage('am');
-                        widget.onLocaleChange?.call(const Locale('am'));
                       },
                     ),
                   ],
