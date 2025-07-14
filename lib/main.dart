@@ -1,5 +1,4 @@
 import 'package:ethio_fm_radio/bottom_navigation.dart';
-import 'package:ethio_fm_radio/my_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ethio_fm_radio/theme/theme_data.dart';
