@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _switchValue = false;
   String _selectedLanguage = "አማርኛ";
   bool _showLanguageOptions = false;
 
@@ -28,6 +28,40 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  Future<void> _handleNotificationToggle(bool value) async {
+    final notificationCubit = context.read<NotificationCubit>();
+
+    if (value == true) {
+      // Ask for permission first
+      final shouldEnable = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Allow Notifications'),
+          content: const Text(
+            'Do you want to allow this app to send you notifications?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Allow'),
+            ),
+          ],
+        ),
+      );
+
+      if (shouldEnable == true) {
+        notificationCubit.toggleNotification(); // Turn on
+      }
+    } else {
+      // If turning off, allow directly
+      notificationCubit.toggleNotification(); // Turn off
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
@@ -39,10 +73,12 @@ class _ProfilePageState extends State<ProfilePage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyBottomNavigation()),
+              MaterialPageRoute(
+                builder: (context) => const MyBottomNavigation(),
+              ),
             );
           },
-          icon: Icon(Icons.arrow_back_ios_sharp),
+          icon: const Icon(Icons.arrow_back_ios_sharp),
         ),
         title: Text(local.profile_page_title),
         centerTitle: true,
@@ -52,23 +88,23 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Notifications toggle
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(local.profile_page_notification),
-              trailing: CupertinoSwitch(
-                activeTrackColor: const Color(0xff80011F),
-                value: _switchValue,
-                onChanged: (v) {
-                  setState(() {
-                    _switchValue = v;
-                  });
-                },
-              ),
+            /// Notifications toggle
+            BlocBuilder<NotificationCubit, bool>(
+              builder: (context, state) {
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(local.profile_page_notification),
+                  trailing: CupertinoSwitch(
+                    activeTrackColor: const Color(0xff80011F),
+                    value: state,
+                    onChanged: _handleNotificationToggle,
+                  ),
+                );
+              },
             ),
             const Divider(indent: 15, endIndent: 15),
 
-            // Language dropdown
+            /// Language dropdown
             GestureDetector(
               onTap: () {
                 setState(() {
