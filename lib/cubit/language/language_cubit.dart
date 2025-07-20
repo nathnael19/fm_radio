@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageCubit extends Cubit<Locale> {
-  LanguageCubit(Locale initialLocale) : super(initialLocale);
+  LanguageCubit(super.initialLocale);
 
   Future<void> setLocale(Locale locale) async {
     final prefs = await SharedPreferences.getInstance();
