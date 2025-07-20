@@ -21,7 +21,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get home_page_live_page_bottom_tabbar_one => 'የቅርብ ጊዜ ቀጥታ';
 
   @override
-  String get home_page_live_page_bottom_tabbar_two => 'ገንዘብ ሁኔታ';
+  String get home_page_live_page_bottom_tabbar_two => 'ገንዘብ ምንዛሬ';
 
   @override
   String get home_page_live_page_bottom_tabbar_three => 'የአየር ንብረት';
