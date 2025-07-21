@@ -1,11 +1,8 @@
-import 'package:ethio_fm_radio/Auth/signin_page.dart';
-import 'package:ethio_fm_radio/Onboarding/wellcome.dart';
+import 'package:ethio_fm_radio/Screens/Onboarding/wellcome.dart';
 import 'package:flutter/material.dart';
 
 class MyPageView extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange;
-
-  const MyPageView({super.key, this.onLocaleChange});
+  const MyPageView({super.key});
 
   @override
   State<MyPageView> createState() => _MyPageViewState();
@@ -34,7 +31,6 @@ class _MyPageViewState extends State<MyPageView> {
           angle: 0.2,
           pageController: _pageController,
           circleBack: "assets/icons/backcircle.svg",
-
           isLastPage: false,
           imagePath: "assets/images/news.png",
           title: "News Aggregation",
@@ -46,7 +42,6 @@ class _MyPageViewState extends State<MyPageView> {
           angle: 1.2,
           pageController: _pageController,
           circleBack: "assets/icons/backcircle.svg",
-
           isLastPage: true,
           imagePath: "assets/images/podcast.png",
           title: "Discover Podcasts",
@@ -54,8 +49,6 @@ class _MyPageViewState extends State<MyPageView> {
           description:
               "Explore powerful stories, interviews, and shows from your favorite creators",
         ),
-
-        // ✅ LAST PAGE with button to go to LoginPage
       ],
     );
   }

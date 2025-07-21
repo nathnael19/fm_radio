@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:ethio_fm_radio/my_page_view.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: locale,
-              home: MyPageView(),
+              home: MyBottomNavigation(),
             );
           },
         );
