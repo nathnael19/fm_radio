@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: [
                   Container(
                     margin: EdgeInsets.only(left: 20.w),
-                    child: Image.asset("assets/icons/logo.png"),
+                    child: Image.asset(
+                      "assets/icons/logo.png",
+                      width: 35,
+                    ),
                   ),
                   Expanded(
                     child: TabBar(
