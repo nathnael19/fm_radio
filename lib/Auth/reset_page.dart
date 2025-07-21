@@ -63,8 +63,8 @@ class _EnterCodePageState extends State<EnterCodePage> {
         children: [
           // ✅ Replace gradient container with SVG
           Positioned.fill(
-            child: SvgPicture.asset(
-              'assets/images/background.svg', // ✅ your SVG file path
+            child: Image.asset(
+              'assets/images/wavecurve.jpg', // ✅ your SVG file path
               fit: BoxFit.cover,
             ),
           ),
