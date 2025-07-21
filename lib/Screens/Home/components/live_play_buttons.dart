@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/components/today_card.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,6 +8,7 @@ class LivePlayButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Row(
       children: [
         IconButton(
@@ -43,7 +45,7 @@ class LivePlayButtons extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
               child: Text(
-                "Tip Creator",
+                local.tip_creator_text,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
               ),
             ),

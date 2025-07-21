@@ -33,6 +33,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_page_news_page_first_tab_bar => 'All';
 
   @override
+  String get tip_creator_text => 'Tip Creator';
+
+  @override
   String get home_page_news_page_second_tab_bar => 'Sports';
 
   @override
