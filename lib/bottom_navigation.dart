@@ -3,20 +3,22 @@ import 'package:ethio_fm_radio/Screens/Group/group_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/home_page.dart';
 import 'package:ethio_fm_radio/Screens/Profile/profile_page.dart';
 import 'package:ethio_fm_radio/Screens/Saved/saved_page.dart';
+import 'package:ethio_fm_radio/Screens/Saved/saved_page_news_card.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  final void Function(Locale)? onLocaleChange; // ✅ Add locale change callback
+  final void Function(Locale)? onLocaleChange;
+  final int pageIndex;
+  // ✅ Add locale change callback
 
-  const MyBottomNavigation({super.key, this.onLocaleChange});
+  const MyBottomNavigation(
+      {super.key, this.onLocaleChange, this.pageIndex = 0});
 
   @override
   State<MyBottomNavigation> createState() => _MyBottomNavigationState();
 }
 
 class _MyBottomNavigationState extends State<MyBottomNavigation> {
-  int _selectedIndex = 0;
-
   final List<IconData> _icons = [
     Icons.home,
     Icons.group_outlined,
@@ -26,6 +28,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
   ];
 
   late final List<Widget> _pages;
+  int _selectedIndex = 0;
 
   @override
   void initState() {

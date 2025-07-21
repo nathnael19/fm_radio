@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/Saved/saved_page_news_card.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -29,54 +30,62 @@ class SavedPage extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
               ),
-              itemCount: 2,
+              itemCount: 4,
               itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 70,
-                          height: 70,
-                          child: Image.asset(
-                            "assets/images/girl.png",
-                            fit: BoxFit.cover,
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (contex) => SavedPageNewsCard()));
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: Image.asset(
+                              "assets/images/girl.png",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 70,
-                          height: 70,
-                          child: Image.asset(
-                            "assets/images/girl2.png",
-                            fit: BoxFit.cover,
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: Image.asset(
+                              "assets/images/girl2.png",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 70,
-                          height: 70,
-                          child: Image.asset(
-                            "assets/images/man.png",
-                            fit: BoxFit.cover,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: Image.asset(
+                              "assets/images/man.png",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 70,
-                          height: 70,
-                          child: Image.asset(
-                            "assets/images/man2.png",
-                            fit: BoxFit.cover,
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: Image.asset(
+                              "assets/images/man2.png",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
