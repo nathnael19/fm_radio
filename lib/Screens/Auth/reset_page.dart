@@ -53,135 +53,140 @@ class _EnterCodePageState extends State<EnterCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/wavecurve.jpg"),
-            fit: BoxFit.cover,
+      resizeToAvoidBottomInset: false, // ✅ Prevent resizing when keyboard shows
+      body: Stack(
+        children: [
+          // ✅ Fixed Background
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/wavecurve.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+
+          // Foreground Content
+          SafeArea(
+            child: Stack(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.w),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      const Text(
-                        "Enter code",
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      // Subtitle
-                      const Text(
-                        "A reset code has been sent to +251 91 234 567",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(height: 30),
-
-                      // Functional OTP Inputs
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: List.generate(6, (index) {
-                          return SizedBox(
-                            width: 40,
-                            height: 50,
-                            child: TextField(
-                                controller: _controllers[index],
-                                focusNode: _focusNodes[index],
-                                textAlign: TextAlign.center,
-                                maxLength: 1,
-                                keyboardType: TextInputType.number,
-                                style: const TextStyle(fontSize: 22),
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  hintText: '*',
-                                  hintStyle: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 22,
-                                  ),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                  ),
-                                  focusedBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF80011F),
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                onChanged: (value) => _onChanged(value, index)),
-                          );
-                        }),
-                      ),
-                      const SizedBox(height: 30),
-
-                      // Confirm Button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF80011F),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.w),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Enter code",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
                             ),
                           ),
-                          // onPressed: () {},
-                          onPressed: _onConfirm,
-                          child: const Text(
-                            "Confirm",
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "A reset code has been sent to +251 91 234 567",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
+                          const SizedBox(height: 30),
 
-                      // Resend Code
-                      GestureDetector(
-                        onTap: () {
-                          // Handle resend logic here
-                        },
-                        child: const Text(
-                          "Resend code?",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF80011F),
-                            fontWeight: FontWeight.w500,
+                          // Functional OTP Inputs
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: List.generate(6, (index) {
+                              return SizedBox(
+                                width: 40,
+                                height: 50,
+                                child: TextField(
+                                  controller: _controllers[index],
+                                  focusNode: _focusNodes[index],
+                                  textAlign: TextAlign.center,
+                                  maxLength: 1,
+                                  keyboardType: TextInputType.number,
+                                  style: const TextStyle(fontSize: 22),
+                                  decoration: InputDecoration(
+                                    counterText: '',
+                                    hintText: '*',
+                                    hintStyle: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 22,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.grey),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFF80011F),
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  onChanged: (value) =>
+                                      _onChanged(value, index),
+                                ),
+                              );
+                            }),
                           ),
-                        ),
+                          const SizedBox(height: 30),
+
+                          // Confirm Button
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF80011F),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              onPressed: _onConfirm,
+                              child: const Text(
+                                "Confirm",
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+
+                          // Resend Code
+                          GestureDetector(
+                            onTap: () {
+                              // Handle resend logic here
+                            },
+                            child: const Text(
+                              "Resend code?",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF80011F),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 150.h),
+                  ],
                 ),
-                SizedBox(
-                  height: 80.h,
-                ),
+                Positioned(
+                    left: MediaQuery.of(context).size.width / 2 - 50.w,
+                    top: 250.h,
+                    child: SvgPicture.asset("assets/images/sss.svg")),
+                Positioned(
+                    left: MediaQuery.of(context).size.width / 2 - 25.w,
+                    top: 280.h,
+                    child: SvgPicture.asset("assets/images/checkk.svg")),
               ],
             ),
-            Positioned(
-                left: MediaQuery.of(context).size.width / 2 - 50.w,
-                top: 250.h,
-                child: SvgPicture.asset("assets/images/sss.svg")),
-            Positioned(
-                left: MediaQuery.of(context).size.width / 2 - 22.w,
-                top: 290.h,
-                child: SvgPicture.asset("assets/images/checkk.svg")),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
