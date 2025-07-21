@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
-        android:label="ethio_fm_radio"
+        android:label="Ethio FM Radio"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         
