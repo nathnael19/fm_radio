@@ -6,7 +6,6 @@ import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SavedPageNewsCard extends StatefulWidget {
   const SavedPageNewsCard({super.key});
