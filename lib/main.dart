@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: locale,
-              home: MyBottomNavigation(),
+              home: MyPageView(),
             );
           },
         );
