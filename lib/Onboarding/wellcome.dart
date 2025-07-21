@@ -1,8 +1,8 @@
 import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:svg_flutter/svg.dart';
 
 class BoardingWidget extends StatefulWidget {
   final String imagePath;

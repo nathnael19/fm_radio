@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Auth/signin_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // ✅ import flutter_svg
 
 void main() {
   runApp(
@@ -60,20 +61,14 @@ class _EnterCodePageState extends State<EnterCodePage> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF80011F), Color(0xFFA00025)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.elliptical(300, 0),
-                bottomRight: Radius.elliptical(300, 0),
-              ),
+          // ✅ Replace gradient container with SVG
+          Positioned.fill(
+            child: SvgPicture.asset(
+              'assets/images/background.svg', // ✅ your SVG file path
+              fit: BoxFit.cover,
             ),
           ),
+
           // Foreground Content
           Align(
             alignment: Alignment.center,
@@ -111,7 +106,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                   ),
                   const SizedBox(height: 10),
 
-                  //Subtitle
+                  // Subtitle
                   const Text(
                     "A reset code has been sent to +251 91 234 567",
                     textAlign: TextAlign.center,
@@ -157,7 +152,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                   ),
                   const SizedBox(height: 30),
 
-                  //  Confirm Button
+                  // Confirm Button
                   SizedBox(
                     width: double.infinity,
                     height: 50,
