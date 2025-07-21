@@ -33,6 +33,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get home_page_news_page_first_tab_bar => 'ሁሉንም';
 
   @override
+  String get tip_creator_text => 'እርዳታ';
+
+  @override
   String get home_page_news_page_second_tab_bar => 'ስፖርት';
 
   @override

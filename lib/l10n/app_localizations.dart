@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// **'All'**
   String get home_page_news_page_first_tab_bar;
 
+  /// No description provided for @tip_creator_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip Creator'**
+  String get tip_creator_text;
+
   /// No description provided for @home_page_news_page_second_tab_bar.
   ///
   /// In en, this message translates to:
