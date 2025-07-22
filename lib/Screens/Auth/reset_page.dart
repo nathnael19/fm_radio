@@ -5,12 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // ✅ import flutter_svg
 
-void main() {
-  runApp(
-    const MaterialApp(debugShowCheckedModeBanner: false, home: EnterCodePage()),
-  );
-}
-
 class EnterCodePage extends StatefulWidget {
   const EnterCodePage({super.key});
 
@@ -109,30 +103,31 @@ class _EnterCodePageState extends State<EnterCodePage> {
                             width: 40,
                             height: 50,
                             child: TextField(
-                                controller: _controllers[index],
-                                focusNode: _focusNodes[index],
-                                textAlign: TextAlign.center,
-                                maxLength: 1,
-                                keyboardType: TextInputType.number,
-                                style: const TextStyle(fontSize: 22),
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  hintText: '*',
-                                  hintStyle: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 22,
-                                  ),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                  ),
-                                  focusedBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF80011F),
-                                      width: 2,
-                                    ),
+                              controller: _controllers[index],
+                              focusNode: _focusNodes[index],
+                              textAlign: TextAlign.center,
+                              maxLength: 1,
+                              keyboardType: TextInputType.number,
+                              style: const TextStyle(fontSize: 22),
+                              decoration: InputDecoration(
+                                counterText: '',
+                                hintText: '*',
+                                hintStyle: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 22,
+                                ),
+                                enabledBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
+                                ),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF80011F),
+                                    width: 2,
                                   ),
                                 ),
-                                onChanged: (value) => _onChanged(value, index)),
+                              ),
+                              onChanged: (value) => _onChanged(value, index),
+                            ),
                           );
                         }),
                       ),
