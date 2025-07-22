@@ -147,8 +147,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
               effect: ExpandingDotsEffect(
                   activeDotColor: Color(0xff80011F),
                   expansionFactor: 2,
-                  dotWidth: 10,
-                  dotHeight: 10),
+                  dotWidth: 8.w,
+                  dotHeight: 8.h),
             ),
           ),
           SizedBox(height: 24.h),

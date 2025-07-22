@@ -1,6 +1,7 @@
 import 'package:ethio_fm_radio/Screens/Home/News/news_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/components/live_page.dart';
+import 'package:ethio_fm_radio/Screens/Home/components/overlay_play.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,57 +36,71 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        body: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: 10.h),
-              color: const Color(0xff80011F),
-              height: 60.h,
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20.w),
-                    child: Image.asset(
-                      "assets/icons/logo.png",
-                      width: 35,
-                    ),
+            Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 10.h),
+                  color: const Color(0xff80011F),
+                  height: 60.h,
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 20.w),
+                        child: Image.asset(
+                          "assets/icons/logo.png",
+                          width: 35,
+                        ),
+                      ),
+                      Expanded(
+                        child: TabBar(
+                          controller: _tabController,
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.white70,
+                          indicatorColor: Colors.white,
+                          dividerColor: Colors.transparent,
+                          isScrollable:
+                              false, // 🟢 FIX: tabs fit evenly in width
+                          tabs: [
+                            _buildTab(
+                              0,
+                              local.home_page_live_page_first_tab_bar,
+                              Icons.live_tv,
+                            ),
+                            _buildTab(
+                              1,
+                              local.home_page_live_page_second_tab_bar,
+                              Icons.article,
+                            ),
+                            _buildTab(
+                              2,
+                              local.home_page_live_page_third_tab_bar,
+                              Icons.podcasts,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: TabBar(
-                      controller: _tabController,
-                      labelColor: Colors.white,
-                      unselectedLabelColor: Colors.white70,
-                      indicatorColor: Colors.white,
-                      dividerColor: Colors.transparent,
-                      isScrollable: false, // 🟢 FIX: tabs fit evenly in width
-                      tabs: [
-                        _buildTab(
-                          0,
-                          local.home_page_live_page_first_tab_bar,
-                          Icons.live_tv,
-                        ),
-                        _buildTab(
-                          1,
-                          local.home_page_live_page_second_tab_bar,
-                          Icons.article,
-                        ),
-                        _buildTab(
-                          2,
-                          local.home_page_live_page_third_tab_bar,
-                          Icons.podcasts,
-                        ),
-                      ],
-                    ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      LivePage(),
+                      const NewsPage(),
+                      const PodcastPage()
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [LivePage(), const NewsPage(), const PodcastPage()],
-              ),
+            OverlayPlay(
+              imageUrl: "",
+              title: "",
             ),
           ],
         ),

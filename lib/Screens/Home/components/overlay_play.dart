@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OverlayPlay extends StatefulWidget {
@@ -15,11 +16,11 @@ class _OverlayPlayState extends State<OverlayPlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
-      padding: EdgeInsets.all(4),
+      margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+      padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
         color: Color(0xff1A0101),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,18 +28,20 @@ class _OverlayPlayState extends State<OverlayPlay> {
           Row(
             children: [
               CircleAvatar(
-                radius: 18,
+                radius: 18.r,
                 backgroundImage: AssetImage(widget.imageUrl),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.r),
               Text(widget.title, style: TextStyle(color: Colors.white)),
             ],
           ),
           Row(
             children: [
-              Image.asset("assets/images/soundwave.png", width: 100),
+              Image.asset("assets/images/soundwave.png", width: 100.w),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Navigator.pop(context);
+                },
                 icon: isPlaying
                     ? Text("")
                     : Icon(Icons.clear, color: Colors.white),

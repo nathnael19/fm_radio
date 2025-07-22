@@ -179,7 +179,8 @@ class _NewsDetailCardState extends State<NewsDetailCard> {
 
         //////////////////////
         ///
-        Container(
+        Expanded(
+          flex: widget.showComments == false ? 0 : 1,
           child: widget.showComments == false
               ? Container(
                   height: 0,
@@ -208,7 +209,7 @@ class _NewsDetailCardState extends State<NewsDetailCard> {
                     Expanded(
                       child: ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        // physics: NeverScrollableScrollPhysics(),
                         itemCount: 5,
                         itemBuilder: (context, index) {
                           return Padding(

@@ -1,7 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/News/news_card.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_card.dart';
-import 'package:ethio_fm_radio/Screens/Home/News/news_detail_page.dart';
-import 'package:ethio_fm_radio/Screens/Saved/saved_page.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
