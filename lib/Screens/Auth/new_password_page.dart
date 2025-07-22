@@ -4,6 +4,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +23,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -41,7 +43,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Set New Password",
+                      local.new_pass_page_title,
                       style: TextStyle(
                         color: Color(0xff1A0101),
                         fontSize: 36.sp,
@@ -54,14 +56,14 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
 
                     // New password input
                     MyTextField(
-                      hint: "New Password",
+                      hint: local.new_pass,
                       controller: newPasswordController,
                     ),
                     SizedBox(height: 16.h),
 
                     // Confirm password input
                     MyTextField(
-                      hint: "Confirm New Password",
+                      hint: local.new_conf_pass,
                       controller: confirmPasswordController,
                     ),
 
@@ -69,7 +71,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
 
                     // Reset password button
                     LoginContainer(
-                      title: "Continue",
+                      title: local.continue_text,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -93,8 +95,8 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                     MaterialPageRoute(builder: (context) => const SigninPage()),
                   );
                 },
-                leftText: "Hava an Account?",
-                rightText: "Sign in",
+                leftText: local.signup_page_question,
+                rightText: local.signin_text,
               ),
               SizedBox(height: 10),
             ],

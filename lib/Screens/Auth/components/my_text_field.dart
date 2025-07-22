@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,6 +15,7 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,12 +28,11 @@ class MyTextField extends StatelessWidget {
             color: Color(0xff648CA3),
           ),
         ),
-
         TextField(
           controller: controller,
           obscureText: isPass ? true : false,
           decoration: InputDecoration(
-            hintText: isPass ? "***********" : "Your answer",
+            hintText: isPass ? "***********" : local.your_answer_text,
             border: UnderlineInputBorder(),
             hintStyle: TextStyle(
               fontWeight: FontWeight.w400,

@@ -112,4 +112,89 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get breaking_news => 'አርእስተ ዜና';
+
+  @override
+  String get login_page_title => 'ይግቡ';
+
+  @override
+  String get email_or_phone => 'ኢሜል/ስልክ ቁጥር';
+
+  @override
+  String get your_answer_text => 'መልስዎ';
+
+  @override
+  String get password => 'የይለፍ ቃል';
+
+  @override
+  String get forgot_password_text => 'የይለፍ ቃልን ረሱ?';
+
+  @override
+  String get login_text => 'ግባ';
+
+  @override
+  String get signup_question => 'መለያ የለዎትም?';
+
+  @override
+  String get signup_text => 'ይመዝገቡ';
+
+  @override
+  String get signup_page_title => 'መመዝገቢያ';
+
+  @override
+  String get full_name => 'ሙሉ ስም';
+
+  @override
+  String get email => 'ኢሜል';
+
+  @override
+  String get phone_number => 'የስልክ ቁጥር';
+
+  @override
+  String get confirm_pass => 'የይለፍ ቃልን ያረጋግጡ';
+
+  @override
+  String get create_acc => 'መለያ ይፍጠሩ';
+
+  @override
+  String get or => 'ወይም';
+
+  @override
+  String get signup_page_question => 'መለያ አሎት?';
+
+  @override
+  String get signin_text => 'ግባ';
+
+  @override
+  String get forgot_page_title => 'የይለፍ ቃልን ረስተዋል';
+
+  @override
+  String get forgot_page_desc =>
+      'የስልክዎን ቁጥር ያስገቡ እና የይለፍ ቃልዎን ለመቀየር ኮድ እንልክልዎታለን።';
+
+  @override
+  String get send_code => 'ኮድ ላክ';
+
+  @override
+  String get reset_page_title => 'ኮድ አስገባ';
+
+  @override
+  String get reset_page_desc => 'የመቀየሪያ ኮድ ወደ ዚህ ተልኳል፦ ';
+
+  @override
+  String get confirm => 'አረጋግጥ';
+
+  @override
+  String get resend_text => 'ኮድ እንደገና ላክ?';
+
+  @override
+  String get new_pass_page_title => 'አዲስ የይለፍ ቃል አቁም';
+
+  @override
+  String get new_pass => 'አዲስ የይለፍ ቃል';
+
+  @override
+  String get new_conf_pass => 'አዲስ የይለፍ ቃል ያረጋግጡ';
+
+  @override
+  String get continue_text => 'ቀጥል';
 }

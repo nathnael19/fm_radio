@@ -1,107 +1,129 @@
 {
   "@@locale": "am",
-
   "home_page_live_page_first_tab_bar": "ቀጥታ",
   "@home_page_live_page_first_tab_bar": {},
-
   "home_page_live_page_second_tab_bar": "ዜናዎች",
   "@home_page_live_page_second_tab_bar": {},
-
   "home_page_news_page_first_tab_bar": "ሁሉንም",
   "@home_page_news_page_first_tab_bar": {},
-
   "home_page_news_page_second_tab_bar": "ስፖርት",
   "@home_page_news_page_second_tab_bar": {},
-
   "home_page_news_page_third_tab_bar": "የውጪ ዜና",
   "@home_page_news_page_third_tab_bar": {},
-
   "home_page_news_page_fourth_tab_bar": "ቢዝነስ",
   "@home_page_news_page_fourth_tab_bar": {},
-
   "home_page_news_page_fifth_tab_bar": "ሌሎች",
   "@home_page_news_page_fifth_tab_bar": {},
-
-  "tip_creator_text":"እርዳታ",
+  "tip_creator_text": "እርዳታ",
   "@tip_creator_text": {},
-
   "home_page_live_page_third_tab_bar": "ፖድካስቶች",
   "@home_page_live_page_third_tab_bar": {},
-
   "home_page_live_page_bottom_tabbar_one": "የቅርብ ጊዜ ቀጥታ",
   "@home_page_live_page_bottom_tabbar_one": {},
-
   "home_page_live_page_bottom_tabbar_two": "ገንዘብ ምንዛሬ",
   "@home_page_live_page_bottom_tabbar_two": {},
-
   "home_page_live_page_bottom_tabbar_three": "የአየር ንብረት",
   "@home_page_live_page_bottom_tabbar_three": {},
-
   "home_page_live_page_bottom_tabbar_four": "የዛሬ ፕሮግራሞች",
   "@home_page_live_page_bottom_tabbar_four": {},
-
   "home_page_news_page_open_all": "ሁሉንም ክፈት",
   "@home_page_news_page_open_all": {},
-
   "profile_page_title": "አካውንት",
   "@profile_page_title": {},
-
   "profile_page_notification": "ማሳወቂያዎች",
   "@profile_page_notification": {},
-
   "profile_page_language": "ቋንቋ",
   "@profile_page_language": {},
-
   "profile_page_about": "ስለ FM ሬድዮ",
   "@profile_page_about": {},
-
   "saved_page_title": "ስብስቦች",
   "@saved_page_title": {},
-
   "saved_page_no_saved": "አልተያዙ ፋይሎች የሉም",
   "@saved_page_no_saved": {},
-
   "donwload_page_title": "የወሰዱ ፋይሎች",
   "@donwload_page_title": {},
-
   "donwload_page_no_downloads": "የተወሰዱ ፋይሎች የሉም",
   "@donwload_page_no_downloads": {},
-
   "group_page_title": "ቡድኖች",
   "@group_page_title": {},
-
   "group_page_no_groups": "ቡድኖች አልተገኙም",
   "@group_page_no_groups": {},
-
   "group_page_search_hint": "የቡድን ስም",
   "@group_page_search_hint": {},
-
   "group_page_my_groups": "የእኔ ቡድኖች",
   "@group_page_my_groups": {},
-
   "group_page_explore_groups": "ቡድኖችን ፈልግ",
   "@group_page_explore_groups": {},
-
   "group_page_search": "ፈልግ",
   "@group_page_search": {},
-
   "group_page_members": "አባላት",
   "@group_page_members": {},
-
   "group_page_join_text": "ተቀላቅል",
   "@group_page_join_text": {},
-
-  "amhric":"አማርኛ",
-"@amhric": {},
-"english":"English",
-"@english": {},
-
-"breaking_news": "አርእስተ ዜና",
+  "amhric": "አማርኛ",
+  "@amhric": {},
+  "english": "English",
+  "@english": {},
+  "breaking_news": "አርእስተ ዜና",
   "@breaking_news": {},
-
-
-   "deleted_item_message": "ፋይሉ ተሰርዟል።",
-    "@deleted_item_message": {},
-    "donwload_page_delete_item":"አጥፋ",
-    "@donwload_page_delete_item": {}
+  "deleted_item_message": "ፋይሉ ተሰርዟል።",
+  "@deleted_item_message": {},
+  "donwload_page_delete_item": "አጥፋ",
+  "@donwload_page_delete_item": {},
+  "login_page_title": "ይግቡ",
+  "@login_page_title": {},
+  "email_or_phone": "ኢሜል/ስልክ ቁጥር",
+  "@email_or_phone": {},
+  "your_answer_text": "መልስዎ",
+  "@your_answer_text": {},
+  "password": "የይለፍ ቃል",
+  "@password": {},
+  "forgot_password_text": "የይለፍ ቃልን ረሱ?",
+  "@forgot_password_text": {},
+  "login_text": "ግባ",
+  "@login_text": {},
+  "signup_question": "መለያ የለዎትም?",
+  "@signup_question": {},
+  "signup_text": "ይመዝገቡ",
+  "@signup_text": {},
+  "signup_page_title": "መመዝገቢያ",
+  "@signup_page_title": {},
+  "full_name": "ሙሉ ስም",
+  "@full_name": {},
+  "email": "ኢሜል",
+  "@email": {},
+  "phone_number": "የስልክ ቁጥር",
+  "@phone_number": {},
+  "confirm_pass": "የይለፍ ቃልን ያረጋግጡ",
+  "@confirm_pass": {},
+  "create_acc": "መለያ ይፍጠሩ",
+  "@create_acc": {},
+  "or": "ወይም",
+  "@or": {},
+  "signup_page_question": "መለያ አሎት?",
+  "@signup_page_question": {},
+  "signin_text": "ግባ",
+  "@signin_text": {},
+  "forgot_page_title": "የይለፍ ቃልን ረስተዋል",
+  "@forgot_page_title": {},
+  "forgot_page_desc": "የስልክዎን ቁጥር ያስገቡ እና የይለፍ ቃልዎን ለመቀየር ኮድ እንልክልዎታለን።",
+  "@forgot_page_desc": {},
+  "send_code": "ኮድ ላክ",
+  "@send_code": {},
+  "reset_page_title": "ኮድ አስገባ",
+  "@reset_page_title": {},
+  "reset_page_desc": "የመቀየሪያ ኮድ ወደ ዚህ ተልኳል፦ ",
+  "@reset_page_desc": {},
+  "confirm": "አረጋግጥ",
+  "@confirm": {},
+  "resend_text": "ኮድ እንደገና ላክ?",
+  "@resend_text": {},
+  "new_pass_page_title": "አዲስ የይለፍ ቃል አቁም",
+  "@new_pass_page_title": {},
+  "new_pass": "አዲስ የይለፍ ቃል",
+  "@new_pass": {},
+  "new_conf_pass": "አዲስ የይለፍ ቃል ያረጋግጡ",
+  "@new_conf_pass": {},
+  "continue_text": "ቀጥል",
+  "@continue_text": {}
 }

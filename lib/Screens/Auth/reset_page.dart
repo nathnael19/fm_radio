@@ -1,4 +1,6 @@
+import 'package:ethio_fm_radio/Screens/Auth/new_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // ✅ import flutter_svg
@@ -47,7 +49,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
     if (code.length == 6) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const SigninPage()),
+        MaterialPageRoute(builder: (context) => const SetNewPasswordPage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -58,6 +60,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -79,8 +82,8 @@ class _EnterCodePageState extends State<EnterCodePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Title
-                      const Text(
-                        "Enter code",
+                      Text(
+                        local.reset_page_title,
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -90,8 +93,8 @@ class _EnterCodePageState extends State<EnterCodePage> {
                       const SizedBox(height: 10),
 
                       // Subtitle
-                      const Text(
-                        "A reset code has been sent to +251 91 234 567",
+                      Text(
+                        "${local.reset_page_desc} +251 91 234 567",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
@@ -141,15 +144,15 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF80011F),
+                            backgroundColor: Color(0xFF80011F),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                           // onPressed: () {},
                           onPressed: _onConfirm,
-                          child: const Text(
-                            "Confirm",
+                          child: Text(
+                            local.confirm,
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
@@ -161,8 +164,8 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         onTap: () {
                           // Handle resend logic here
                         },
-                        child: const Text(
-                          "Resend code?",
+                        child: Text(
+                          local.resend_text,
                           style: TextStyle(
                             fontSize: 16,
                             color: Color(0xFF80011F),

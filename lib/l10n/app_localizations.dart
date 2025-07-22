@@ -307,6 +307,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Breaking News'**
   String get breaking_news;
+
+  /// No description provided for @login_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get login_page_title;
+
+  /// No description provided for @email_or_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Email/Phone'**
+  String get email_or_phone;
+
+  /// No description provided for @your_answer_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer'**
+  String get your_answer_text;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @forgot_password_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgot_password_text;
+
+  /// No description provided for @login_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login_text;
+
+  /// No description provided for @signup_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an Account? '**
+  String get signup_question;
+
+  /// No description provided for @signup_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signup_text;
+
+  /// No description provided for @signup_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signup_page_title;
+
+  /// No description provided for @full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get full_name;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
+
+  /// No description provided for @confirm_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirm_pass;
+
+  /// No description provided for @create_acc.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get create_acc;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @signup_page_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Have an Account? '**
+  String get signup_page_question;
+
+  /// No description provided for @signin_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signin_text;
+
+  /// No description provided for @forgot_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password'**
+  String get forgot_page_title;
+
+  /// No description provided for @forgot_page_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number and we\'ll send you a code to reset your password.'**
+  String get forgot_page_desc;
+
+  /// No description provided for @send_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Code'**
+  String get send_code;
+
+  /// No description provided for @reset_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Code'**
+  String get reset_page_title;
+
+  /// No description provided for @reset_page_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A reset code has been sent to '**
+  String get reset_page_desc;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @resend_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code?'**
+  String get resend_text;
+
+  /// No description provided for @new_pass_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Set New Password'**
+  String get new_pass_page_title;
+
+  /// No description provided for @new_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_pass;
+
+  /// No description provided for @new_conf_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get new_conf_pass;
+
+  /// No description provided for @continue_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continue_text;
 }
 
 class _AppLocalizationsDelegate

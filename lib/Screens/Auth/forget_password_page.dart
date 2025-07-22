@@ -5,6 +5,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/reset_page.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,6 +22,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -40,7 +42,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Forgot Password",
+                      local.forgot_page_title,
                       style: TextStyle(
                         color: Color(0xff1A0101),
                         fontSize: 36.sp,
@@ -53,7 +55,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                     //Subtitle
                     Text(
-                      "Enter your phone number and we’ll send you a code to reset your password.",
+                      local.forgot_page_desc,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -66,7 +68,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                     // Phone number field
                     MyTextField(
-                      hint: "Phone Number",
+                      hint: local.password,
                       controller: phoneController,
                     ),
 
@@ -74,7 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                     // Send code button
                     LoginContainer(
-                      title: "Send Code",
+                      title: local.send_code,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -99,8 +101,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ),
                         );
                       },
-                      leftText: "Have an Account?",
-                      rightText: "Sign in",
+                      leftText: local.signup_page_question,
+                      rightText: local.signin_text,
                     ),
                   ],
                 ),

@@ -5,6 +5,7 @@ import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Screens/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +23,7 @@ class _SigninPageState extends State<SigninPage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -40,7 +42,7 @@ class _SigninPageState extends State<SigninPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Sign in",
+                      local.login_page_title,
                       style: TextStyle(
                         color: Color(0xff1A0101),
                         fontSize: 36.sp,
@@ -53,14 +55,14 @@ class _SigninPageState extends State<SigninPage> {
 
                     // Email/Phone input field
                     MyTextField(
-                      hint: "Email/Phone",
+                      hint: local.email_or_phone,
                       controller: emailController,
                     ),
 
                     SizedBox(height: 16.h),
 
                     MyTextField(
-                      hint: "Password",
+                      hint: local.password,
                       controller: passwordController,
                       isPass: true,
                     ),
@@ -80,7 +82,7 @@ class _SigninPageState extends State<SigninPage> {
                           );
                         },
                         child: Text(
-                          "Forgot password?",
+                          local.forgot_password_text,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Color(0xff001420),
@@ -95,7 +97,7 @@ class _SigninPageState extends State<SigninPage> {
 
                     // Login button
                     LoginContainer(
-                      title: "Login",
+                      title: local.login_text,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -118,8 +120,8 @@ class _SigninPageState extends State<SigninPage> {
                           ),
                         );
                       },
-                      leftText: "Don't have an account?",
-                      rightText: "Sign up",
+                      leftText: local.signup_question,
+                      rightText: local.signup_text,
                     ),
                     SizedBox(height: 30.h),
                   ],

@@ -5,6 +5,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,6 +27,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -43,7 +45,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                   children: [
                     //Page title
                     Text(
-                      "Sign up",
+                      local.signup_page_title,
                       style: TextStyle(
                         color: Color(0xff1A0101),
                         fontSize: 36.sp,
@@ -55,37 +57,38 @@ class _SignUpPageState extends State<CreactAccountPage> {
                     const SizedBox(height: 16),
 
                     //Full Name
-                    MyTextField(hint: "Full Name", controller: nameController),
+                    MyTextField(
+                        hint: local.full_name, controller: nameController),
 
                     const SizedBox(height: 16),
 
                     // Email
-                    MyTextField(hint: "Email", controller: emailController),
+                    MyTextField(hint: local.email, controller: emailController),
 
                     const SizedBox(height: 16),
 
                     //Phone Number
                     MyTextField(
-                      hint: "Phone Number",
+                      hint: local.phone_number,
                       controller: phoneController,
                     ),
                     const SizedBox(height: 16),
 
                     MyTextField(
-                      hint: "Password",
+                      hint: local.password,
                       controller: passwordController,
                     ),
 
                     const SizedBox(height: 16),
 
                     MyTextField(
-                      hint: "Confirm Password",
+                      hint: local.confirm_pass,
                       controller: confirmPasswordController,
                     ),
                     const SizedBox(height: 16),
 
                     LoginContainer(
-                      title: "Create Account",
+                      title: local.create_acc,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -110,8 +113,8 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           ),
                         );
                       },
-                      leftText: "Have an account?",
-                      rightText: "Sign in",
+                      leftText: local.signup_page_question,
+                      rightText: local.signin_text,
                     ),
                   ],
                 ),

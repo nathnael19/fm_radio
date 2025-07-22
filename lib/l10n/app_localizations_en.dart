@@ -112,4 +112,89 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get breaking_news => 'Breaking News';
+
+  @override
+  String get login_page_title => 'Sign in';
+
+  @override
+  String get email_or_phone => 'Email/Phone';
+
+  @override
+  String get your_answer_text => 'Your answer';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get forgot_password_text => 'Forgot Password?';
+
+  @override
+  String get login_text => 'Login';
+
+  @override
+  String get signup_question => 'Don\'t have an Account? ';
+
+  @override
+  String get signup_text => 'Sign Up';
+
+  @override
+  String get signup_page_title => 'Sign Up';
+
+  @override
+  String get full_name => 'Full Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get phone_number => 'Phone Number';
+
+  @override
+  String get confirm_pass => 'Confirm Password';
+
+  @override
+  String get create_acc => 'Create Account';
+
+  @override
+  String get or => 'or';
+
+  @override
+  String get signup_page_question => 'Have an Account? ';
+
+  @override
+  String get signin_text => 'Sign In';
+
+  @override
+  String get forgot_page_title => 'Forgot Password';
+
+  @override
+  String get forgot_page_desc =>
+      'Enter your phone number and we\'ll send you a code to reset your password.';
+
+  @override
+  String get send_code => 'Send Code';
+
+  @override
+  String get reset_page_title => 'Enter Code';
+
+  @override
+  String get reset_page_desc => 'A reset code has been sent to ';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get resend_text => 'Resend code?';
+
+  @override
+  String get new_pass_page_title => 'Set New Password';
+
+  @override
+  String get new_pass => 'New Password';
+
+  @override
+  String get new_conf_pass => 'Confirm New Password';
+
+  @override
+  String get continue_text => 'Continue';
 }
