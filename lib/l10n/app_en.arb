@@ -125,5 +125,15 @@
   "new_conf_pass": "Confirm New Password",
   "@new_conf_pass": {},
   "continue_text": "Continue",
-  "@continue_text": {}
+  "@continue_text": {},
+  "form_email_error": "Enter a valid email",
+  "@form_email_error": {},
+  "form_pass_error": "Password must be greater than 8 characters",
+  "@form_pass_error": {},
+  "form_pass_error2": "Passwords doesn't match",
+  "@form_pass_error2": {},
+  "form_phone_error": "Phone Number cannot be empty of greater than or less than 10 character",
+  "@form_phone_error": {},
+  "form_name_error": "Enter a valid full name",
+  "@form_name_error": {}
 }

@@ -62,7 +62,7 @@ class _SigninPageState extends State<SigninPage> {
                           if (value!.isEmpty ||
                               !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                                   .hasMatch(value)) {
-                            return "Enter Valid Email";
+                            return local.form_email_error;
                           } else {
                             return null;
                           }
@@ -76,7 +76,7 @@ class _SigninPageState extends State<SigninPage> {
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty || value.length < 8) {
-                            return "Password must be greater than 8 characters";
+                            return local.form_pass_error;
                           } else {
                             return null;
                           }

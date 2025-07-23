@@ -197,4 +197,19 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get continue_text => 'ቀጥል';
+
+  @override
+  String get form_email_error => 'ትክክለኛ ኢሜል ያስገቡ';
+
+  @override
+  String get form_pass_error => 'ይለፍ ቃል ክ 8 በላይ መሆን አለበት';
+
+  @override
+  String get form_pass_error2 => 'ይልፍ ቃሉ አይመሳሰልም';
+
+  @override
+  String get form_phone_error => 'ስልክ ቁጥሮ 10 መሆን አለበት';
+
+  @override
+  String get form_name_error => 'ትክክለኛ ስም ያስገቡ';
 }

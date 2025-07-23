@@ -197,4 +197,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continue_text => 'Continue';
+
+  @override
+  String get form_email_error => 'Enter a valid email';
+
+  @override
+  String get form_pass_error => 'Password must be greater than 8 characters';
+
+  @override
+  String get form_pass_error2 => 'Passwords doesn\'t match';
+
+  @override
+  String get form_phone_error =>
+      'Phone Number cannot be empty of greater than or less than 10 character';
+
+  @override
+  String get form_name_error => 'Enter a valid full name';
 }

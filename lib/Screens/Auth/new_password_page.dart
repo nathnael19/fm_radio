@@ -21,11 +21,11 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController(); // Controller for confirm password
 
-  String pass_error = "Password must be greater than 8 characters";
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
+    String pass_error = local.form_pass_error;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -99,7 +99,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                             if (newPasswordController.text !=
                                 confirmPasswordController.text) {
                               setState(() {
-                                pass_error = "Passwords doesn't match";
+                                pass_error = local.form_pass_error2;
                               });
                             } else {
                               Navigator.push(

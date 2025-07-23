@@ -13,7 +13,7 @@ class LanguageCubit extends Cubit<Locale> {
 
   static Future<Locale> loadSavedLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    final langCode = prefs.getString('selectedLanguage') ?? 'am';
+    final langCode = prefs.getString('selectedLanguage') ?? 'en';
     return Locale(langCode);
   }
 }

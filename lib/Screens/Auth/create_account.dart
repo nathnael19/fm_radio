@@ -25,15 +25,14 @@ class _SignUpPageState extends State<CreactAccountPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  final String fullname_error = "Enter a valid full name";
-  final String email_error = "Enter a valid email";
-  final String phone_error =
-      "Phone Number cannot be empty of greater than or less than 10 character";
-  String pass_error = "Password must be greater than 8 characters";
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
+    final String fullname_error = local.form_name_error;
+    final String email_error = local.form_email_error;
+    final String phone_error = local.form_phone_error;
+    String pass_error = local.form_pass_error;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -145,7 +144,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                             if (passwordController.text !=
                                 confirmPasswordController.text) {
                               setState(() {
-                                pass_error = "Passwords doesn't match";
+                                pass_error = local.form_pass_error2;
                               });
                             } else {
                               Navigator.push(

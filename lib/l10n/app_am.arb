@@ -125,5 +125,15 @@
   "new_conf_pass": "አዲስ የይለፍ ቃል ያረጋግጡ",
   "@new_conf_pass": {},
   "continue_text": "ቀጥል",
-  "@continue_text": {}
+  "@continue_text": {},
+  "form_email_error": "ትክክለኛ ኢሜል ያስገቡ",
+  "@form_email_error": {},
+  "form_pass_error": "ይለፍ ቃል ክ 8 በላይ መሆን አለበት",
+  "@form_pass_error": {},
+  "form_pass_error2": "ይልፍ ቃሉ አይመሳሰልም",
+  "@form_pass_error2": {},
+  "form_phone_error": "ስልክ ቁጥሮ 10 መሆን አለበት",
+  "@form_phone_error": {},
+  "form_name_error": "ትክክለኛ ስም ያስገቡ",
+  "@form_name_error": {}
 }

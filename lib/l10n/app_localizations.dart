@@ -475,6 +475,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get continue_text;
+
+  /// No description provided for @form_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get form_email_error;
+
+  /// No description provided for @form_pass_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be greater than 8 characters'**
+  String get form_pass_error;
+
+  /// No description provided for @form_pass_error2.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords doesn\'t match'**
+  String get form_pass_error2;
+
+  /// No description provided for @form_phone_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number cannot be empty of greater than or less than 10 character'**
+  String get form_phone_error;
+
+  /// No description provided for @form_name_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid full name'**
+  String get form_name_error;
 }
 
 class _AppLocalizationsDelegate

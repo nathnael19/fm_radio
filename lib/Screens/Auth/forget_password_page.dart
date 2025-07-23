@@ -19,8 +19,6 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController phoneController =
       TextEditingController(); //Controller for phone number
-  final String phone_error =
-      "Phone Number cannot be empty of greater than or less than 10 character";
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +75,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           if (value!.isEmpty ||
                               !RegExp(r'^[0-9]').hasMatch(value) ||
                               value.length != 10) {
-                            return phone_error;
+                            return local.form_phone_error;
                           } else {
                             return null;
                           }
