@@ -36,77 +36,77 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               SizedBox(height: 27.h),
 
               // Title
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      local.forgot_page_title,
-                      style: TextStyle(
-                        color: Color(0xff1A0101),
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 16.w),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         local.forgot_page_title,
+              //         style: TextStyle(
+              //           color: Color(0xff1A0101),
+              //           fontSize: 36.sp,
+              //           fontWeight: FontWeight.w700,
+              //           fontFamily: "Poppins",
+              //         ),
+              //       ),
 
-                    SizedBox(height: 16.h),
+              //       SizedBox(height: 16.h),
 
-                    //Subtitle
-                    Text(
-                      local.forgot_page_desc,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff001420),
-                        fontFamily: "Poppins",
-                      ),
-                    ),
+              //       //Subtitle
+              //       Text(
+              //         local.forgot_page_desc,
+              //         style: TextStyle(
+              //           fontSize: 16.sp,
+              //           fontWeight: FontWeight.w500,
+              //           color: Color(0xff001420),
+              //           fontFamily: "Poppins",
+              //         ),
+              //       ),
 
-                    SizedBox(height: 16.h),
+              //       SizedBox(height: 16.h),
 
-                    // Phone number field
-                    MyTextField(
-                      hint: local.password,
-                      controller: phoneController,
-                    ),
+              //       // Phone number field
+              //       MyTextField(
+              //         hint: local.password,
+              //         controller: phoneController,
+              //       ),
 
-                    SizedBox(height: 16.h),
+              //       SizedBox(height: 16.h),
 
-                    // Send code button
-                    LoginContainer(
-                      title: local.send_code,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const EnterCodePage(),
-                          ),
-                        );
-                      },
-                    ),
+              //       // Send code button
+              //       LoginContainer(
+              //         title: local.send_code,
+              //         onTap: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const EnterCodePage(),
+              //             ),
+              //           );
+              //         },
+              //       ),
 
-                    SizedBox(height: 24.h),
-                    MyDivider(),
-                    SizedBox(height: 24.h),
+              //       SizedBox(height: 24.h),
+              //       MyDivider(),
+              //       SizedBox(height: 24.h),
 
-                    // Back to Sign In link
-                    TextContainer(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SigninPage(),
-                          ),
-                        );
-                      },
-                      leftText: local.signup_page_question,
-                      rightText: local.signin_text,
-                    ),
-                  ],
-                ),
-              ),
+              //       // Back to Sign In link
+              //       TextContainer(
+              //         onTap: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const SigninPage(),
+              //             ),
+              //           );
+              //         },
+              //         leftText: local.signup_page_question,
+              //         rightText: local.signin_text,
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

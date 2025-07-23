@@ -56,36 +56,36 @@ class _SignUpPageState extends State<CreactAccountPage> {
 
                     const SizedBox(height: 16),
 
-                    //Full Name
-                    MyTextField(
-                        hint: local.full_name, controller: nameController),
+                    // //Full Name
+                    // MyTextField(
+                    //     hint: local.full_name, controller: nameController),
 
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 16),
 
-                    // Email
-                    MyTextField(hint: local.email, controller: emailController),
+                    // // Email
+                    // MyTextField(hint: local.email, controller: emailController),
 
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 16),
 
-                    //Phone Number
-                    MyTextField(
-                      hint: local.phone_number,
-                      controller: phoneController,
-                    ),
-                    const SizedBox(height: 16),
+                    // //Phone Number
+                    // MyTextField(
+                    //   hint: local.phone_number,
+                    //   controller: phoneController,
+                    // ),
+                    // const SizedBox(height: 16),
 
-                    MyTextField(
-                      hint: local.password,
-                      controller: passwordController,
-                    ),
+                    // MyTextField(
+                    //   hint: local.password,
+                    //   controller: passwordController,
+                    // ),
 
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 16),
 
-                    MyTextField(
-                      hint: local.confirm_pass,
-                      controller: confirmPasswordController,
-                    ),
-                    const SizedBox(height: 16),
+                    // MyTextField(
+                    //   hint: local.confirm_pass,
+                    //   controller: confirmPasswordController,
+                    // ),
+                    // const SizedBox(height: 16),
 
                     LoginContainer(
                       title: local.create_acc,

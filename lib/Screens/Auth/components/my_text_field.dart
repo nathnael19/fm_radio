@@ -6,11 +6,13 @@ class MyTextField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final bool isPass;
+  final String? Function(String?)? validator;
   const MyTextField({
     super.key,
     required this.hint,
     required this.controller,
     this.isPass = false,
+    required this.validator,
   });
 
   @override
@@ -28,7 +30,8 @@ class MyTextField extends StatelessWidget {
             color: Color(0xff648CA3),
           ),
         ),
-        TextField(
+        TextFormField(
+          validator: validator,
           controller: controller,
           obscureText: isPass ? true : false,
           decoration: InputDecoration(

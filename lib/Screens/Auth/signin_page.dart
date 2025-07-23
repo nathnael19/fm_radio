@@ -24,6 +24,7 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+    final formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -38,93 +39,116 @@ class _SigninPageState extends State<SigninPage> {
               SizedBox(height: 27.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      local.login_page_title,
-                      style: TextStyle(
-                        color: Color(0xff1A0101),
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Poppins",
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        local.login_page_title,
+                        style: TextStyle(
+                          color: Color(0xff1A0101),
+                          fontSize: 36.sp,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Poppins",
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                    // Email/Phone input field
-                    MyTextField(
-                      hint: local.email_or_phone,
-                      controller: emailController,
-                    ),
-
-                    SizedBox(height: 16.h),
-
-                    MyTextField(
-                      hint: local.password,
-                      controller: passwordController,
-                      isPass: true,
-                    ),
-
-                    SizedBox(height: 16.h),
-
-                    //  Forgot password link
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPasswordPage(),
-                            ),
-                          );
+                      // Email/Phone input field
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                                  .hasMatch(value)) {
+                            return "Enter Valid Email";
+                          } else {
+                            return null;
+                          }
                         },
-                        child: Text(
-                          local.forgot_password_text,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xff001420),
-                            fontSize: 14.sp,
-                            fontFamily: "Poppins",
+                        hint: local.email_or_phone,
+                        controller: emailController,
+                      ),
+
+                      SizedBox(height: 16.h),
+
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.isEmpty || value.length < 8) {
+                            return "Password must be greater than 8 characters";
+                          } else {
+                            return null;
+                          }
+                        },
+                        hint: local.password,
+                        controller: passwordController,
+                        isPass: true,
+                      ),
+
+                      SizedBox(height: 16.h),
+
+                      //  Forgot password link
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotPasswordPage(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            local.forgot_password_text,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff001420),
+                              fontSize: 14.sp,
+                              fontFamily: "Poppins",
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    SizedBox(height: 16.h),
+                      SizedBox(height: 16.h),
 
-                    // Login button
-                    LoginContainer(
-                      title: local.login_text,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyBottomNavigation(),
-                          ),
-                        );
-                      },
-                    ),
+                      // Login button
+                      LoginContainer(
+                        title: local.login_text,
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const MyBottomNavigation(),
+                              ),
+                            );
+                          }
+                        },
+                      ),
 
-                    SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
 
-                    //Sign up redirect link
-                    TextContainer(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CreactAccountPage(),
-                          ),
-                        );
-                      },
-                      leftText: local.signup_question,
-                      rightText: local.signup_text,
-                    ),
-                    SizedBox(height: 30.h),
-                  ],
+                      //Sign up redirect link
+                      TextContainer(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CreactAccountPage(),
+                            ),
+                          );
+                        },
+                        leftText: local.signup_question,
+                        rightText: local.signup_text,
+                      ),
+                      SizedBox(height: 30.h),
+                    ],
+                  ),
                 ),
               ),
             ],
