@@ -73,8 +73,8 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/fm-radio-app.git
-cd fm-radio-app
+git clone https://github.com/nathnael9/fm_radio.git
+cd fm_radio
 
 # Get Flutter dependencies
 flutter pub get
