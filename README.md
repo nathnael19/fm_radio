@@ -46,9 +46,7 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 - 💻 **[Flutter](https://flutter.dev/)** – UI framework  
 - 🎯 **Dart** – Programming language  
 - 🎨 **Figma** – UI design  
-- ⚡ **GetX** or **Provider** – State management  
-- 🔥 **Firebase Auth** *(optional)* – Authentication backend  
-- 🐝 **Hive** *(optional)* – Local storage
+- ⚡ **Cubit** or **Bloc** – State management  
 
 ---
 
