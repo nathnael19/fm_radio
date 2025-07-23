@@ -21,9 +21,11 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController(); // Controller for confirm password
 
+  String pass_error = "Password must be greater than 8 characters";
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+    final formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -39,70 +41,82 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
               // Title
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      local.new_pass_page_title,
-                      style: TextStyle(
-                        color: Color(0xff1A0101),
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Poppins",
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        local.new_pass_page_title,
+                        style: TextStyle(
+                          color: Color(0xff1A0101),
+                          fontSize: 36.sp,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Poppins",
+                        ),
                       ),
-                    ),
 
-                    SizedBox(height: 16.h),
+                      SizedBox(height: 16.h),
 
-                    // New password input
-                    MyTextField(
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[0-9]').hasMatch(value) ||
-                            value.length != 10) {
-                          return "";
-                        } else {
-                          return null;
-                        }
-                      },
-                      hint: local.new_pass,
-                      controller: newPasswordController,
-                    ),
-                    SizedBox(height: 16.h),
+                      // New password input
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[0-9]').hasMatch(value) ||
+                              value.length != 10) {
+                            return pass_error;
+                          } else {
+                            return null;
+                          }
+                        },
+                        hint: local.new_pass,
+                        controller: newPasswordController,
+                      ),
+                      SizedBox(height: 16.h),
 
-                    // Confirm password input
-                    MyTextField(
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[0-9]').hasMatch(value) ||
-                            value.length != 10) {
-                          return "";
-                        } else {
-                          return null;
-                        }
-                      },
-                      hint: local.new_conf_pass,
-                      controller: confirmPasswordController,
-                    ),
+                      // Confirm password input
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[0-9]').hasMatch(value) ||
+                              value.length != 10) {
+                            return pass_error;
+                          } else {
+                            return null;
+                          }
+                        },
+                        hint: local.new_conf_pass,
+                        controller: confirmPasswordController,
+                      ),
 
-                    SizedBox(height: 16.h),
+                      SizedBox(height: 16.h),
 
-                    // Reset password button
-                    LoginContainer(
-                      title: local.continue_text,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SigninPage(),
-                          ),
-                        );
-                      },
-                    ),
-                    SizedBox(height: 24.h),
-                    MyDivider(),
-                    SizedBox(height: 24.h),
-                  ],
+                      // Reset password button
+                      LoginContainer(
+                        title: local.continue_text,
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            if (newPasswordController.text !=
+                                confirmPasswordController.text) {
+                              setState(() {
+                                pass_error = "Passwords doesn't match";
+                              });
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SigninPage(),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                      ),
+                      SizedBox(height: 24.h),
+                      MyDivider(),
+                      SizedBox(height: 24.h),
+                    ],
+                  ),
                 ),
               ),
 

@@ -55,6 +55,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -71,104 +72,108 @@ class _EnterCodePageState extends State<EnterCodePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        local.reset_page_title,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Title
+                        Text(
+                          local.reset_page_title,
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
-                      // Subtitle
-                      Text(
-                        "${local.reset_page_desc} +251 91 234 567",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(height: 30),
+                        // Subtitle
+                        Text(
+                          "${local.reset_page_desc} +251 91 234 567",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 30),
 
-                      // Functional OTP Inputs
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: List.generate(6, (index) {
-                          return SizedBox(
-                            width: 40,
-                            height: 50,
-                            child: TextField(
-                              controller: _controllers[index],
-                              focusNode: _focusNodes[index],
-                              textAlign: TextAlign.center,
-                              maxLength: 1,
-                              keyboardType: TextInputType.number,
-                              style: const TextStyle(fontSize: 22),
-                              decoration: InputDecoration(
-                                counterText: '',
-                                hintText: '*',
-                                hintStyle: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 22,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF80011F),
-                                    width: 2,
+                        // Functional OTP Inputs
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: List.generate(6, (index) {
+                            return SizedBox(
+                              width: 40,
+                              height: 50,
+                              child: TextField(
+                                controller: _controllers[index],
+                                focusNode: _focusNodes[index],
+                                textAlign: TextAlign.center,
+                                maxLength: 1,
+                                keyboardType: TextInputType.number,
+                                style: const TextStyle(fontSize: 22),
+                                decoration: InputDecoration(
+                                  counterText: '',
+                                  hintText: '*',
+                                  hintStyle: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 22,
+                                  ),
+                                  enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                  ),
+                                  focusedBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFF80011F),
+                                      width: 2,
+                                    ),
                                   ),
                                 ),
+                                onChanged: (value) => _onChanged(value, index),
                               ),
-                              onChanged: (value) => _onChanged(value, index),
-                            ),
-                          );
-                        }),
-                      ),
-                      const SizedBox(height: 30),
+                            );
+                          }),
+                        ),
+                        const SizedBox(height: 30),
 
-                      // Confirm Button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF80011F),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        // Confirm Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF80011F),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            // onPressed: () {},
+                            onPressed: _onConfirm,
+                            child: Text(
+                              local.confirm,
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
                             ),
                           ),
-                          // onPressed: () {},
-                          onPressed: _onConfirm,
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Resend Code
+                        GestureDetector(
+                          onTap: () {
+                            // Handle resend logic here
+                          },
                           child: Text(
-                            local.confirm,
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            local.resend_text,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF80011F),
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-
-                      // Resend Code
-                      GestureDetector(
-                        onTap: () {
-                          // Handle resend logic here
-                        },
-                        child: Text(
-                          local.resend_text,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF80011F),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
