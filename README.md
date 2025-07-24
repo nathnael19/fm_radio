@@ -46,9 +46,7 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 - 💻 **[Flutter](https://flutter.dev/)** – UI framework  
 - 🎯 **Dart** – Programming language  
 - 🎨 **Figma** – UI design  
-- ⚡ **GetX** or **Provider** – State management  
-- 🔥 **Firebase Auth** *(optional)* – Authentication backend  
-- 🐝 **Hive** *(optional)* – Local storage
+- ⚡ **Cubit** or **Bloc** – State management  
 
 ---
 
@@ -73,8 +71,8 @@ Welcome to the **FM Radio App**, a beautifully designed mobile application to st
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/fm-radio-app.git
-cd fm-radio-app
+git clone https://github.com/nathnael9/fm_radio.git
+cd fm_radio
 
 # Get Flutter dependencies
 flutter pub get
