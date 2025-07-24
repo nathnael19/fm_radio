@@ -25,7 +25,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
-    String pass_error = local.form_pass_error;
+    String passError = local.form_pass_error;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -64,7 +64,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                           if (value!.isEmpty ||
                               !RegExp(r'^[0-9]').hasMatch(value) ||
                               value.length != 10) {
-                            return pass_error;
+                            return passError;
                           } else {
                             return null;
                           }
@@ -80,7 +80,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                           if (value!.isEmpty ||
                               !RegExp(r'^[0-9]').hasMatch(value) ||
                               value.length != 10) {
-                            return pass_error;
+                            return passError;
                           } else {
                             return null;
                           }
@@ -99,7 +99,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                             if (newPasswordController.text !=
                                 confirmPasswordController.text) {
                               setState(() {
-                                pass_error = local.form_pass_error2;
+                                passError = local.form_pass_error2;
                               });
                             } else {
                               Navigator.push(

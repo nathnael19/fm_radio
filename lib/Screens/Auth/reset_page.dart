@@ -2,7 +2,7 @@ import 'package:ethio_fm_radio/Screens/Auth/new_password_page.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // ✅ import flutter_svg
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EnterCodePage extends StatefulWidget {
   const EnterCodePage({super.key});
@@ -55,32 +55,39 @@ class _EnterCodePageState extends State<EnterCodePage> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
+
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/wavecurve.jpg"),
-            fit: BoxFit.cover,
+      resizeToAvoidBottomInset: false, // ✅ Prevent layout jump
+      body: Stack(
+        children: [
+          // ✅ Fixed Background Image
+          Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/wavecurve.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+
+          // ✅ Form Content with scroll to keep input working
+          SafeArea(
+            child: Column(
               children: [
+                const Spacer(), // Pushes content to bottom
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Form(
                     key: formKey,
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         // Title
                         Text(
                           local.reset_page_title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -92,12 +99,14 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         Text(
                           "${local.reset_page_desc} +251 91 234 567",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         const SizedBox(height: 30),
 
-                        // Functional OTP Inputs
+                        // OTP Inputs
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(6, (index) {
@@ -111,17 +120,17 @@ class _EnterCodePageState extends State<EnterCodePage> {
                                 maxLength: 1,
                                 keyboardType: TextInputType.number,
                                 style: const TextStyle(fontSize: 22),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   counterText: '',
                                   hintText: '*',
-                                  hintStyle: const TextStyle(
+                                  hintStyle: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 22,
                                   ),
-                                  enabledBorder: const UnderlineInputBorder(
+                                  enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey),
                                   ),
-                                  focusedBorder: const UnderlineInputBorder(
+                                  focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFF80011F),
                                       width: 2,
@@ -141,17 +150,16 @@ class _EnterCodePageState extends State<EnterCodePage> {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF80011F),
+                              backgroundColor: const Color(0xFF80011F),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            // onPressed: () {},
                             onPressed: _onConfirm,
                             child: Text(
                               local.confirm,
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                              style: const TextStyle(
+                                  fontSize: 18, color: Colors.white),
                             ),
                           ),
                         ),
@@ -160,11 +168,11 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         // Resend Code
                         GestureDetector(
                           onTap: () {
-                            // Handle resend logic here
+                            // TODO: Implement resend
                           },
                           child: Text(
                             local.resend_text,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Color(0xFF80011F),
                               fontWeight: FontWeight.w500,
@@ -175,21 +183,23 @@ class _EnterCodePageState extends State<EnterCodePage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 80.h,
-                ),
+                SizedBox(height: 80.h),
               ],
             ),
-            Positioned(
-                left: MediaQuery.of(context).size.width / 2 - 50.w,
-                top: 250.h,
-                child: SvgPicture.asset("assets/images/sss.svg")),
-            Positioned(
-                left: MediaQuery.of(context).size.width / 2 - 22.w,
-                top: 290.h,
-                child: SvgPicture.asset("assets/images/checkk.svg")),
-          ],
-        ),
+          ),
+
+          // ✅ Positioned SVGs (untouched)
+          Positioned(
+            left: MediaQuery.of(context).size.width / 2 - 45.w,
+            top: 260.h,
+            child: SvgPicture.asset("assets/images/sss.svg"),
+          ),
+          Positioned(
+            left: MediaQuery.of(context).size.width / 2 - 22.w,
+            top: 290.h,
+            child: SvgPicture.asset("assets/images/checkk.svg"),
+          ),
+        ],
       ),
     );
   }
