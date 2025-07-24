@@ -1,7 +1,10 @@
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/cubit/first_time/first_time_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingWidget extends StatefulWidget {
@@ -30,9 +33,15 @@ class BoardingWidget extends StatefulWidget {
   State<BoardingWidget> createState() => _BoardingWidgetState();
 }
 
+void saveChanges() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setBool("firstTime", true);
+}
+
 class _BoardingWidgetState extends State<BoardingWidget> {
   @override
   Widget build(BuildContext context) {
+    final firstTimeCubit = BlocProvider.of<FirstTimeCubit>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -128,7 +137,7 @@ class _BoardingWidgetState extends State<BoardingWidget> {
             // Bottom Section: Indicator and Next Button
             Container(
               margin: EdgeInsets.only(top: 45.h, left: 20.w),
-              width: 440,
+              width: 440.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -145,6 +154,7 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                     onTap: () {
                       if (widget.isLastPage) {
                         // Go to SigninPage
+                        firstTimeCubit.completeOnBoarding();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

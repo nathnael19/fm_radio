@@ -1,5 +1,5 @@
-import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/cubit/first_time/first_time_cubit.dart';
 import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:ethio_fm_radio/my_page_view.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +23,9 @@ void main() async {
         BlocProvider(create: (_) => LanguageCubit(initialLocale)),
         BlocProvider(create: (_) => WeatherCubit(WeatherRepository())),
         BlocProvider(create: (_) => NotificationCubit()),
+        BlocProvider(create: (_) => FirstTimeCubit()..checkFirstLaunch())
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
@@ -47,11 +48,36 @@ class MyApp extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: locale,
-              home: MyPageView(),
+              home: FirstTime(),
             );
           },
         );
       },
+    );
+  }
+}
+
+class FirstTime extends StatelessWidget {
+  const FirstTime({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocBuilder<FirstTimeCubit, LaunchState>(
+        builder: (context, state) {
+          if (state is LaunchLoading) {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (state is NotFirstLaunch) {
+            return SigninPage();
+          } else {
+            return MyPageView();
+          }
+        },
+      ),
     );
   }
 }
