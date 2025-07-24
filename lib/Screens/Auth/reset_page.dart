@@ -1,3 +1,4 @@
+import 'dart:async'; // <-- Import for Timer
 import 'package:ethio_fm_radio/Screens/Auth/new_password_page.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ class _EnterCodePageState extends State<EnterCodePage> {
   );
   final List<FocusNode> _focusNodes = List.generate(6, (index) => FocusNode());
 
+  Timer? _timer;
+  int _start = 0; // Countdown seconds
+
   @override
   void dispose() {
     for (final controller in _controllers) {
@@ -26,7 +30,24 @@ class _EnterCodePageState extends State<EnterCodePage> {
     for (final node in _focusNodes) {
       node.dispose();
     }
+    _timer?.cancel();
     super.dispose();
+  }
+
+  void startTimer() {
+    _start = 60; // 60 seconds countdown
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_start == 0) {
+        setState(() {
+          timer.cancel();
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
   }
 
   void _onChanged(String value, int index) {
@@ -51,16 +72,26 @@ class _EnterCodePageState extends State<EnterCodePage> {
     }
   }
 
+  void _resendCode() {
+    if (_start == 0) {
+      // Call your resend logic here (e.g. API)
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Verification code resent')),
+      );
+      startTimer(); // Start countdown after resend
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      resizeToAvoidBottomInset: false, // ✅ Prevent layout jump
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // ✅ Fixed Background Image
+          // Fixed background image
           Container(
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -71,11 +102,11 @@ class _EnterCodePageState extends State<EnterCodePage> {
             ),
           ),
 
-          // ✅ Form Content with scroll to keep input working
+          // Form content
           SafeArea(
             child: Column(
               children: [
-                const Spacer(), // Pushes content to bottom
+                const Spacer(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Form(
@@ -165,16 +196,18 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         ),
                         const SizedBox(height: 20),
 
-                        // Resend Code
+                        // Resend Code Button with countdown
                         GestureDetector(
-                          onTap: () {
-                            // TODO: Implement resend
-                          },
+                          onTap: _resendCode,
                           child: Text(
-                            local.resend_text,
-                            style: const TextStyle(
+                            _start == 0
+                                ? local.resend_text
+                                : 'Resend in $_start s',
+                            style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF80011F),
+                              color: _start == 0
+                                  ? const Color(0xFF80011F)
+                                  : Colors.grey,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -188,7 +221,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
             ),
           ),
 
-          // ✅ Positioned SVGs (untouched)
+          // Positioned SVGs
           Positioned(
             left: MediaQuery.of(context).size.width / 2 - 45.w,
             top: 260.h,
