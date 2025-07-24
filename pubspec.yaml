@@ -38,6 +38,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash:
 
 flutter_icons:
   android: true
@@ -57,3 +58,10 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icons/logo.png
+  android: true
+  ios: true
+  web: true
+  fullscreen: true
