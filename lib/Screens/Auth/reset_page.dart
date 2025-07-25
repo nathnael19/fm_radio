@@ -230,12 +230,12 @@ class _EnterCodePageState extends State<EnterCodePage> {
           // Positioned SVGs
           Positioned(
             left: MediaQuery.of(context).size.width / 2 - 45.w,
-            top: 260.h,
+            top: 290.h,
             child: SvgPicture.asset("assets/images/sss.svg"),
           ),
           Positioned(
-            left: MediaQuery.of(context).size.width / 2 - 22.w,
-            top: 290.h,
+            left: MediaQuery.of(context).size.width / 2 - 20.w,
+            top: 320.h,
             child: SvgPicture.asset("assets/images/checkk.svg"),
           ),
         ],
