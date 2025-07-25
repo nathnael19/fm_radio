@@ -213,4 +213,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get form_name_error => 'Enter a valid full name';
+
+  @override
+  String get logout_text => 'Logout';
+
+  @override
+  String get only_fm => 'Only from FM 107.8';
+
+  @override
+  String get from_other_fm => 'From Organizers';
 }

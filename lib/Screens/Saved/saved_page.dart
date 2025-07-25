@@ -2,6 +2,7 @@ import 'package:ethio_fm_radio/Screens/Saved/saved_page_news_card.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SavedPage extends StatelessWidget {
   const SavedPage({super.key});
@@ -32,9 +33,9 @@ class SavedPage extends StatelessWidget {
               ),
               itemCount: 4,
               itemBuilder: (context, index) {
-                return InkWell(
+                return GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (contex) => SavedPageNewsCard()));
@@ -46,16 +47,16 @@ class SavedPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: 70,
-                            height: 70,
+                            width: 70.w,
+                            height: 70.h,
                             child: Image.asset(
                               "assets/images/girl.png",
                               fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(
-                            width: 70,
-                            height: 70,
+                            width: 70.w,
+                            height: 70.h,
                             child: Image.asset(
                               "assets/images/girl2.png",
                               fit: BoxFit.cover,
@@ -67,16 +68,16 @@ class SavedPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: 70,
-                            height: 70,
+                            width: 70.w,
+                            height: 70.h,
                             child: Image.asset(
                               "assets/images/man.png",
                               fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(
-                            width: 70,
-                            height: 70,
+                            width: 70.w,
+                            height: 70.h,
                             child: Image.asset(
                               "assets/images/man2.png",
                               fit: BoxFit.cover,

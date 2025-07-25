@@ -505,6 +505,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid full name'**
   String get form_name_error;
+
+  /// No description provided for @logout_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout_text;
+
+  /// No description provided for @only_fm.
+  ///
+  /// In en, this message translates to:
+  /// **'Only from FM 107.8'**
+  String get only_fm;
+
+  /// No description provided for @from_other_fm.
+  ///
+  /// In en, this message translates to:
+  /// **'From Organizers'**
+  String get from_other_fm;
 }
 
 class _AppLocalizationsDelegate

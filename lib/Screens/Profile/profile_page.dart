@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,9 +23,8 @@ class _ProfilePageState extends State<ProfilePage> {
     super.didChangeDependencies();
     final currentLocale = context.read<LanguageCubit>().state;
     setState(() {
-      _selectedLanguage = currentLocale.languageCode == 'en'
-          ? 'English'
-          : 'አማርኛ';
+      _selectedLanguage =
+          currentLocale.languageCode == 'en' ? 'English' : 'አማርኛ';
     });
   }
 
@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               },
             ),
-            const Divider(indent: 15, endIndent: 15),
+            const Divider(indent: 5, endIndent: 5),
 
             /// Language dropdown
             GestureDetector(
@@ -144,8 +144,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       label: local.english,
                       onTap: () {
                         context.read<LanguageCubit>().setLocale(
-                          const Locale('en'),
-                        );
+                              const Locale('en'),
+                            );
                         setState(() {
                           _selectedLanguage = local.english;
                           _showLanguageOptions = false;
@@ -156,8 +156,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       label: local.amhric,
                       onTap: () {
                         context.read<LanguageCubit>().setLocale(
-                          const Locale('am'),
-                        );
+                              const Locale('am'),
+                            );
                         setState(() {
                           _selectedLanguage = local.amhric;
                           _showLanguageOptions = false;
@@ -172,13 +172,27 @@ class _ProfilePageState extends State<ProfilePage> {
                   : CrossFadeState.showFirst,
             ),
 
-            const Divider(indent: 15, endIndent: 15),
+            const Divider(indent: 5, endIndent: 5),
 
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
                 local.profile_page_about,
                 style: const TextStyle(fontSize: 18),
+              ),
+            ),
+            const Divider(indent: 5, endIndent: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => SigninPage()));
+                },
+                child: Text(
+                  local.logout_text,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
             ),
           ],

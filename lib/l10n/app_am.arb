@@ -135,5 +135,11 @@
   "form_phone_error": "ስልክ ቁጥሮ 10 መሆን አለበት",
   "@form_phone_error": {},
   "form_name_error": "ትክክለኛ ስም ያስገቡ",
-  "@form_name_error": {}
+  "@form_name_error": {},
+  "logout_text": "ውጣ",
+  "@logout_text": {},
+  "only_fm": "ከ FM 107.8 ብቻ ",
+  "@only_fm": {},
+  "from_other_fm": "ክአዘጋጆች",
+  "@from_other_fm": {}
 }

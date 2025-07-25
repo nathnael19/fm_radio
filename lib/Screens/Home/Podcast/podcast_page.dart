@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:ethio_fm_radio/Databases/live_database.dart';
 import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_detail_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/components/recent_card.dart';
+import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,6 +30,7 @@ class _PodcastPageState extends State<PodcastPage> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -41,16 +43,17 @@ class _PodcastPageState extends State<PodcastPage> {
                 bottomRight: Radius.circular(16.r),
               ),
             ),
-            height: 15,
+            height: 15.h,
           ),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
-                  sectionHeader("በኢትዮ ኤፍ ኤም 107.8 ብቻ", paths[0]),
+                  sectionHeader(local.only_fm, paths[0],
+                      local.home_page_news_page_open_all),
                   GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
@@ -80,9 +83,10 @@ class _PodcastPageState extends State<PodcastPage> {
                       );
                     },
                   ),
-                  sectionHeader("ከአዘጋጆች", paths[1]),
+                  sectionHeader(local.from_other_fm, paths[1],
+                      local.home_page_news_page_open_all),
                   GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
@@ -108,9 +112,9 @@ class _PodcastPageState extends State<PodcastPage> {
     );
   }
 
-  Padding sectionHeader(String title, String pathToPlay) {
+  Padding sectionHeader(String title, String pathToPlay, String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -127,8 +131,8 @@ class _PodcastPageState extends State<PodcastPage> {
                 ),
               );
             },
-            child: const Text(
-              "ሁሉንም ክፈት",
+            child: Text(
+              text,
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 color: Colors.blue,

@@ -212,4 +212,13 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get form_name_error => 'ትክክለኛ ስም ያስገቡ';
+
+  @override
+  String get logout_text => 'ውጣ';
+
+  @override
+  String get only_fm => 'ከ FM 107.8 ብቻ ';
+
+  @override
+  String get from_other_fm => 'ክአዘጋጆች';
 }

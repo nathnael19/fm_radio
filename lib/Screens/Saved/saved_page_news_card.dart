@@ -1,6 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/News/news_card.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_card.dart';
-import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,10 +22,7 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyBottomNavigation()),
-            );
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios_new),
         ),
