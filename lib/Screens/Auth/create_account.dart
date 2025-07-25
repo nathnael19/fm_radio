@@ -29,10 +29,10 @@ class _SignUpPageState extends State<CreactAccountPage> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
-    final String fullname_error = local.form_name_error;
-    final String email_error = local.form_email_error;
-    final String phone_error = local.form_phone_error;
-    String pass_error = local.form_pass_error;
+    final String fullnameError = local.form_name_error;
+    final String emailError = local.form_email_error;
+    final String phoneError = local.form_phone_error;
+    String passError = local.form_pass_error;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -68,7 +68,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           validator: (value) {
                             if (value!.isEmpty ||
                                 !RegExp(r'^[a-z A-Z]').hasMatch(value)) {
-                              return fullname_error;
+                              return fullnameError;
                             } else {
                               return null;
                             }
@@ -84,7 +84,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                             if (value!.isEmpty ||
                                 !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                                     .hasMatch(value)) {
-                              return email_error;
+                              return emailError;
                             } else {
                               return null;
                             }
@@ -100,7 +100,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           if (value!.isEmpty ||
                               !RegExp(r'^[0-9]').hasMatch(value) ||
                               value.length != 10) {
-                            return phone_error;
+                            return phoneError;
                           } else {
                             return null;
                           }
@@ -113,7 +113,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty || value.length < 8) {
-                            return pass_error;
+                            return passError;
                           } else {
                             return null;
                           }
@@ -127,7 +127,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty || value.length < 8) {
-                            return pass_error;
+                            return passError;
                           } else {
                             return null;
                           }
@@ -144,7 +144,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                             if (passwordController.text !=
                                 confirmPasswordController.text) {
                               setState(() {
-                                pass_error = local.form_pass_error2;
+                                passError = local.form_pass_error2;
                               });
                             } else {
                               Navigator.push(
