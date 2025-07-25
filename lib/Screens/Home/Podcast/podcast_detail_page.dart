@@ -1,16 +1,20 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:ethio_fm_radio/Screens/Download/components/list_of_downloads.dart';
+import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PodcastDetailPage extends StatefulWidget {
   final String path;
-  final AudioPlayer audioPlayer;
+  final String title; // Added for display
+  final String imageUrl; // Added for display
+
   const PodcastDetailPage({
     super.key,
-    required this.audioPlayer,
     required this.path,
+    required this.title,
+    required this.imageUrl,
   });
 
   @override
@@ -18,38 +22,17 @@ class PodcastDetailPage extends StatefulWidget {
 }
 
 class _PodcastDetailPageState extends State<PodcastDetailPage> {
-  Duration _duration = Duration();
-  Duration _position = Duration();
-  bool isPlaying = false;
+  late final AudioCubit audioCubit;
 
   @override
   void initState() {
     super.initState();
-    setupAudio();
-  }
-
-  Future<void> setupAudio() async {
-    widget.audioPlayer.onDurationChanged.listen((d) {
-      if (mounted) {
-        setState(() {
-          _duration = d;
-        });
-      }
-    });
-
-    widget.audioPlayer.onPositionChanged.listen((p) {
-      if (mounted) {
-        setState(() {
-          _position = p;
-        });
-      }
-    });
-
-    await widget.audioPlayer.setSourceUrl(widget.path);
-    await widget.audioPlayer.resume(); // 🔥 START PLAYING to get duration
-    setState(() {
-      isPlaying = true;
-    });
+    audioCubit = context.read<AudioCubit>();
+    audioCubit.play(
+      url: widget.path,
+      title: widget.title,
+      imageUrl: widget.imageUrl,
+    );
   }
 
   String formatTime(Duration duration) {
@@ -63,11 +46,18 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
   }
 
   @override
+  void dispose() {
+    audioCubit.stop();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xffAA2424),
         foregroundColor: Colors.white,
+        title: Text(widget.title),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -84,57 +74,63 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
               height: 266.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/girl6.png"),
+                  image: AssetImage(widget.imageUrl),
                 ),
               ),
             ),
-            const Text(
-              "የህይወት ታሪክ የተለየ ነው",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            SizedBox(height: 10.h),
+            Text(
+              widget.title,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _duration.inSeconds > 0
-                    ? SizedBox(
-                        width: 350.w,
-                        child: Slider(
-                          min: 0.0,
-                          max: _duration.inSeconds.toDouble(),
-                          value: _position.inSeconds.toDouble().clamp(
-                                0.0,
-                                _duration.inSeconds.toDouble(),
-                              ),
-                          onChanged: (double value) {
-                            widget.audioPlayer.seek(
-                              Duration(seconds: value.toInt()),
-                            );
-                          },
-                        ),
-                      )
-                    : const Padding(
-                        padding: EdgeInsets.all(12),
-                        child: CircularProgressIndicator(color: Colors.white),
+            BlocBuilder<AudioCubit, AudioState>(
+              builder: (context, state) {
+                final duration = state.duration;
+                final position = state.position;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    duration.inSeconds > 0
+                        ? SizedBox(
+                            width: 350.w,
+                            child: Slider(
+                              min: 0.0,
+                              max: duration.inSeconds.toDouble(),
+                              value: position.inSeconds
+                                  .toDouble()
+                                  .clamp(0.0, duration.inSeconds.toDouble()),
+                              onChanged: (double value) {
+                                audioCubit
+                                    .seek(Duration(seconds: value.toInt()));
+                              },
+                            ),
+                          )
+                        : const Padding(
+                            padding: EdgeInsets.all(12),
+                            child:
+                                CircularProgressIndicator(color: Colors.white),
+                          ),
+                    SizedBox(
+                      width: 325.w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            formatTime(position),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            formatTime(duration),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ],
                       ),
-                SizedBox(
-                  width: 325.w,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        formatTime(_position),
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        formatTime(_duration),
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                    ),
+                  ],
+                );
+              },
             ),
             playButtons(),
             likeAndCommentButtons(),
@@ -225,59 +221,60 @@ class _PodcastDetailPageState extends State<PodcastDetailPage> {
   SizedBox playButtons() {
     return SizedBox(
       width: 300.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.skip_previous_rounded,
-              size: 30.r,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: () async {
-              await widget.audioPlayer.seek(
-                _position - const Duration(seconds: 10),
-              );
-            },
-            icon: Icon(Icons.replay_10, size: 30.r, color: Colors.white),
-          ),
-          IconButton(
-            onPressed: () async {
-              if (isPlaying) {
-                await widget.audioPlayer.pause();
-              } else {
-                await widget.audioPlayer.resume();
-              }
-              setState(() {
-                isPlaying = !isPlaying;
-              });
-            },
-            icon: Icon(
-              isPlaying ? Icons.pause_circle : Icons.play_circle,
-              size: 78.r,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: () async {
-              await widget.audioPlayer.seek(
-                _position + const Duration(seconds: 10),
-              );
-            },
-            icon: Icon(Icons.forward_10, size: 30.r, color: Colors.white),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.skip_next_rounded,
-              size: 30.r,
-              color: Colors.white,
-            ),
-          ),
-        ],
+      child: BlocBuilder<AudioCubit, AudioState>(
+        builder: (context, state) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.skip_previous_rounded,
+                  size: 30.r,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () async {
+                  final newPosition =
+                      state.position - const Duration(seconds: 10);
+                  audioCubit.seek(newPosition >= Duration.zero
+                      ? newPosition
+                      : Duration.zero);
+                },
+                icon: Icon(Icons.replay_10, size: 30.r, color: Colors.white),
+              ),
+              IconButton(
+                onPressed: () {
+                  audioCubit.togglePlayPause();
+                },
+                icon: Icon(
+                  state.isPlaying ? Icons.pause_circle : Icons.play_circle,
+                  size: 78.r,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () async {
+                  final maxDuration = state.duration;
+                  final newPosition =
+                      state.position + const Duration(seconds: 10);
+                  audioCubit.seek(
+                      newPosition <= maxDuration ? newPosition : maxDuration);
+                },
+                icon: Icon(Icons.forward_10, size: 30.r, color: Colors.white),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.skip_next_rounded,
+                  size: 30.r,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
