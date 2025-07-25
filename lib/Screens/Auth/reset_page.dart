@@ -150,13 +150,13 @@ class _EnterCodePageState extends State<EnterCodePage> {
                                 textAlign: TextAlign.center,
                                 maxLength: 1,
                                 keyboardType: TextInputType.number,
-                                style: const TextStyle(fontSize: 22),
-                                decoration: const InputDecoration(
+                                style: TextStyle(fontSize: 22.sp),
+                                decoration: InputDecoration(
                                   counterText: '',
                                   hintText: '*',
                                   hintStyle: TextStyle(
                                     color: Colors.grey,
-                                    fontSize: 22,
+                                    fontSize: 22.sp,
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey),
@@ -216,7 +216,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 80.h),
+                SizedBox(height: 150.h),
               ],
             ),
           ),
