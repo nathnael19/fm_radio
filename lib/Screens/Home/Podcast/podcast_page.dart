@@ -20,6 +20,7 @@ class PodcastPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -39,89 +40,23 @@ class PodcastPage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
-                  sectionHeader(context, local.only_fm, paths[0],
-                      local.home_page_news_page_open_all),
-                  GridView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          final title = recent[index][1];
-                          final imageUrl = recent[index][0];
-                          context.read<AudioCubit>().play(
-                                url: paths[index],
-                                title: title,
-                                imageUrl: imageUrl,
-                              );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PodcastDetailPage(
-                                audioUrl: paths[index],
-                                title: title,
-                                imageUrl: imageUrl,
-                              ),
-                            ),
-                          );
-                        },
-                        child: RecentCard(
-                          imageUrl: recent[index][0],
-                          title: recent[index][1],
-                          subtitle: recent[index][2],
-                        ),
-                      );
-                    },
+                  sectionHeader(
+                    context,
+                    title: local.only_fm,
+                    pathToPlay: paths[0],
+                    imageAsset: 'assets/images/girl1.png',
+                    buttonText: local.home_page_news_page_open_all,
                   ),
-                  sectionHeader(context, local.from_other_fm, paths[1],
-                      local.home_page_news_page_open_all),
-                  GridView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemCount: recent.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          final title = recent[index][1];
-                          final imageUrl = recent[index][0];
-                          context.read<AudioCubit>().play(
-                                url: paths[index % paths.length],
-                                title: title,
-                                imageUrl: imageUrl,
-                              );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PodcastDetailPage(
-                                audioUrl: paths[index],
-                                // path: paths[index % paths.length],
-                                title: title,
-                                imageUrl: imageUrl,
-                              ),
-                            ),
-                          );
-                        },
-                        child: RecentCard(
-                          imageUrl: recent[index][0],
-                          title: recent[index][1],
-                          subtitle: recent[index][2],
-                        ),
-                      );
-                    },
+                  buildPodcastGrid(context, itemCount: 3, pathOffset: 0),
+                  sectionHeader(
+                    context,
+                    title: local.from_other_fm,
+                    pathToPlay: paths[1],
+                    imageAsset: 'assets/images/girl2.png',
+                    buttonText: local.home_page_news_page_open_all,
                   ),
+                  buildPodcastGrid(context,
+                      itemCount: recent.length, pathOffset: 0),
                 ],
               ),
             ),
@@ -131,8 +66,16 @@ class PodcastPage extends StatelessWidget {
     );
   }
 
-  Padding sectionHeader(
-      BuildContext context, String title, String pathToPlay, String text) {
+  Widget sectionHeader(
+    BuildContext context, {
+    required String title,
+    required String pathToPlay,
+    required String imageAsset,
+    required String buttonText,
+  }) {
+    final audioCubit = context.read<AudioCubit>();
+    final isPlayingSameAudio = audioCubit.state.url == pathToPlay;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: Row(
@@ -141,25 +84,27 @@ class PodcastPage extends StatelessWidget {
           Text(title),
           GestureDetector(
             onTap: () {
-              context.read<AudioCubit>().play(
-                    url: pathToPlay,
-                    title: title,
-                    imageUrl: 'assets/images/girl3.png',
-                  );
+              if (!isPlayingSameAudio) {
+                audioCubit.play(
+                  url: pathToPlay,
+                  title: title,
+                  imageUrl: imageAsset,
+                );
+              }
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => PodcastDetailPage(
-                    audioUrl: paths[0],
-                    // path: pathToPlay,
+                    audioUrl: pathToPlay,
                     title: title,
-                    imageUrl: 'assets/images/girl1.png',
+                    imageUrl: imageAsset,
                   ),
                 ),
               );
             },
             child: Text(
-              text,
+              buttonText,
               style: const TextStyle(
                 decoration: TextDecoration.underline,
                 color: Colors.blue,
@@ -168,6 +113,59 @@ class PodcastPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildPodcastGrid(
+    BuildContext context, {
+    required int itemCount,
+    required int pathOffset,
+  }) {
+    return GridView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        childAspectRatio: 0.75,
+      ),
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        final title = recent[index][1];
+        final imageUrl = recent[index][0];
+        final path = paths[(index + pathOffset) % paths.length];
+
+        final audioCubit = context.read<AudioCubit>();
+        final isPlayingSameAudio = audioCubit.state.url == path;
+
+        return GestureDetector(
+          onTap: () {
+            if (!isPlayingSameAudio) {
+              audioCubit.play(
+                url: path,
+                title: title,
+                imageUrl: imageUrl,
+              );
+            }
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PodcastDetailPage(
+                  audioUrl: path,
+                  title: title,
+                  imageUrl: imageUrl,
+                ),
+              ),
+            );
+          },
+          child: RecentCard(
+            imageUrl: imageUrl,
+            title: title,
+            subtitle: recent[index][2],
+          ),
+        );
+      },
     );
   }
 }

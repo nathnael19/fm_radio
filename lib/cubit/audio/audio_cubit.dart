@@ -1,34 +1,31 @@
 import 'package:bloc/bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
+
 part 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   AudioCubit() : super(AudioState.initial()) {
-    // Listen to position changes
+    _listenToStreams();
+  }
+
+  void _listenToStreams() {
     _audioPlayer.positionStream.listen((position) {
       emit(state.copyWith(position: position));
     });
 
-    // Listen to duration changes
     _audioPlayer.durationStream.listen((duration) {
       if (duration != null) {
         emit(state.copyWith(duration: duration));
       }
     });
 
-    // Listen to playback state (playing/paused)
     _audioPlayer.playerStateStream.listen((playerState) {
       final isPlaying = playerState.playing &&
           playerState.processingState == ProcessingState.ready;
       emit(state.copyWith(isPlaying: isPlaying));
-    });
-
-    // Catch audio playback errors
-    _audioPlayer.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-      print('Playback error: $e');
     });
   }
 
@@ -37,13 +34,27 @@ class AudioCubit extends Cubit<AudioState> {
     required String title,
     required String imageUrl,
   }) async {
+    // If this audio is already playing, skip re-initialization
+    if (state.url == url) {
+      togglePlayPause(); // optional: toggle instead of restarting
+      return;
+    }
+
     try {
-      print('Setting URL: $url');
+      emit(state.copyWith(isLoading: true, error: null));
 
-      await _audioPlayer.stop(); // Ensure stopping previous audio
-      await _audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(url)));
+      await _audioPlayer.setAudioSource(
+        AudioSource.uri(
+          Uri.parse(url),
+          tag: MediaItem(
+            id: url,
+            title: title,
+            album: "Podcast",
+            artUri: Uri.tryParse(imageUrl),
+          ),
+        ),
+      );
 
-      print('Playing...');
       await _audioPlayer.play();
 
       emit(state.copyWith(
@@ -52,9 +63,10 @@ class AudioCubit extends Cubit<AudioState> {
         imageUrl: imageUrl,
         url: url,
         duration: _audioPlayer.duration ?? Duration.zero,
+        isLoading: false,
       ));
     } catch (e) {
-      print('Error playing audio: $e');
+      emit(state.copyWith(error: 'Playback error: $e', isLoading: false));
     }
   }
 
@@ -77,6 +89,11 @@ class AudioCubit extends Cubit<AudioState> {
     _audioPlayer.stop();
     emit(AudioState.initial());
   }
+
+  // Getter for current position to sync with other pages
+  Duration get currentPosition => _audioPlayer.position;
+
+  Duration get totalDuration => _audioPlayer.duration ?? Duration.zero;
 
   @override
   Future<void> close() {
