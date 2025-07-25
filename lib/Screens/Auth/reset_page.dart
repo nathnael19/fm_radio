@@ -23,6 +23,12 @@ class _EnterCodePageState extends State<EnterCodePage> {
   int _start = 0; // Countdown seconds
 
   @override
+  void initState() {
+    super.initState();
+    startTimer(); // 🔥 Start countdown when the page is loaded
+  }
+
+  @override
   void dispose() {
     for (final controller in _controllers) {
       controller.dispose();
