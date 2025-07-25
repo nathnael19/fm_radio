@@ -317,7 +317,7 @@ abstract class AppLocalizations {
   /// No description provided for @email_or_phone.
   ///
   /// In en, this message translates to:
-  /// **'Email/Phone'**
+  /// **'Email'**
   String get email_or_phone;
 
   /// No description provided for @your_answer_text.

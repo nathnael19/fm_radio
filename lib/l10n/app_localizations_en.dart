@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_page_title => 'Sign in';
 
   @override
-  String get email_or_phone => 'Email/Phone';
+  String get email_or_phone => 'Email';
 
   @override
   String get your_answer_text => 'Your answer';

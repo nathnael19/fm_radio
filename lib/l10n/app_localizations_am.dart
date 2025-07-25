@@ -117,7 +117,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get login_page_title => 'ይግቡ';
 
   @override
-  String get email_or_phone => 'ኢሜል/ስልክ ቁጥር';
+  String get email_or_phone => 'ኢሜል';
 
   @override
   String get your_answer_text => 'መልስዎ';
