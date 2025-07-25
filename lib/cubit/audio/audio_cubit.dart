@@ -6,20 +6,29 @@ class AudioCubit extends Cubit<AudioState> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   AudioCubit() : super(AudioState.initial()) {
+    // Listen to position changes
     _audioPlayer.positionStream.listen((position) {
       emit(state.copyWith(position: position));
     });
 
+    // Listen to duration changes
     _audioPlayer.durationStream.listen((duration) {
       if (duration != null) {
         emit(state.copyWith(duration: duration));
       }
     });
 
+    // Listen to playback state (playing/paused)
     _audioPlayer.playerStateStream.listen((playerState) {
       final isPlaying = playerState.playing &&
           playerState.processingState == ProcessingState.ready;
       emit(state.copyWith(isPlaying: isPlaying));
+    });
+
+    // Catch audio playback errors
+    _audioPlayer.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace stackTrace) {
+      print('Playback error: $e');
     });
   }
 
@@ -30,18 +39,22 @@ class AudioCubit extends Cubit<AudioState> {
   }) async {
     try {
       print('Setting URL: $url');
-      await _audioPlayer.setUrl(url);
-      print('Playing audio...');
+
+      await _audioPlayer.stop(); // Ensure stopping previous audio
+      await _audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(url)));
+
+      print('Playing...');
       await _audioPlayer.play();
-      print('Playback started');
+
       emit(state.copyWith(
         isPlaying: true,
         title: title,
         imageUrl: imageUrl,
         url: url,
+        duration: _audioPlayer.duration ?? Duration.zero,
       ));
     } catch (e) {
-      print('Error playing audio on Windows: $e');
+      print('Error playing audio: $e');
     }
   }
 
