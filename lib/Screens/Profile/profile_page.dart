@@ -32,7 +32,6 @@ class _ProfilePageState extends State<ProfilePage> {
     final notificationCubit = context.read<NotificationCubit>();
 
     if (value == true) {
-      // Ask for permission first
       final shouldEnable = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
@@ -54,11 +53,10 @@ class _ProfilePageState extends State<ProfilePage> {
       );
 
       if (shouldEnable == true) {
-        notificationCubit.toggleNotification(); // Turn on
+        notificationCubit.toggleNotification();
       }
     } else {
-      // If turning off, allow directly
-      notificationCubit.toggleNotification(); // Turn off
+      notificationCubit.toggleNotification();
     }
   }
 
@@ -71,12 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MyBottomNavigation(),
-              ),
-            );
+            Navigator.pop(context); // ✅ FIXED to avoid duplicating bottom nav
           },
           icon: const Icon(Icons.arrow_back_ios_sharp),
         ),
@@ -88,7 +81,6 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Notifications toggle
             BlocBuilder<NotificationCubit, bool>(
               builder: (context, state) {
                 return ListTile(
@@ -186,8 +178,10 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SigninPage()));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => SigninPage()),
+                  );
                 },
                 child: Text(
                   local.logout_text,

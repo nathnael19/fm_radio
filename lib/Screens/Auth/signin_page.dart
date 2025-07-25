@@ -67,7 +67,7 @@ class _SigninPageState extends State<SigninPage> {
                             return null;
                           }
                         },
-                        hint: local.email_or_phone,
+                        hint: local.email,
                         controller: emailController,
                       ),
 
