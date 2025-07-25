@@ -56,18 +56,16 @@ class PodcastPage extends StatelessWidget {
                         onTap: () {
                           final title = recent[index][1];
                           final imageUrl = recent[index][0];
-                          // Play audio in cubit
                           context.read<AudioCubit>().play(
                                 url: paths[index],
                                 title: title,
                                 imageUrl: imageUrl,
                               );
-                          // Navigate and pass info
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => PodcastDetailPage(
-                                path: paths[index],
+                                audioUrl: paths[index],
                                 title: title,
                                 imageUrl: imageUrl,
                               ),
@@ -95,10 +93,32 @@ class PodcastPage extends StatelessWidget {
                     ),
                     itemCount: recent.length,
                     itemBuilder: (context, index) {
-                      return RecentCard(
-                        imageUrl: recent[index][0],
-                        title: recent[index][1],
-                        subtitle: recent[index][2],
+                      return GestureDetector(
+                        onTap: () {
+                          final title = recent[index][1];
+                          final imageUrl = recent[index][0];
+                          context.read<AudioCubit>().play(
+                                url: paths[index % paths.length],
+                                title: title,
+                                imageUrl: imageUrl,
+                              );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PodcastDetailPage(
+                                audioUrl: paths[index],
+                                // path: paths[index % paths.length],
+                                title: title,
+                                imageUrl: imageUrl,
+                              ),
+                            ),
+                          );
+                        },
+                        child: RecentCard(
+                          imageUrl: recent[index][0],
+                          title: recent[index][1],
+                          subtitle: recent[index][2],
+                        ),
                       );
                     },
                   ),
@@ -121,19 +141,19 @@ class PodcastPage extends StatelessWidget {
           Text(title),
           GestureDetector(
             onTap: () {
-              // For this "open all", just play the path and navigate without title/image
               context.read<AudioCubit>().play(
                     url: pathToPlay,
                     title: title,
-                    imageUrl: 'assets/images/default.png', // fallback image
+                    imageUrl: 'assets/images/girl3.png',
                   );
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => PodcastDetailPage(
-                    path: pathToPlay,
+                    audioUrl: paths[0],
+                    // path: pathToPlay,
                     title: title,
-                    imageUrl: 'assets/images/default.png',
+                    imageUrl: 'assets/images/girl1.png',
                   ),
                 ),
               );
