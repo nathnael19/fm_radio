@@ -159,7 +159,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get or => 'ወይም';
 
   @override
-  String get signup_page_question => 'መለያ አሎት?';
+  String get signup_page_question => 'መለያ አለወት?';
 
   @override
   String get signin_text => 'ግባ';
@@ -208,7 +208,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get form_pass_error2 => 'ይልፍ ቃሉ አይመሳሰልም';
 
   @override
-  String get form_phone_error => 'ስልክ ቁጥሮ 10 መሆን አለበት';
+  String get form_phone_error => 'ስልክ ቁጥርወ 10 መሆን አለበት';
 
   @override
   String get form_name_error => 'ትክክለኛ ስም ያስገቡ';
