@@ -23,6 +23,7 @@ class WeatherRepository {
           final cityName = data['location']['name'];
           final temp = (data['current']['temp_c'] as num).toDouble();
           final condition = data['current']['condition']['text'];
+          // ignore: prefer_interpolation_to_compose_strings
           final icon = "https:" + data['current']['condition']['icon'];
 
           weatherList.add(

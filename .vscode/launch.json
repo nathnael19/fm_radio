@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "name": "FM RADIO",
             "request": "attach",
             "type": "dart",
             "deviceId": "RZ8W10MH32T"

@@ -55,6 +55,7 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      firstTimeCubit.completeOnBoarding();
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
