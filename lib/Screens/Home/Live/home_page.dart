@@ -98,10 +98,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ],
             ),
-            OverlayPlay(
-              imageUrl: "",
-              title: "",
-            ),
+            OverlayPlay(),
           ],
         ),
       ),
