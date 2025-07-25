@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';
 import 'package:ethio_fm_radio/cubit/first_time/first_time_cubit.dart';
 import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:ethio_fm_radio/my_page_view.dart';
@@ -23,7 +24,8 @@ void main() async {
         BlocProvider(create: (_) => LanguageCubit(initialLocale)),
         BlocProvider(create: (_) => WeatherCubit(WeatherRepository())),
         BlocProvider(create: (_) => NotificationCubit()),
-        BlocProvider(create: (_) => FirstTimeCubit()..checkFirstLaunch())
+        BlocProvider(create: (_) => FirstTimeCubit()..checkFirstLaunch()),
+        BlocProvider(create: (_) => AudioCubit())
       ],
       child: MyApp(),
     ),
