@@ -11,53 +11,48 @@ class OverlayPlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AudioCubit, AudioState>(
       builder: (context, state) {
-        if (state.title == null || state.imageUrl == null) {
-          return SizedBox.shrink(); // Hide if nothing playing
+        if (!state.isPlaying || state.title == null) {
+          return const SizedBox.shrink(); // No UI if not playing
         }
+
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
-          padding: EdgeInsets.all(4.r),
+          margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+          padding: EdgeInsets.all(8.r),
           decoration: BoxDecoration(
             color: const Color(0xff1A0101),
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 18.r,
-                    backgroundImage: AssetImage(state.imageUrl!),
-                  ),
-                  SizedBox(width: 10.r),
-                  Text(
-                    state.title!,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
+              CircleAvatar(
+                radius: 20.r,
+                backgroundImage: NetworkImage(state.imageUrl!),
               ),
-              Row(
-                children: [
-                  Image.asset("assets/images/soundwave.png", width: 100.w),
-                  IconButton(
-                    onPressed: () {
-                      context.read<AudioCubit>().stop();
-                    },
-                    icon: const Icon(Icons.clear, color: Colors.white),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      context.read<AudioCubit>().togglePlayPause();
-                    },
-                    icon: Icon(
-                      state.isPlaying
-                          ? FontAwesomeIcons.pause
-                          : FontAwesomeIcons.play,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ],
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Text(
+                  state.title!,
+                  style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  state.isPlaying
+                      ? FontAwesomeIcons.pause
+                      : FontAwesomeIcons.play,
+                  color: Colors.white,
+                  size: 18.sp,
+                ),
+                onPressed: () {
+                  context.read<AudioCubit>().togglePlayPause();
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.close, color: Colors.white),
+                onPressed: () {
+                  context.read<AudioCubit>().stop();
+                },
               ),
             ],
           ),

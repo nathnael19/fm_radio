@@ -1,32 +1,21 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:ethio_fm_radio/Databases/live_database.dart';
 import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_detail_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/components/recent_card.dart';
+import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PodcastPage extends StatefulWidget {
-  const PodcastPage({super.key});
+class PodcastPage extends StatelessWidget {
+  PodcastPage({super.key});
 
-  @override
-  State<PodcastPage> createState() => _PodcastPageState();
-}
-
-class _PodcastPageState extends State<PodcastPage> {
-  late AudioPlayer audioPlayer;
-  List recent = recentPrograms;
-  List<String> paths = [
+  final List recent = recentPrograms;
+  final List<String> paths = [
     "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    audioPlayer = AudioPlayer();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +39,7 @@ class _PodcastPageState extends State<PodcastPage> {
               padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
-                  sectionHeader(local.only_fm, paths[0],
+                  sectionHeader(context, local.only_fm, paths[0],
                       local.home_page_news_page_open_all),
                   GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -65,12 +54,22 @@ class _PodcastPageState extends State<PodcastPage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
+                          final title = recent[index][1];
+                          final imageUrl = recent[index][0];
+                          // Play audio in cubit
+                          context.read<AudioCubit>().play(
+                                url: paths[index],
+                                title: title,
+                                imageUrl: imageUrl,
+                              );
+                          // Navigate and pass info
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => PodcastDetailPage(
-                                audioPlayer: audioPlayer,
                                 path: paths[index],
+                                title: title,
+                                imageUrl: imageUrl,
                               ),
                             ),
                           );
@@ -83,7 +82,7 @@ class _PodcastPageState extends State<PodcastPage> {
                       );
                     },
                   ),
-                  sectionHeader(local.from_other_fm, paths[1],
+                  sectionHeader(context, local.from_other_fm, paths[1],
                       local.home_page_news_page_open_all),
                   GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -112,7 +111,8 @@ class _PodcastPageState extends State<PodcastPage> {
     );
   }
 
-  Padding sectionHeader(String title, String pathToPlay, String text) {
+  Padding sectionHeader(
+      BuildContext context, String title, String pathToPlay, String text) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: Row(
@@ -121,19 +121,26 @@ class _PodcastPageState extends State<PodcastPage> {
           Text(title),
           GestureDetector(
             onTap: () {
+              // For this "open all", just play the path and navigate without title/image
+              context.read<AudioCubit>().play(
+                    url: pathToPlay,
+                    title: title,
+                    imageUrl: 'assets/images/default.png', // fallback image
+                  );
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => PodcastDetailPage(
-                    audioPlayer: audioPlayer,
                     path: pathToPlay,
+                    title: title,
+                    imageUrl: 'assets/images/default.png',
                   ),
                 ),
               );
             },
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 decoration: TextDecoration.underline,
                 color: Colors.blue,
               ),
