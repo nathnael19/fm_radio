@@ -101,8 +101,9 @@ class _EnterCodePageState extends State<EnterCodePage> {
           Container(
             width: double.infinity,
             decoration: const BoxDecoration(
+              color: Colors.white,
               image: DecorationImage(
-                image: AssetImage("assets/images/wavecurve.jpg"),
+                image: AssetImage("assets/images/otp_curve.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -138,7 +139,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         const SizedBox(height: 30),
@@ -231,12 +232,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
           Positioned(
             left: MediaQuery.of(context).size.width / 2 - 45.w,
             top: 290.h,
-            child: SvgPicture.asset("assets/images/sss.svg"),
-          ),
-          Positioned(
-            left: MediaQuery.of(context).size.width / 2 - 20.w,
-            top: 320.h,
-            child: SvgPicture.asset("assets/images/checkk.svg"),
+            child: Image.asset("assets/images/circularCheck.png"),
           ),
         ],
       ),
