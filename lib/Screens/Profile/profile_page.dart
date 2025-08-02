@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/cubit/notification/notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-
+    final loginCubit = BlocProvider.of<LoginCubit>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -181,6 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     context,
                     MaterialPageRoute(builder: (context) => SigninPage()),
                   );
+                  loginCubit.completeLogout();
                 },
                 child: Text(
                   local.logout_text,

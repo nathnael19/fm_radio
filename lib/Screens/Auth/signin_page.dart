@@ -5,8 +5,10 @@ import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Screens/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigninPage extends StatefulWidget {
@@ -25,6 +27,7 @@ class _SigninPageState extends State<SigninPage> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
+    final loginCubit = BlocProvider.of<LoginCubit>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -127,6 +130,7 @@ class _SigninPageState extends State<SigninPage> {
                                     const MyBottomNavigation(),
                               ),
                             );
+                            loginCubit.completeLogin();
                           }
                         },
                       ),
