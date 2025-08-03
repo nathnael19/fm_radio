@@ -1,10 +1,11 @@
+import 'package:ethio_fm_radio/Screens/constants/screen_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SideContainerIcon extends StatelessWidget {
   final int number;
   final IconData icon;
   final VoidCallback onTap;
+
   const SideContainerIcon({
     super.key,
     required this.number,
@@ -18,12 +19,16 @@ class SideContainerIcon extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onTap,
-          icon: Icon(icon, size: 24.r, color: Colors.white),
+          icon: Icon(
+            icon,
+            size: getResponsiveSize(context, 24, isHeight: true),
+            color: Colors.white,
+          ),
         ),
         Text(
           number.toString(),
           style: TextStyle(
-            fontSize: 10.sp,
+            fontSize: getResponsiveSize(context, 10, isHeight: true),
             color: Colors.white,
             fontWeight: FontWeight.w400,
           ),

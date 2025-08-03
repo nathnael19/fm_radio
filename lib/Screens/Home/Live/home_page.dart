@@ -4,7 +4,6 @@ import 'package:ethio_fm_radio/Screens/Home/components/live_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/components/overlay_play.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,6 +33,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    double heightPercent(double h) => h * screenHeight / 844;
+    double widthPercent(double w) => w * screenWidth / 390;
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -42,16 +47,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Column(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 10.h),
+                  padding: EdgeInsets.only(top: heightPercent(10)),
                   color: const Color(0xff80011F),
-                  height: 60.h,
+                  height: heightPercent(60),
                   child: Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 20.w),
+                        margin: EdgeInsets.only(left: widthPercent(20)),
                         child: Image.asset(
                           "assets/icons/logo.png",
-                          width: 35,
+                          width: widthPercent(35),
                         ),
                       ),
                       Expanded(
@@ -61,23 +66,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           unselectedLabelColor: Colors.white70,
                           indicatorColor: Colors.white,
                           dividerColor: Colors.transparent,
-                          isScrollable:
-                              false, // 🟢 FIX: tabs fit evenly in width
+                          isScrollable: false,
                           tabs: [
                             _buildTab(
                               0,
                               local.home_page_live_page_first_tab_bar,
                               Icons.live_tv,
+                              widthPercent,
                             ),
                             _buildTab(
                               1,
                               local.home_page_live_page_second_tab_bar,
                               Icons.article,
+                              widthPercent,
                             ),
                             _buildTab(
                               2,
                               local.home_page_live_page_third_tab_bar,
                               Icons.podcasts,
+                              widthPercent,
                             ),
                           ],
                         ),
@@ -89,7 +96,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   child: TabBarView(
                     controller: _tabController,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: [LivePage(), const NewsPage(), PodcastPage()],
+                    children: [
+                      LivePage(),
+                      const NewsPage(),
+                      PodcastPage(),
+                    ],
                   ),
                 ),
               ],
@@ -101,22 +112,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildTab(int index, String title, IconData icon) {
+  Widget _buildTab(
+    int index,
+    String title,
+    IconData icon,
+    double Function(double) wp,
+  ) {
     bool isSelected = _tabController.index == index;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center, // 🟢 Center icon+text
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           icon,
-          size: 16.r,
+          size: wp(16),
           color: isSelected ? Colors.white : Colors.white70,
         ),
-        SizedBox(width: 4.w),
+        SizedBox(width: wp(4)),
         Text(
           title,
           style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: wp(13),
             fontWeight: FontWeight.w600,
             color: isSelected ? Colors.white : Colors.white70,
           ),

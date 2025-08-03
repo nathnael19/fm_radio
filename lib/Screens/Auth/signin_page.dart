@@ -9,7 +9,6 @@ import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -19,7 +18,6 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  //controllers for text fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -28,20 +26,24 @@ class _SigninPageState extends State<SigninPage> {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
     final loginCubit = BlocProvider.of<LoginCubit>(context);
+
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    double heightPercent(double h) => h * screenHeight / 844;
+    double widthPercent(double w) => w * screenWidth / 390;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          //to avoid overflow when keyboard shows
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start, //Align text to start
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //Header image with background and logo overlay
-              MyPhoto(height: 247.h),
-
-              SizedBox(height: 27.h),
+              MyPhoto(height: heightPercent(247)),
+              SizedBox(height: heightPercent(27)),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(horizontal: widthPercent(16)),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -50,16 +52,13 @@ class _SigninPageState extends State<SigninPage> {
                       Text(
                         local.login_page_title,
                         style: TextStyle(
-                          color: Color(0xff1A0101),
-                          fontSize: 36.sp,
+                          color: const Color(0xff1A0101),
+                          fontSize: widthPercent(36), // original 36.sp
                           fontWeight: FontWeight.w700,
                           fontFamily: "Poppins",
                         ),
                       ),
-
-                      const SizedBox(height: 20),
-
-                      // Email/Phone input field
+                      SizedBox(height: heightPercent(20)),
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -73,9 +72,7 @@ class _SigninPageState extends State<SigninPage> {
                         hint: local.email,
                         controller: emailController,
                       ),
-
-                      SizedBox(height: 16.h),
-
+                      SizedBox(height: heightPercent(16)),
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty || value.length < 8) {
@@ -88,10 +85,7 @@ class _SigninPageState extends State<SigninPage> {
                         controller: passwordController,
                         isPass: true,
                       ),
-
-                      SizedBox(height: 16.h),
-
-                      //  Forgot password link
+                      SizedBox(height: heightPercent(16)),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -108,17 +102,14 @@ class _SigninPageState extends State<SigninPage> {
                             local.forgot_password_text,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: Color(0xff001420),
-                              fontSize: 14.sp,
+                              color: const Color(0xff001420),
+                              fontSize: widthPercent(14), // original 14.sp
                               fontFamily: "Poppins",
                             ),
                           ),
                         ),
                       ),
-
-                      SizedBox(height: 16.h),
-
-                      // Login button
+                      SizedBox(height: heightPercent(16)),
                       LoginContainer(
                         title: local.login_text,
                         onTap: () {
@@ -134,10 +125,7 @@ class _SigninPageState extends State<SigninPage> {
                           }
                         },
                       ),
-
-                      SizedBox(height: 20.h),
-
-                      //Sign up redirect link
+                      SizedBox(height: heightPercent(20)),
                       TextContainer(
                         onTap: () {
                           Navigator.push(
@@ -150,7 +138,7 @@ class _SigninPageState extends State<SigninPage> {
                         leftText: local.signup_question,
                         rightText: local.signup_text,
                       ),
-                      SizedBox(height: 30.h),
+                      SizedBox(height: heightPercent(30)),
                     ],
                   ),
                 ),
