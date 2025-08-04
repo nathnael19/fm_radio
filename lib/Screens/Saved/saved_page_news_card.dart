@@ -51,7 +51,7 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
                               child: Padding(
                                 padding: EdgeInsets.all(16.0.r),
                                 child: NewsDetailCard(
-                                    showComments: isVisible,
+                                    // showComments: isVisible,
                                     onMinimizeTapped: () {
                                       setState(() {
                                         isVisible = false;

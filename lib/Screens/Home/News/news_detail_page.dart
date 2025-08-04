@@ -19,7 +19,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       child: Padding(
         padding: EdgeInsets.all(16.0.r),
         child: NewsDetailCard(
-            showComments: isVisible,
+            initialShowComments: false,
+            // showComments: isVisible,
             onMinimizeTapped: () {
               setState(() {
                 isVisible = false;
