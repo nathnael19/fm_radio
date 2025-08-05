@@ -1,13 +1,13 @@
 [
   {
-    "category": "Politics",
+    "category": "Breaking News",
     "data": [
       {
-        "channel": "Ethio News",
-        "imageUrl": "https://example.com/news1.jpg",
+        "channel": "Ethio FM",
+        "imageUrl": "assets/images/taa.jpg",
         "date": "2025-08-05",
         "title": "Government Launches New Policy",
-        "subtitle": "A new policy to boost the economy has been announced.",
+        
         "description": "The government has unveiled a comprehensive policy aimed at boosting local businesses and improving job creation across the country.",
         "meta": {
           "views": 1200,
@@ -45,7 +45,6 @@
         "imageUrl": "https://example.com/news2.jpg",
         "date": "2025-08-04",
         "title": "Opposition Leader Criticizes Budget",
-        "subtitle": "Opposition party raises concerns over national budget allocation.",
         "description": "The opposition leader has expressed concern that the new budget does not adequately address inflation and education funding.",
         "meta": {
           "views": 950,
@@ -71,7 +70,6 @@
         "imageUrl": "https://example.com/sports1.jpg",
         "date": "2025-08-03",
         "title": "Ethiopia Wins in AFCON Qualifier",
-        "subtitle": "A strong performance sees Ethiopia beat Kenya 2-1.",
         "description": "The national football team delivered an impressive performance against Kenya, keeping their hopes alive for AFCON qualification.",
         "meta": {
           "views": 2000,

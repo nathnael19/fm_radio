@@ -5,7 +5,6 @@ class DataModel {
   final String imageUrl;
   final String date;
   final String title;
-  final String subtitle;
   final String description;
   final MetaData meta;
 
@@ -14,7 +13,6 @@ class DataModel {
     required this.imageUrl,
     required this.date,
     required this.title,
-    required this.subtitle,
     required this.description,
     required this.meta,
   });
@@ -24,7 +22,6 @@ class DataModel {
         imageUrl: json['imageUrl'],
         date: json['date'],
         title: json['title'],
-        subtitle: json['subtitle'],
         description: json['description'],
         meta: MetaData.fromJson(json['meta']),
       );
