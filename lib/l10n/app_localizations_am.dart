@@ -221,4 +221,7 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get from_other_fm => 'ክአዘጋጆች';
+
+  @override
+  String get comment => 'አሰስተያየት';
 }

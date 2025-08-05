@@ -1,0 +1,98 @@
+[
+  {
+    "category": "Politics",
+    "data": [
+      {
+        "channel": "Ethio News",
+        "imageUrl": "https://example.com/news1.jpg",
+        "date": "2025-08-05",
+        "title": "Government Launches New Policy",
+        "subtitle": "A new policy to boost the economy has been announced.",
+        "description": "The government has unveiled a comprehensive policy aimed at boosting local businesses and improving job creation across the country.",
+        "meta": {
+          "views": 1200,
+          "likes": 250,
+          "shares": 80,
+          "comments": [
+            {
+              "username": "user123",
+              "comment": "This is a step in the right direction!",
+              "timestamp": "2025-08-05T10:30:00Z",
+              "replies": [
+                {
+                  "username": "replyUser1",
+                  "comment": "Agreed!",
+                  "timestamp": "2025-08-05T11:00:00Z"
+                },
+                {
+                  "username": "replyUser2",
+                  "comment": "Let's hope it's implemented properly.",
+                  "timestamp": "2025-08-05T11:30:00Z"
+                }
+              ]
+            },
+            {
+              "username": "critic101",
+              "comment": "Another empty promise?",
+              "timestamp": "2025-08-05T12:00:00Z",
+              "replies": []
+            }
+          ]
+        }
+      },
+      {
+        "channel": "Addis Report",
+        "imageUrl": "https://example.com/news2.jpg",
+        "date": "2025-08-04",
+        "title": "Opposition Leader Criticizes Budget",
+        "subtitle": "Opposition party raises concerns over national budget allocation.",
+        "description": "The opposition leader has expressed concern that the new budget does not adequately address inflation and education funding.",
+        "meta": {
+          "views": 950,
+          "likes": 130,
+          "shares": 40,
+          "comments": [
+            {
+              "username": "citizenVoice",
+              "comment": "We need more transparency in budgeting.",
+              "timestamp": "2025-08-04T09:45:00Z",
+              "replies": []
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "category": "Sports",
+    "data": [
+      {
+        "channel": "Goal Ethiopia",
+        "imageUrl": "https://example.com/sports1.jpg",
+        "date": "2025-08-03",
+        "title": "Ethiopia Wins in AFCON Qualifier",
+        "subtitle": "A strong performance sees Ethiopia beat Kenya 2-1.",
+        "description": "The national football team delivered an impressive performance against Kenya, keeping their hopes alive for AFCON qualification.",
+        "meta": {
+          "views": 2000,
+          "likes": 500,
+          "shares": 300,
+          "comments": [
+            {
+              "username": "footballFan",
+              "comment": "Amazing match! Go Ethiopia!",
+              "timestamp": "2025-08-03T21:00:00Z",
+              "replies": [
+                {
+                  "username": "teamSupporter",
+                  "comment": "Yes! We dominated!",
+                  "timestamp": "2025-08-03T21:15:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

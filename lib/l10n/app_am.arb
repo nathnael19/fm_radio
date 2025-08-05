@@ -141,5 +141,7 @@
   "only_fm": "ከ FM 107.8 ብቻ ",
   "@only_fm": {},
   "from_other_fm": "ክአዘጋጆች",
-  "@from_other_fm": {}
+  "@from_other_fm": {},
+  "comment":"አሰስተያየት",
+  "@comment": {}
 }

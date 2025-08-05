@@ -523,6 +523,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'From Organizers'**
   String get from_other_fm;
+
+  /// No description provided for @comment.
+  ///
+  /// In en, this message translates to:
+  /// **'comment'**
+  String get comment;
 }
 
 class _AppLocalizationsDelegate

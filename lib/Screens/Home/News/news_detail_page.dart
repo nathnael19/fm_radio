@@ -3,54 +3,59 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsDetailPage extends StatefulWidget {
-  const NewsDetailPage({super.key});
+  bool isVisible;
+  final String date;
+  final String channel;
+  final String imageUrl;
+  final String title;
+  final String content;
+  final int likeNum;
+  final int commentNum;
+  final int shareNum;
+
+  NewsDetailPage(
+      {super.key,
+      this.isVisible = false,
+      required this.date,
+      required this.channel,
+      required this.imageUrl,
+      required this.title,
+      required this.content,
+      required this.likeNum,
+      required this.commentNum,
+      required this.shareNum});
 
   @override
   State<NewsDetailPage> createState() => _NewsDetailPageState();
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
-  bool isVisible = false;
-
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 0.8,
+      heightFactor: 0.85,
       child: Padding(
-        padding: EdgeInsets.all(16.0.r),
+        padding: EdgeInsets.all(8.r),
         child: NewsDetailCard(
             initialShowComments: false,
-            // showComments: isVisible,
             onMinimizeTapped: () {
               setState(() {
-                isVisible = false;
+                widget.isVisible = false;
               });
             },
             onCommentTapped: () {
               setState(() {
-                isVisible = true;
+                widget.isVisible = true;
               });
             },
-            date: "2hr ago",
-            channel: "Ethio FM",
-            imageUrl: "assets/images/taa.png",
-            title: "በጋምቤላ ክልል በግንባታ ማእድን ላይ የተጋነነ የዋጋ ጭማሪ እየታየ ነዉ ተባለ ።",
-            subtitle: """የግንባታ ማእድናቱን የዋጋ ተመን ማስተካከያ እየተደረገበት መሆኑንም ሰምተናል።
-  ከ2015 አመት ጀምሮ በጋምቤላ ክልል ሁሉም ወረዳዎች ላይ የግንባታ ማእድናት ከፍተኛ ዋጋ እየተጠየቀባቸዉ ነዉ ተብሏል።
-  
-  ለዋጋ ጭማሪዉ ምክንያት ሆኗል የተባለዉ የነዳጅ ዋጋ መጨመር እንደሆነ የክልሉ የማእድን ሀብት ልማት ቢሮ ገልፆል።
-  
-  በቢሮዉ ሀላፊ የሆኑት አቶ ኡጅሉ ጊሎ ይህንን የማእድናቱ የተጋነነ የዋጋ ጭማሪ ተከትሎ አቤቱታ መቅረቡን ገልፀዋል።
-  
-  የዋጋ ንረቱን ለመቆጣጠር እንዲቻል ጥረት እየተደረገ ነዉ ÷ በተጋነነ ዋጋ ሲሸጥ የነበረዉን የማእድናቱን ዋጋ ማስተካከያ አድርገናል ብለዋል ሀላፊዉ። በዚህም በኬላዎች ይጣል የነበረዉን የቀረጥ እና ኮቴ ዋጋ ማስተካከያ እንደተደረገ ቢሮዉ ማሳወቁን ከክልሉ የተገኘዉ መረጃ አመላክቷል። ምክንያታዊ ያልሆነ የዋጋ ጭማሪ እንዳይኖር እና ማስተካከያ በተደረገበት የዋጋ ተመን እንዲሸጥ ማሳሰቢያ መሰጠቱን ገልፆል።
-  
-  ቢሮዉ የዋጋ ማሻሻያዉ ያደረኩት ይመለከታቸዋል ከተባሉ የባለድርሻ አካላት ጋር ባደረጉት ንግግር ነዉ ብሏል።
-  
-  ቁምነገር አየለ
-  ሚያዚያ 7 ቀን 2017 ዓ.ም""",
-            likes: 400,
-            comments: 35,
-            shares: 5),
+            date: widget.date,
+            channel: widget.channel,
+            imageUrl: widget.imageUrl,
+            title: widget.title,
+            subtitle: widget.content,
+            likes: widget.likeNum,
+            comments: widget.commentNum,
+            shares: widget.shareNum),
       ),
     );
   }

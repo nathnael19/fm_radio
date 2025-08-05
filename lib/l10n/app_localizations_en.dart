@@ -222,4 +222,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get from_other_fm => 'From Organizers';
+
+  @override
+  String get comment => 'comment';
 }

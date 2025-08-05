@@ -143,7 +143,6 @@ class _NewsDetailCardState extends State<NewsDetailCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (showComments) ...[
-                  // bottomSheetTopContainer,
                   _header(),
                 ],
                 _content(),

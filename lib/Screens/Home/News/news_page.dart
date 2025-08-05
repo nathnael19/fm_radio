@@ -217,7 +217,16 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
       ),
       backgroundColor: Colors.white,
       builder: (context) {
-        return NewsDetailPage();
+        return NewsDetailPage(
+          date: '',
+          channel: '',
+          imageUrl: '',
+          title: '',
+          content: '',
+          likeNum: 1,
+          commentNum: 2,
+          shareNum: 5,
+        );
       },
     );
   }
