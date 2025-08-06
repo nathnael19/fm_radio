@@ -3,6 +3,7 @@ import 'package:ethio_fm_radio/Screens/Home/News/news_detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class NewsDetailPage extends StatefulWidget {
   bool isVisible;
   final String date;

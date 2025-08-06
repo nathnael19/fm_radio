@@ -1,0 +1,22 @@
+[
+    {
+        "category": "Only FM",
+        "data": [
+            {
+                "title": "title",
+                "imageUrl": "assets/images/girl3.png",
+                "audioUrl": "assets/audio/mezmur.mp3"
+            }
+        ]
+    },
+    {
+        "category": "Others",
+        "data": [
+            {
+                "title": "title2",
+                "imageUrl": "assets/images/girl2.png",
+                "audioUrl": "assets/audio/mezmur.mp3"
+            }
+        ]
+    }
+]
