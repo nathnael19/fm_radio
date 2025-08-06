@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
   final void Function(Locale)? onLocaleChange;
-  final int pageIndex;
-  // ✅ Add locale change callback
 
-  const MyBottomNavigation(
-      {super.key, this.onLocaleChange, this.pageIndex = 0});
+  const MyBottomNavigation({
+    super.key,
+    this.onLocaleChange,
+  });
 
   @override
   State<MyBottomNavigation> createState() => _MyBottomNavigationState();

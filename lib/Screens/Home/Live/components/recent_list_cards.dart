@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/components/recent_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/recent_card.dart';
 import 'package:flutter/material.dart';
 
 class RecentListCards extends StatelessWidget {

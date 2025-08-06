@@ -1,7 +1,7 @@
-import 'package:ethio_fm_radio/Screens/Home/components/currency_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/recent_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/todays_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/whether_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/currency_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/recent_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/todays_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/whether_list_cards.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

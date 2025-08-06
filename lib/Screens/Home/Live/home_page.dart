@@ -1,7 +1,7 @@
 import 'package:ethio_fm_radio/Screens/Home/News/news_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_page.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/live_page.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/overlay_play.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/live_page.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/overlay_play.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 

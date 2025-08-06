@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/components/currency_service.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/currency_service.dart';
 import 'package:flutter/material.dart'; // Import the service
 
 class CurrencyListCards extends StatefulWidget {

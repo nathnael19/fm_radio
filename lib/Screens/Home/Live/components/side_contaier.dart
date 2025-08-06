@@ -1,5 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/News/comment_bottom_sheet.dart';
-import 'package:ethio_fm_radio/Screens/Home/components/side_container_icons.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/components/side_container_icons.dart';
 import 'package:flutter/material.dart';
 
 class SideContainer extends StatelessWidget {
