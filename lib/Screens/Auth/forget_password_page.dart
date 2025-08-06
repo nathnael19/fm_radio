@@ -5,9 +5,9 @@ import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/reset_page.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -17,8 +17,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  final TextEditingController phoneController =
-      TextEditingController(); //Controller for phone number
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +31,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Header image + logo
-              MyPhoto(height: 401.h),
+              MyPhoto(height: getMobileHeight(context, 401)),
 
-              SizedBox(height: 27.h),
+              SizedBox(height: getMobileHeight(context, 27)),
 
               // Title
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getMobileWidth(context, 16)),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -48,26 +48,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         local.forgot_page_title,
                         style: TextStyle(
                           color: Color(0xff1A0101),
-                          fontSize: 36.sp,
+                          fontSize: getMobileFontSize(context, 36),
                           fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
                         ),
                       ),
 
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 14)),
 
                       //Subtitle
                       Text(
                         local.forgot_page_desc,
                         style: TextStyle(
-                          fontSize: 16.sp,
+                          fontSize: getMobileFontSize(context, 16),
                           fontWeight: FontWeight.w500,
                           color: Color(0xff001420),
-                          fontFamily: "Poppins",
                         ),
                       ),
 
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 14)),
 
                       // Phone number field
                       MyTextField(
@@ -84,7 +82,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         controller: phoneController,
                       ),
 
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 14)),
 
                       // Send code button
                       LoginContainer(
@@ -101,9 +99,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         },
                       ),
 
-                      SizedBox(height: 24.h),
+                      SizedBox(height: getMobileHeight(context, 16)),
                       MyDivider(),
-                      SizedBox(height: 24.h),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       // Back to Sign In link
                       TextContainer(
