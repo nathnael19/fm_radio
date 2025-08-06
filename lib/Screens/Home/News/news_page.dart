@@ -132,8 +132,6 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     }
   }
 
-  int numberOfDot = 0;
-
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
@@ -144,6 +142,9 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
         } else if (state is NewsLoaded) {
           final breakingNews = state.category[0].data;
           final sportNews = state.category[1].data;
+          final foreignNews = state.category[2].data;
+          final businessNews = state.category[3].data;
+          final otherNews = state.category[4].data;
 
           return SingleChildScrollView(
             controller: _scrollController,
@@ -154,7 +155,6 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                 _buildSectionHeader(local.breaking_news, key: _topNewsKey),
                 SizedBox(height: 16.h),
                 breakingNewsCard(context, breakingNews),
-
                 SizedBox(
                   height: 5.h,
                 ),
@@ -169,35 +169,42 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                         dotHeight: 8.h),
                   ),
                 ),
+
+                ///Sport News
                 SizedBox(height: 24.h),
                 _buildSectionHeader(
                   local.home_page_news_page_second_tab_bar,
                   key: _sportKey,
                 ),
                 SizedBox(height: 16.h),
+                smallCardNews(context, sportNews),
 
-                sportNewsCard(context, sportNews),
+                //Foreign News
                 SizedBox(height: 24.h),
                 _buildSectionHeader(
                   local.home_page_news_page_third_tab_bar,
                   key: _worldKey,
                 ),
-                // SizedBox(height: 16.h),
-                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                SizedBox(height: 16.h),
+                smallCardNews(context, foreignNews),
+
+                //Business News
                 SizedBox(height: 24.h),
                 _buildSectionHeader(
                   local.home_page_news_page_fourth_tab_bar,
                   key: _businessKey,
                 ),
-                // SizedBox(height: 16.h),
-                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
-                // SizedBox(height: 24.h),
+                SizedBox(height: 16.h),
+                smallCardNews(context, businessNews),
+
+                //Other News
+                SizedBox(height: 24.h),
                 _buildSectionHeader(
                   local.home_page_news_page_fifth_tab_bar,
                   key: _otherKey,
                 ),
-                // SizedBox(height: 16.h),
-                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                SizedBox(height: 16.h),
+                smallCardNews(context, otherNews),
               ],
             ),
           );
@@ -207,20 +214,42 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     );
   }
 
-  SizedBox sportNewsCard(BuildContext context, List<DataModel> sportNews) {
+  SizedBox smallCardNews(BuildContext context, List<DataModel> newsData) {
     return SizedBox(
       height: getMobileHeight(context, 81),
       child: PageView.builder(
-        itemCount: sportNews.length,
+        itemCount: newsData.length,
         itemBuilder: (context, index) {
-          final news = sportNews[index];
+          final news = newsData[index];
+
+          final channel = news.channel;
+          final title = news.title;
+          final image = news.imageUrl;
+          final description = news.description;
+          final date = news.date;
+          final comment = news.meta.comments;
+          final like = news.meta.likes;
+          final share = news.meta.shares;
+          // final
           return NewsPageCardSmall(
-              title: news.title,
-              channel: news.channel,
-              date: news.date,
-              onTap: () {},
-              onMore: () {},
-              imageUrl: news.imageUrl);
+            title: news.title,
+            channel: news.channel,
+            date: news.date,
+            onTap: () => _showBottomSheet(
+              context,
+              channel: channel,
+              comments: comment,
+              comment: comment.length,
+              content: description,
+              date: date,
+              imageUrl: image,
+              like: like,
+              share: share,
+              title: title,
+            ),
+            onMore: () {},
+            imageUrl: news.imageUrl,
+          );
         },
       ),
     );
@@ -321,89 +350,6 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           comments: comments,
         );
       },
-    );
-  }
-
-  Widget _buildSmallCards() {
-    return SizedBox(
-      height: 82.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true, // 🟢 Fix: Allows rendering inside Column
-        physics: const ClampingScrollPhysics(), // 🟢 Fix scroll physics
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return Container(
-            width: 350.w,
-            margin: EdgeInsets.only(right: 20.w),
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: const Color(0xffEDE4E6), width: 1),
-            ),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(5.r),
-                  child: Image.asset(
-                    "assets/images/biden.png",
-                    width: 60.w,
-                    height: 60.w,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
-                        maxLines: 2,
-                        style: GoogleFonts.notoSansEthiopic(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.g_mobiledata, size: 18.r),
-                              Text(
-                                "Source",
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(width: 20.w),
-                              Text(
-                                "2h ago",
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Icon(Icons.more_vert, size: 20.r),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
     );
   }
 }

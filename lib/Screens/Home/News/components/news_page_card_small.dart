@@ -9,14 +9,15 @@ class NewsPageCardSmall extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback onMore;
   final String imageUrl;
-  const NewsPageCardSmall(
-      {super.key,
-      required this.title,
-      required this.channel,
-      required this.date,
-      required this.onTap,
-      required this.onMore,
-      required this.imageUrl});
+  const NewsPageCardSmall({
+    super.key,
+    required this.title,
+    required this.channel,
+    required this.date,
+    required this.onTap,
+    required this.onMore,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +58,7 @@ class NewsPageCardSmall extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.start,
                       text: TextSpan(
-                        text:
-                            "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
+                        text: title,
                         style: TextStyle(
                             fontSize: getMobileFontSize(context, 15),
                             color: appColor.titleTextColor,
