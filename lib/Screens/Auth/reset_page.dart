@@ -1,8 +1,9 @@
 import 'dart:async'; // <-- Import for Timer
+import 'package:ethio_fm_radio/Screens/Auth/components/login_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/new_password_page.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EnterCodePage extends StatefulWidget {
@@ -114,7 +115,8 @@ class _EnterCodePageState extends State<EnterCodePage> {
               children: [
                 const Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.w),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getMobileWidth(context, 25)),
                   child: Form(
                     key: formKey,
                     child: Column(
@@ -124,45 +126,46 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         // Title
                         Text(
                           local.reset_page_title,
-                          style: const TextStyle(
-                            fontSize: 28,
+                          style: TextStyle(
+                            fontSize: getMobileFontSize(context, 28),
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: getMobileHeight(context, 10)),
 
                         // Subtitle
                         Text(
                           "${local.reset_page_desc} +251 91 234 567",
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: TextStyle(
+                            fontSize: getMobileFontSize(context, 16),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        SizedBox(height: getMobileHeight(context, 30)),
 
                         // OTP Inputs
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(6, (index) {
                             return SizedBox(
-                              width: 40,
-                              height: 50,
+                              width: getMobileWidth(context, 40),
+                              height: getMobileHeight(context, 50),
                               child: TextField(
                                 controller: _controllers[index],
                                 focusNode: _focusNodes[index],
                                 textAlign: TextAlign.center,
                                 maxLength: 1,
                                 keyboardType: TextInputType.number,
-                                style: TextStyle(fontSize: 22.sp),
+                                style: TextStyle(
+                                    fontSize: getMobileFontSize(context, 22)),
                                 decoration: InputDecoration(
                                   counterText: '',
                                   hintText: '*',
                                   hintStyle: TextStyle(
                                     color: Colors.grey,
-                                    fontSize: 22.sp,
+                                    fontSize: getMobileFontSize(context, 22),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey),
@@ -179,28 +182,14 @@ class _EnterCodePageState extends State<EnterCodePage> {
                             );
                           }),
                         ),
-                        const SizedBox(height: 30),
+                        SizedBox(height: getMobileHeight(context, 30)),
 
                         // Confirm Button
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF80011F),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            onPressed: _onConfirm,
-                            child: Text(
-                              local.confirm,
-                              style: const TextStyle(
-                                  fontSize: 18, color: Colors.white),
-                            ),
-                          ),
+                        LoginContainer(
+                          onTap: _onConfirm,
+                          title: local.confirm,
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: getMobileHeight(context, 20)),
 
                         // Resend Code Button with countdown
                         GestureDetector(
@@ -210,7 +199,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
                                 ? local.resend_text
                                 : 'Resend in $_start s',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: getMobileFontSize(context, 16),
                               color: _start == 0
                                   ? const Color(0xFF80011F)
                                   : Colors.grey,
@@ -222,20 +211,22 @@ class _EnterCodePageState extends State<EnterCodePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 150.h),
+                SizedBox(height: getMobileHeight(context, 150)),
               ],
             ),
           ),
 
           // Positioned SVGs
           Positioned(
-            left: MediaQuery.of(context).size.width / 2 - 45.w,
-            top: 260.h,
+            left: MediaQuery.of(context).size.width / 2 -
+                getMobileWidth(context, 45),
+            top: getMobileHeight(context, 260),
             child: SvgPicture.asset("assets/images/sss.svg"),
           ),
           Positioned(
-            left: MediaQuery.of(context).size.width / 2 - 22.w,
-            top: 290.h,
+            left: MediaQuery.of(context).size.width / 2 -
+                getMobileWidth(context, 18),
+            top: getMobileHeight(context, 300),
             child: SvgPicture.asset("assets/images/checkk.svg"),
           ),
         ],
