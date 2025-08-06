@@ -104,7 +104,11 @@ class NewsPageSelector extends StatefulWidget {
 
 class _NewsPageSelectorState extends State<NewsPageSelector> {
   final ScrollController _scrollController = ScrollController();
-  final PageController _horizontalPage = PageController();
+  final PageController _breakingPage = PageController();
+  final PageController _sportPage = PageController();
+  final PageController _foreignPage = PageController();
+  final PageController _businessPage = PageController();
+  final PageController _otherPage = PageController();
 
   final GlobalKey _topNewsKey = GlobalKey();
   final GlobalKey _sportKey = GlobalKey();
@@ -160,7 +164,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                 ),
                 Center(
                   child: SmoothPageIndicator(
-                    controller: _horizontalPage,
+                    controller: _breakingPage,
                     count: breakingNews.length,
                     effect: ExpandingDotsEffect(
                         activeDotColor: Color(0xff80011F),
@@ -177,7 +181,21 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                   key: _sportKey,
                 ),
                 SizedBox(height: 16.h),
-                smallCardNews(context, sportNews),
+                smallCardNews(context, sportNews, _sportPage),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _sportPage,
+                    count: sportNews.length,
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h),
+                  ),
+                ),
 
                 //Foreign News
                 SizedBox(height: 24.h),
@@ -186,7 +204,21 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                   key: _worldKey,
                 ),
                 SizedBox(height: 16.h),
-                smallCardNews(context, foreignNews),
+                smallCardNews(context, foreignNews, _foreignPage),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _foreignPage,
+                    count: foreignNews.length,
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h),
+                  ),
+                ),
 
                 //Business News
                 SizedBox(height: 24.h),
@@ -195,7 +227,21 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                   key: _businessKey,
                 ),
                 SizedBox(height: 16.h),
-                smallCardNews(context, businessNews),
+                smallCardNews(context, businessNews, _businessPage),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _businessPage,
+                    count: businessNews.length,
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h),
+                  ),
+                ),
 
                 //Other News
                 SizedBox(height: 24.h),
@@ -204,7 +250,21 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                   key: _otherKey,
                 ),
                 SizedBox(height: 16.h),
-                smallCardNews(context, otherNews),
+                smallCardNews(context, otherNews, _otherPage),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _otherPage,
+                    count: otherNews.length,
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h),
+                  ),
+                ),
               ],
             ),
           );
@@ -214,10 +274,12 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     );
   }
 
-  SizedBox smallCardNews(BuildContext context, List<DataModel> newsData) {
+  SizedBox smallCardNews(BuildContext context, List<DataModel> newsData,
+      PageController controller) {
     return SizedBox(
       height: getMobileHeight(context, 81),
       child: PageView.builder(
+        controller: controller,
         itemCount: newsData.length,
         itemBuilder: (context, index) {
           final news = newsData[index];
@@ -260,7 +322,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     return SizedBox(
       height: getMobileHeight(context, 245),
       child: PageView.builder(
-        controller: _horizontalPage,
+        controller: _breakingPage,
         itemCount: breakingNews.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
