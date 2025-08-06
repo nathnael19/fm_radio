@@ -1,11 +1,9 @@
-import 'package:ethio_fm_radio/Screens/Download/download_page.dart';
-import 'package:ethio_fm_radio/Screens/Group/group_page.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/home_page.dart';
-import 'package:ethio_fm_radio/Screens/Profile/profile_page.dart';
-import 'package:ethio_fm_radio/Screens/Saved/saved_page.dart';
+import 'package:ethio_fm_radio/Screens/constants/bottom_nav.dart';
+import 'package:ethio_fm_radio/cubit/bottomNavbar/bottom_nav_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyBottomNavigation extends StatefulWidget {
+class MyBottomNavigation extends StatelessWidget {
   final void Function(Locale)? onLocaleChange;
 
   const MyBottomNavigation({
@@ -14,67 +12,41 @@ class MyBottomNavigation extends StatefulWidget {
   });
 
   @override
-  State<MyBottomNavigation> createState() => _MyBottomNavigationState();
-}
-
-class _MyBottomNavigationState extends State<MyBottomNavigation> {
-  final List<IconData> _icons = [
-    Icons.home,
-    Icons.group_outlined,
-    Icons.file_download_outlined,
-    Icons.bookmark,
-    Icons.person_outline,
-  ];
-
-  late final List<Widget> _pages;
-  int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pages = [
-      const HomePage(),
-      const GroupPage(),
-      const DownloadPage(),
-      const SavedPage(),
-      const ProfilePage(),
-    ];
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: const BoxDecoration(color: Color(0xff1A0101)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(_icons.length, (index) {
-            bool isSelected = _selectedIndex == index;
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: isSelected ? Colors.white : Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  _icons[index],
-                  color: isSelected ? const Color(0xff4A0000) : Colors.white,
-                  size: 28,
-                ),
-              ),
-            );
-          }),
-        ),
-      ),
+    final bottomCubit = BlocProvider.of<BottomNavCubit>(context);
+    return BlocBuilder<BottomNavCubit, int>(
+      builder: (context, state) {
+        return Scaffold(
+          body: bottomPages[state],
+          bottomNavigationBar: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            decoration: const BoxDecoration(color: Color(0xff1A0101)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(bottomIcons.length, (index) {
+                bool isSelected = state == index;
+                return GestureDetector(
+                  onTap: () => bottomCubit.onTap(index),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: isSelected ? Colors.white : Colors.transparent,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      bottomIcons[index],
+                      color:
+                          isSelected ? const Color(0xff4A0000) : Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                );
+              }),
+            ),
+          ),
+        );
+      },
     );
   }
 }
