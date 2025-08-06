@@ -1,24 +1,18 @@
 import 'package:ethio_fm_radio/Screens/Onboarding/wellcome.dart';
 import 'package:flutter/material.dart';
 
-class MyPageView extends StatefulWidget {
+class MyPageView extends StatelessWidget {
   const MyPageView({super.key});
 
   @override
-  State<MyPageView> createState() => _MyPageViewState();
-}
-
-class _MyPageViewState extends State<MyPageView> {
-  final PageController _pageController = PageController();
-
-  @override
   Widget build(BuildContext context) {
+    final PageController pageController = PageController();
     return PageView(
-      controller: _pageController,
+      controller: pageController,
       children: [
         BoardingWidget(
           angle: -0.35,
-          pageController: _pageController,
+          pageController: pageController,
           circleBack: "assets/icons/backcircle.svg",
           isLastPage: false,
           imagePath: "assets/images/home.png",
@@ -29,7 +23,7 @@ class _MyPageViewState extends State<MyPageView> {
         ),
         BoardingWidget(
           angle: 0.2,
-          pageController: _pageController,
+          pageController: pageController,
           circleBack: "assets/icons/backcircle.svg",
           isLastPage: false,
           imagePath: "assets/images/news.png",
@@ -40,7 +34,7 @@ class _MyPageViewState extends State<MyPageView> {
         ),
         BoardingWidget(
           angle: 1.2,
-          pageController: _pageController,
+          pageController: pageController,
           circleBack: "assets/icons/backcircle.svg",
           isLastPage: true,
           imagePath: "assets/images/podcast.png",
