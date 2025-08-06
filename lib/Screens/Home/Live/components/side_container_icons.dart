@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/constants/screen_utils.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
 
 class SideContainerIcon extends StatelessWidget {
@@ -21,14 +21,14 @@ class SideContainerIcon extends StatelessWidget {
           onPressed: onTap,
           icon: Icon(
             icon,
-            size: getResponsiveSize(context, 24, isHeight: true),
+            size: getMobileFontSize(context, 24),
             color: Colors.white,
           ),
         ),
         Text(
           number.toString(),
           style: TextStyle(
-            fontSize: getResponsiveSize(context, 10, isHeight: true),
+            fontSize: getMobileFontSize(context, 10),
             color: Colors.white,
             fontWeight: FontWeight.w400,
           ),

@@ -21,12 +21,12 @@ class _EnterCodePageState extends State<EnterCodePage> {
   final List<FocusNode> _focusNodes = List.generate(6, (index) => FocusNode());
 
   Timer? _timer;
-  int _start = 0; // Countdown seconds
+  int _start = 0;
 
   @override
   void initState() {
     super.initState();
-    startTimer(); // 🔥 Start countdown when the page is loaded
+    startTimer();
   }
 
   @override

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 final List<IconData> bottomIcons = [
   Icons.home,
-  // Icons.group_outlined,
+  Icons.group_outlined,
   Icons.file_download_outlined,
   Icons.bookmark,
   Icons.person_outline,
@@ -15,7 +15,7 @@ final List<IconData> bottomIcons = [
 
 final List<Widget> bottomPages = [
   const HomePage(),
-  // const GroupPage(),
+  const GroupPage(),
   const DownloadPage(),
   const SavedPage(),
   const ProfilePage(),

@@ -4,9 +4,9 @@ import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SetNewPasswordPage extends StatefulWidget {
   const SetNewPasswordPage({super.key});
@@ -34,13 +34,14 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header image + logo
-              MyPhoto(height: 401.h),
+              MyPhoto(height: getMobileHeight(context, 401)),
 
-              SizedBox(height: 51.h),
+              SizedBox(height: getMobileHeight(context, 30)),
 
               // Title
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getMobileWidth(context, 16)),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -50,13 +51,12 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                         local.new_pass_page_title,
                         style: TextStyle(
                           color: Color(0xff1A0101),
-                          fontSize: 36.sp,
+                          fontSize: getMobileFontSize(context, 36),
                           fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
                         ),
                       ),
 
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       // New password input
                       MyTextField(
@@ -72,7 +72,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                         hint: local.new_pass,
                         controller: newPasswordController,
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       // Confirm password input
                       MyTextField(
@@ -89,7 +89,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                         controller: confirmPasswordController,
                       ),
 
-                      SizedBox(height: 16.h),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       // Reset password button
                       LoginContainer(
@@ -112,9 +112,9 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                           }
                         },
                       ),
-                      SizedBox(height: 24.h),
+                      SizedBox(height: getMobileHeight(context, 24)),
                       MyDivider(),
-                      SizedBox(height: 24.h),
+                      SizedBox(height: getMobileHeight(context, 14)),
                     ],
                   ),
                 ),
@@ -130,7 +130,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                 leftText: local.signup_page_question,
                 rightText: local.signin_text,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: getMobileHeight(context, 10)),
             ],
           ),
         ),
