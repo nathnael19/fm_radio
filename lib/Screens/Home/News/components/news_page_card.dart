@@ -43,21 +43,23 @@ class NewsPageCard extends StatelessWidget {
                       image: AssetImage(imageUrl), fit: BoxFit.fitWidth)),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: getMobileFontSize(context, 5),
-                  horizontal: getMobileFontSize(context, 8),
+              padding: EdgeInsets.symmetric(
+                vertical: getMobileFontSize(context, 5),
+                horizontal: getMobileFontSize(context, 8),
+              ),
+              child: RichText(
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  text: title,
+                  style: TextStyle(
+                      fontSize: getMobileFontSize(context, 15),
+                      color: myColor.titleTextColor,
+                      fontWeight: FontWeight.w600),
                 ),
-                child: RichText(
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.start,
-                    text: TextSpan(
-                      text: title,
-                      style: TextStyle(
-                          fontSize: getMobileFontSize(context, 15),
-                          color: myColor.titleTextColor,
-                          fontWeight: FontWeight.w600),
-                    ))),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(
                 left: getMobileFontSize(context, 8),

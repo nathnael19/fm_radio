@@ -1,6 +1,8 @@
 import 'package:ethio_fm_radio/Screens/Home/News/components/news_page_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/components/news_page_card_small.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/model/data_model.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_page.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
@@ -141,6 +143,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
           return Center(child: CircularProgressIndicator());
         } else if (state is NewsLoaded) {
           final breakingNews = state.category[0].data;
+          final sportNews = state.category[1].data;
+
           return SingleChildScrollView(
             controller: _scrollController,
             padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
@@ -149,40 +153,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
               children: [
                 _buildSectionHeader(local.breaking_news, key: _topNewsKey),
                 SizedBox(height: 16.h),
-                SizedBox(
-                    height: getMobileHeight(context, 245),
-                    child: PageView.builder(
-                      controller: _horizontalPage,
-                      itemCount: breakingNews.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final news = breakingNews[index];
-                        final channel = news.channel;
-                        final title = news.title;
-                        final image = news.imageUrl;
-                        final description = news.description;
-                        final date = news.date;
-                        final comment = news.meta.comments;
-                        final like = news.meta.likes;
-                        final share = news.meta.shares;
-                        return NewsPageCard(
-                          onTap: () => _showBottomSheet(context,
-                              channel: channel,
-                              comments: comment,
-                              comment: comment.length,
-                              content: description,
-                              date: date,
-                              imageUrl: image,
-                              like: like,
-                              share: share,
-                              title: title),
-                          channel: channel,
-                          date: date,
-                          imageUrl: image,
-                          title: title,
-                        );
-                      },
-                    )),
+                breakingNewsCard(context, breakingNews),
 
                 SizedBox(
                   height: 5.h,
@@ -190,7 +161,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                 Center(
                   child: SmoothPageIndicator(
                     controller: _horizontalPage,
-                    count: numberOfDot,
+                    count: breakingNews.length,
                     effect: ExpandingDotsEffect(
                         activeDotColor: Color(0xff80011F),
                         expansionFactor: 2,
@@ -203,8 +174,9 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                   local.home_page_news_page_second_tab_bar,
                   key: _sportKey,
                 ),
-                // SizedBox(height: 16.h),
-                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                SizedBox(height: 16.h),
+
+                sportNewsCard(context, sportNews),
                 SizedBox(height: 24.h),
                 _buildSectionHeader(
                   local.home_page_news_page_third_tab_bar,
@@ -232,6 +204,64 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
         }
         return SizedBox.shrink();
       },
+    );
+  }
+
+  SizedBox sportNewsCard(BuildContext context, List<DataModel> sportNews) {
+    return SizedBox(
+      height: getMobileHeight(context, 81),
+      child: PageView.builder(
+        itemCount: sportNews.length,
+        itemBuilder: (context, index) {
+          final news = sportNews[index];
+          return NewsPageCardSmall(
+              title: news.title,
+              channel: news.channel,
+              date: news.date,
+              onTap: () {},
+              onMore: () {},
+              imageUrl: news.imageUrl);
+        },
+      ),
+    );
+  }
+
+  SizedBox breakingNewsCard(
+      BuildContext context, List<DataModel> breakingNews) {
+    return SizedBox(
+      height: getMobileHeight(context, 245),
+      child: PageView.builder(
+        controller: _horizontalPage,
+        itemCount: breakingNews.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final news = breakingNews[index];
+          final channel = news.channel;
+          final title = news.title;
+          final image = news.imageUrl;
+          final description = news.description;
+          final date = news.date;
+          final comment = news.meta.comments;
+          final like = news.meta.likes;
+          final share = news.meta.shares;
+          return NewsPageCard(
+            onTap: () => _showBottomSheet(context,
+                channel: channel,
+                comments: comment,
+                comment: comment.length,
+                content: description,
+                date: date,
+                imageUrl: image,
+                like: like,
+                share: share,
+                title: title),
+            channel: channel,
+            date: date,
+            imageUrl: image,
+            title: title,
+          );
+        },
+      ),
     );
   }
 

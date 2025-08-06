@@ -90,6 +90,31 @@
             }
           ]
         }
+      },{
+        "channel": "Goal Ethiopia",
+        "imageUrl": "assets/images/gambela.png",
+        "date": "2025-08-03",
+        "title": "Ethiopia Wins in AFCON Qualifier",
+        "description": "The national football team delivered an impressive performance against Kenya, keeping their hopes alive for AFCON qualification.",
+        "meta": {
+          "views": 2000,
+          "likes": 500,
+          "shares": 300,
+          "comments": [
+            {
+              "username": "footballFan",
+              "comment": "Amazing match! Go Ethiopia!",
+              "timestamp": "2025-08-03T21:00:00Z",
+              "replies": [
+                {
+                  "username": "teamSupporter",
+                  "comment": "Yes! We dominated!",
+                  "timestamp": "2025-08-03T21:15:00Z"
+                }
+              ]
+            }
+          ]
+        }
       }
     ]
   }
