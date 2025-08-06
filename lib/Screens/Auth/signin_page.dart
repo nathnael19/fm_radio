@@ -4,6 +4,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Screens/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
@@ -27,12 +28,6 @@ class _SigninPageState extends State<SigninPage> {
     final formKey = GlobalKey<FormState>();
     final loginCubit = BlocProvider.of<LoginCubit>(context);
 
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    double heightPercent(double h) => h * screenHeight / 844;
-    double widthPercent(double w) => w * screenWidth / 390;
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -40,10 +35,11 @@ class _SigninPageState extends State<SigninPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MyPhoto(height: heightPercent(247)),
-              SizedBox(height: heightPercent(27)),
+              MyPhoto(height: getMobileHeight(context, 247)),
+              SizedBox(height: getMobileHeight(context, 27)),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: widthPercent(16)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getMobileFontSize(context, 16)),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -53,12 +49,13 @@ class _SigninPageState extends State<SigninPage> {
                         local.login_page_title,
                         style: TextStyle(
                           color: const Color(0xff1A0101),
-                          fontSize: widthPercent(36), // original 36.sp
+                          fontSize:
+                              getMobileFontSize(context, 36), // original 36.sp
                           fontWeight: FontWeight.w700,
                           fontFamily: "Poppins",
                         ),
                       ),
-                      SizedBox(height: heightPercent(20)),
+                      SizedBox(height: getMobileHeight(context, 20)),
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -72,7 +69,7 @@ class _SigninPageState extends State<SigninPage> {
                         hint: local.email,
                         controller: emailController,
                       ),
-                      SizedBox(height: heightPercent(16)),
+                      SizedBox(height: getMobileHeight(context, 16)),
                       MyTextField(
                         validator: (value) {
                           if (value!.isEmpty || value.length < 8) {
@@ -85,7 +82,7 @@ class _SigninPageState extends State<SigninPage> {
                         controller: passwordController,
                         isPass: true,
                       ),
-                      SizedBox(height: heightPercent(16)),
+                      SizedBox(height: getMobileHeight(context, 16)),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -103,13 +100,14 @@ class _SigninPageState extends State<SigninPage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: const Color(0xff001420),
-                              fontSize: widthPercent(14), // original 14.sp
+                              fontSize: getMobileFontSize(
+                                  context, 14), // original 14.sp
                               fontFamily: "Poppins",
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: heightPercent(16)),
+                      SizedBox(height: getMobileHeight(context, 16)),
                       LoginContainer(
                         title: local.login_text,
                         onTap: () {
@@ -125,7 +123,7 @@ class _SigninPageState extends State<SigninPage> {
                           }
                         },
                       ),
-                      SizedBox(height: heightPercent(20)),
+                      SizedBox(height: getMobileHeight(context, 20)),
                       TextContainer(
                         onTap: () {
                           Navigator.push(
@@ -138,7 +136,7 @@ class _SigninPageState extends State<SigninPage> {
                         leftText: local.signup_question,
                         rightText: local.signup_text,
                       ),
-                      SizedBox(height: heightPercent(30)),
+                      SizedBox(height: getMobileHeight(context, 30)),
                     ],
                   ),
                 ),
