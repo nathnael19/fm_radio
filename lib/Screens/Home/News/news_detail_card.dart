@@ -1,4 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/News/comment_bottom_sheet.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:ethio_fm_radio/Screens/constants/bottomsheettop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,7 @@ class NewsDetailCard extends StatefulWidget {
   final VoidCallback onMinimizeTapped;
   final VoidCallback onCommentTapped;
   final bool initialShowComments;
+  final List<Comment> commentsModel;
 
   const NewsDetailCard({
     super.key,
@@ -29,6 +31,7 @@ class NewsDetailCard extends StatefulWidget {
     required this.onCommentTapped,
     required this.onMinimizeTapped,
     this.initialShowComments = false,
+    required this.commentsModel,
   });
 
   @override
@@ -68,7 +71,7 @@ class _NewsDetailCardState extends State<NewsDetailCard> {
         final offset = _scrollController.offset +
             position.dy -
             scrollableBox.localToGlobal(Offset.zero).dy +
-            150;
+            100;
         _scrollController.animateTo(
           offset,
           duration: const Duration(milliseconds: 500),
@@ -152,9 +155,11 @@ class _NewsDetailCardState extends State<NewsDetailCard> {
                   SizedBox(height: 24.h),
                   Container(
                     key: _commentKey,
-                    child: CommentBottomSheet(onTap: () {
-                      _toggleComments(false);
-                    }),
+                    child: CommentBottomSheet(
+                        comments: widget.commentsModel,
+                        onTap: () {
+                          _toggleComments(false);
+                        }),
                   ),
                 ],
               ],

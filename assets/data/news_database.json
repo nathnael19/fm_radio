@@ -3,11 +3,11 @@
     "category": "Breaking News",
     "data": [
       {
+
         "channel": "Ethio FM",
-        "imageUrl": "assets/images/taa.jpg",
+        "imageUrl": "assets/images/taa.png",
         "date": "2025-08-05",
-        "title": "Government Launches New Policy",
-        
+        "title": "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
         "description": "The government has unveiled a comprehensive policy aimed at boosting local businesses and improving job creation across the country.",
         "meta": {
           "views": 1200,
@@ -42,7 +42,7 @@
       },
       {
         "channel": "Addis Report",
-        "imageUrl": "https://example.com/news2.jpg",
+        "imageUrl": "assets/images/gambela.png",
         "date": "2025-08-04",
         "title": "Opposition Leader Criticizes Budget",
         "description": "The opposition leader has expressed concern that the new budget does not adequately address inflation and education funding.",
@@ -67,7 +67,7 @@
     "data": [
       {
         "channel": "Goal Ethiopia",
-        "imageUrl": "https://example.com/sports1.jpg",
+        "imageUrl": "assets/images/gambela.png",
         "date": "2025-08-03",
         "title": "Ethiopia Wins in AFCON Qualifier",
         "description": "The national football team delivered an impressive performance against Kenya, keeping their hopes alive for AFCON qualification.",

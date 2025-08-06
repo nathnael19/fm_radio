@@ -1,6 +1,11 @@
+import 'package:ethio_fm_radio/Screens/Home/News/components/news_page_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_page.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -125,62 +130,108 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     }
   }
 
+  int numberOfDot = 0;
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-    return SingleChildScrollView(
-      controller: _scrollController,
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionHeader(local.breaking_news, key: _topNewsKey),
-          SizedBox(height: 16.h),
-          _buildHorizontalCards(),
-          SizedBox(
-            height: 5.h,
-          ),
-          Center(
-            child: SmoothPageIndicator(
-              controller: _horizontalPage,
-              count: 2,
-              effect: ExpandingDotsEffect(
-                  activeDotColor: Color(0xff80011F),
-                  expansionFactor: 2,
-                  dotWidth: 8.w,
-                  dotHeight: 8.h),
+    return BlocBuilder<NewsCubit, NewsState>(
+      builder: (context, state) {
+        if (state is NewsLoading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state is NewsLoaded) {
+          final breakingNews = state.category[0].data;
+          return SingleChildScrollView(
+            controller: _scrollController,
+            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSectionHeader(local.breaking_news, key: _topNewsKey),
+                SizedBox(height: 16.h),
+                SizedBox(
+                    height: getMobileHeight(context, 245),
+                    child: PageView.builder(
+                      controller: _horizontalPage,
+                      itemCount: breakingNews.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final news = breakingNews[index];
+                        final channel = news.channel;
+                        final title = news.title;
+                        final image = news.imageUrl;
+                        final description = news.description;
+                        final date = news.date;
+                        final comment = news.meta.comments;
+                        final like = news.meta.likes;
+                        final share = news.meta.shares;
+                        return NewsPageCard(
+                          onTap: () => _showBottomSheet(context,
+                              channel: channel,
+                              comments: comment,
+                              comment: comment.length,
+                              content: description,
+                              date: date,
+                              imageUrl: image,
+                              like: like,
+                              share: share,
+                              title: title),
+                          channel: channel,
+                          date: date,
+                          imageUrl: image,
+                          title: title,
+                        );
+                      },
+                    )),
+
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _horizontalPage,
+                    count: numberOfDot,
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  local.home_page_news_page_second_tab_bar,
+                  key: _sportKey,
+                ),
+                // SizedBox(height: 16.h),
+                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  local.home_page_news_page_third_tab_bar,
+                  key: _worldKey,
+                ),
+                // SizedBox(height: 16.h),
+                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  local.home_page_news_page_fourth_tab_bar,
+                  key: _businessKey,
+                ),
+                // SizedBox(height: 16.h),
+                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+                // SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  local.home_page_news_page_fifth_tab_bar,
+                  key: _otherKey,
+                ),
+                // SizedBox(height: 16.h),
+                // Column(children: [_buildSmallCards(), _buildSmallCards()]),
+              ],
             ),
-          ),
-          SizedBox(height: 24.h),
-          _buildSectionHeader(
-            local.home_page_news_page_second_tab_bar,
-            key: _sportKey,
-          ),
-          SizedBox(height: 16.h),
-          Column(children: [_buildSmallCards(), _buildSmallCards()]),
-          SizedBox(height: 24.h),
-          _buildSectionHeader(
-            local.home_page_news_page_third_tab_bar,
-            key: _worldKey,
-          ),
-          SizedBox(height: 16.h),
-          Column(children: [_buildSmallCards(), _buildSmallCards()]),
-          SizedBox(height: 24.h),
-          _buildSectionHeader(
-            local.home_page_news_page_fourth_tab_bar,
-            key: _businessKey,
-          ),
-          SizedBox(height: 16.h),
-          Column(children: [_buildSmallCards(), _buildSmallCards()]),
-          SizedBox(height: 24.h),
-          _buildSectionHeader(
-            local.home_page_news_page_fifth_tab_bar,
-            key: _otherKey,
-          ),
-          SizedBox(height: 16.h),
-          Column(children: [_buildSmallCards(), _buildSmallCards()]),
-        ],
-      ),
+          );
+        }
+        return SizedBox.shrink();
+      },
     );
   }
 
@@ -208,7 +259,18 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(
+    BuildContext context, {
+    required String date,
+    required String channel,
+    required String imageUrl,
+    required String title,
+    required String content,
+    required int like,
+    required comment,
+    required int share,
+    required List<Comment> comments,
+  }) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -218,84 +280,17 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
       backgroundColor: Colors.white,
       builder: (context) {
         return NewsDetailPage(
-          date: '',
-          channel: '',
-          imageUrl: '',
-          title: '',
-          content: '',
-          likeNum: 1,
-          commentNum: 2,
-          shareNum: 5,
+          date: date,
+          channel: channel,
+          imageUrl: imageUrl,
+          title: title,
+          content: content,
+          likeNum: like,
+          commentNum: comment,
+          shareNum: share,
+          comments: comments,
         );
       },
-    );
-  }
-
-  Widget _buildHorizontalCards() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 242.h,
-          child: PageView.builder(
-            controller: _horizontalPage,
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => _showBottomSheet(context),
-                child: Container(
-                  width: 1.sw,
-                  height: 242.h,
-                  margin: EdgeInsets.only(right: 2.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    border:
-                        Border.all(color: const Color(0xffEDE4E6), width: 1),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/images/gambela.png",
-                        fit: BoxFit.fitWidth,
-                        height: 150.h,
-                        width: 350.w,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 8.w,
-                          vertical: 5.h,
-                        ),
-                        child: Text(
-                          "የፕርሚየር ሊግ የወሩ ምርጥ ተጨዋቾች እና ምርጥ አሰልጣኞች እጩዎች ይፋ ሆኑ!",
-                          style: GoogleFonts.notoSansEthiopic(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 8.w),
-                        child: Row(
-                          children: [
-                            const Text("2 hr ago"),
-                            SizedBox(width: 10.w),
-                            Icon(Icons.rectangle,
-                                size: 10.r, color: Colors.grey),
-                            SizedBox(width: 5.w),
-                            const Text("Ethio FM"),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
     );
   }
 

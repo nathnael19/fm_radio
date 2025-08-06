@@ -89,6 +89,7 @@ class SideContainer extends StatelessWidget {
                     child: Column(
                       children: [
                         CommentBottomSheet(
+                          comments: [],
                           onTap: () {
                             Navigator.pop(context);
                           },

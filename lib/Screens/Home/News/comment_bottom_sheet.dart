@@ -1,10 +1,13 @@
 import 'package:ethio_fm_radio/Screens/Home/News/comment_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommentBottomSheet extends StatefulWidget {
   final VoidCallback onTap;
-  const CommentBottomSheet({super.key, required this.onTap});
+  final List<Comment> comments;
+  const CommentBottomSheet(
+      {super.key, required this.onTap, required this.comments});
 
   @override
   State<CommentBottomSheet> createState() => _CommentBottomSheetState();
@@ -36,7 +39,6 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                 ),
                 IconButton(
                   onPressed: widget.onTap,
-                  // icon: Icon(Icons.unfold_more_outlined),
                   icon: Icon(Icons.close_fullscreen_outlined),
                 ),
               ],
@@ -51,17 +53,17 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
             child: ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount: widget.comments.length,
               itemBuilder: (context, index) {
+                final comment = widget.comments[index];
                 return Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: CommentCard(
                     onReplyTap: () {},
-                    username: "@someone",
-                    time: "2hr ago",
-                    content:
-                        "Lorem ipsum dolor sit amet consectetur. Ultricies mauris blandit laoreet malesuada.",
-                    number: 400,
+                    username: comment.username,
+                    time: comment.timestamp,
+                    content: comment.comment,
+                    number: 50,
                     onTap: () {},
                     onMoreTap: () {},
                   ),
