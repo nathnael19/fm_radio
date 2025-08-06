@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/main/my_page_view.dart';
 import 'package:ethio_fm_radio/cubit/language/language_cubit.dart';
 import 'package:ethio_fm_radio/Screens/main/first_time.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: locale,
-              home: const FirstTime(),
+              home: const MyPageView(),
             );
           },
         );

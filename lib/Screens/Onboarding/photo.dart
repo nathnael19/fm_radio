@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
 
 class MyPhoto extends StatelessWidget {
@@ -10,9 +11,9 @@ class MyPhoto extends StatelessWidget {
       width: double.infinity,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(getMobileFontSize(context, 30)),
+          bottomRight: Radius.circular(getMobileFontSize(context, 30)),
         ),
         image: const DecorationImage(
           fit: BoxFit.cover,
@@ -20,7 +21,8 @@ class MyPhoto extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Image.asset("assets/images/backover.png", width: 150),
+        child: Image.asset("assets/images/backover.png",
+            width: getMobileWidth(context, 150)),
       ),
     );
   }

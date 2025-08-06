@@ -38,38 +38,38 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
                 return NewsCard(
                   onTap: () {
                     showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20)),
-                        ),
-                        backgroundColor: Colors.white,
-                        builder: (context) {
-                          return FractionallySizedBox(
-                              heightFactor: 0.8,
-                              child: Padding(
-                                padding: EdgeInsets.all(16.0.r),
-                                child: NewsDetailCard(
-                                    commentsModel: [],
-                                    // showComments: isVisible,
-                                    onMinimizeTapped: () {
-                                      setState(() {
-                                        isVisible = false;
-                                      });
-                                    },
-                                    onCommentTapped: () {
-                                      setState(() {
-                                        isVisible = true;
-                                      });
-                                    },
-                                    date: "2hr ago",
-                                    channel: "Ethio FM",
-                                    imageUrl: "assets/images/taa.png",
-                                    title:
-                                        "በጋምቤላ ክልል በግንባታ ማእድን ላይ የተጋነነ የዋጋ ጭማሪ እየታየ ነዉ ተባለ ።",
-                                    subtitle:
-                                        """የግንባታ ማእድናቱን የዋጋ ተመን ማስተካከያ እየተደረገበት መሆኑንም ሰምተናል።
+                      context: context,
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20)),
+                      ),
+                      backgroundColor: Colors.white,
+                      builder: (context) {
+                        return FractionallySizedBox(
+                            heightFactor: 0.8,
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0.r),
+                              child: NewsDetailCard(
+                                  commentsModel: [],
+                                  // showComments: isVisible,
+                                  onMinimizeTapped: () {
+                                    setState(() {
+                                      isVisible = false;
+                                    });
+                                  },
+                                  onCommentTapped: () {
+                                    setState(() {
+                                      isVisible = true;
+                                    });
+                                  },
+                                  date: "2hr ago",
+                                  channel: "Ethio FM",
+                                  imageUrl: "assets/images/taa.png",
+                                  title:
+                                      "በጋምቤላ ክልል በግንባታ ማእድን ላይ የተጋነነ የዋጋ ጭማሪ እየታየ ነዉ ተባለ ።",
+                                  subtitle:
+                                      """የግንባታ ማእድናቱን የዋጋ ተመን ማስተካከያ እየተደረገበት መሆኑንም ሰምተናል።
   ከ2015 አመት ጀምሮ በጋምቤላ ክልል ሁሉም ወረዳዎች ላይ የግንባታ ማእድናት ከፍተኛ ዋጋ እየተጠየቀባቸዉ ነዉ ተብሏል።
   
   ለዋጋ ጭማሪዉ ምክንያት ሆኗል የተባለዉ የነዳጅ ዋጋ መጨመር እንደሆነ የክልሉ የማእድን ሀብት ልማት ቢሮ ገልፆል።
@@ -82,11 +82,12 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
   
   ቁምነገር አየለ
   ሚያዚያ 7 ቀን 2017 ዓ.ም""",
-                                    likes: 400,
-                                    comments: 35,
-                                    shares: 5),
-                              ));
-                        });
+                                  likes: 400,
+                                  comments: 35,
+                                  shares: 5),
+                            ));
+                      },
+                    );
                   },
                   date: "Apr 2, 2025",
                   channel: "Ethio FM",

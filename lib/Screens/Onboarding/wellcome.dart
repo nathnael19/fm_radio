@@ -1,15 +1,16 @@
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
+import 'package:ethio_fm_radio/Screens/constants/app_color.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/cubit/first_time/first_time_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class BoardingWidget extends StatefulWidget {
+class BoardingWidget extends StatelessWidget {
   final String imagePath;
-  final String circleBack; // Your circular background image path
+  final String circleBack;
   final String title;
   final String subtitle;
   final String description;
@@ -30,18 +31,9 @@ class BoardingWidget extends StatefulWidget {
   });
 
   @override
-  State<BoardingWidget> createState() => _BoardingWidgetState();
-}
-
-void saveChanges() async {
-  final prefs = await SharedPreferences.getInstance();
-  prefs.setBool("firstTime", true);
-}
-
-class _BoardingWidgetState extends State<BoardingWidget> {
-  @override
   Widget build(BuildContext context) {
     final firstTimeCubit = BlocProvider.of<FirstTimeCubit>(context);
+    final appColor = AppColor();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -49,7 +41,9 @@ class _BoardingWidgetState extends State<BoardingWidget> {
           children: [
             // Skip Button
             Container(
-              margin: EdgeInsets.only(top: 10.h, right: 20.w),
+              margin: EdgeInsets.only(
+                  top: getMobileHeight(context, 10),
+                  right: getMobileWidth(context, 20)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -66,8 +60,8 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                     child: Text(
                       "Skip",
                       style: TextStyle(
-                        color: Color(0xff1A0101),
-                        fontSize: 20.sp,
+                        color: appColor.titleTextColor,
+                        fontSize: getMobileFontSize(context, 20),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -81,54 +75,54 @@ class _BoardingWidgetState extends State<BoardingWidget> {
               children: [
                 // Circle Background
                 Transform.rotate(
-                  angle: widget
-                      .angle, // Rotation angle in radians (e.g., 0.5 = ~28 degrees)
+                  angle:
+                      angle, // Rotation angle in radians (e.g., 0.5 = ~28 degrees)
                   child: SvgPicture.asset(
-                    widget.circleBack, // circular shape image
-                    width: 300.w,
-                    height: 220.h,
+                    circleBack, // circular shape image
+                    width: getMobileWidth(context, 300),
+                    height: getMobileHeight(context, 220),
                     fit: BoxFit.contain,
                   ),
                 ),
 
                 // Main Illustration
                 Image.asset(
-                  widget.imagePath,
-                  width: 390,
-                  height: 350.h,
+                  imagePath,
+                  width: getMobileWidth(context, 390),
+                  height: getMobileHeight(context, 350),
                   fit: BoxFit.contain,
                 ),
               ],
             ),
             // Title, Subtitle, and Description
             Container(
-              width: 344,
-              margin: EdgeInsets.only(top: 44.h),
+              width: getMobileWidth(context, 344),
+              margin: EdgeInsets.only(top: getMobileHeight(context, 44)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.title,
+                    title,
                     style: TextStyle(
-                      color: Color(0xff1A0101),
-                      fontSize: 36.sp,
+                      color: appColor.titleTextColor,
+                      fontSize: getMobileFontSize(context, 36),
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
-                    widget.subtitle,
+                    subtitle,
                     style: TextStyle(
                       color: Color(0xff80011F),
-                      fontSize: 32.sp,
+                      fontSize: getMobileFontSize(context, 32),
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  SizedBox(height: 32.h),
+                  SizedBox(height: getMobileHeight(context, 32)),
                   Text(
-                    widget.description,
+                    description,
                     style: TextStyle(
-                      color: Color(0xff1A0101),
-                      fontSize: 20.sp,
+                      color: appColor.titleTextColor,
+                      fontSize: getMobileFontSize(context, 20),
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -137,23 +131,25 @@ class _BoardingWidgetState extends State<BoardingWidget> {
             ),
             // Bottom Section: Indicator and Next Button
             Container(
-              margin: EdgeInsets.only(top: 45.h, left: 20.w),
-              width: 440.w,
+              margin: EdgeInsets.only(
+                  top: getMobileHeight(context, 45),
+                  left: getMobileWidth(context, 20)),
+              width: getMobileWidth(context, 440),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothPageIndicator(
-                    controller: widget.pageController,
+                    controller: pageController,
                     count: 3,
                     effect: WormEffect(
                       activeDotColor: Color(0xff80011F),
-                      dotHeight: 14.h,
-                      dotWidth: 14.w,
+                      dotHeight: getMobileHeight(context, 14),
+                      dotWidth: getMobileWidth(context, 14),
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      if (widget.isLastPage) {
+                      if (isLastPage) {
                         // Go to SigninPage
                         firstTimeCubit.completeOnBoarding();
                         Navigator.pushReplacement(
@@ -164,27 +160,29 @@ class _BoardingWidgetState extends State<BoardingWidget> {
                         );
                       } else {
                         // Go to next onboarding page
-                        widget.pageController.nextPage(
+                        pageController.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut,
                         );
                       }
                     },
                     child: Container(
-                      width: 170.w,
-                      height: 76.h,
+                      width: getMobileWidth(context, 170),
+                      height: getMobileHeight(context, 76),
                       decoration: BoxDecoration(
                         color: Color(0xff80011F),
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(54.r),
-                          bottomLeft: Radius.circular(54.r),
+                          topLeft:
+                              Radius.circular(getMobileFontSize(context, 50)),
+                          bottomLeft:
+                              Radius.circular(getMobileFontSize(context, 50)),
                         ),
                       ),
                       child: Center(
                         child: Icon(
                           Icons.arrow_forward,
                           color: Colors.white,
-                          size: 24.r,
+                          size: getMobileFontSize(context, 24),
                         ),
                       ),
                     ),
@@ -197,4 +195,9 @@ class _BoardingWidgetState extends State<BoardingWidget> {
       ),
     );
   }
+}
+
+void saveChanges() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setBool("firstTime", true);
 }
