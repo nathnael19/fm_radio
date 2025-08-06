@@ -4,7 +4,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
-import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

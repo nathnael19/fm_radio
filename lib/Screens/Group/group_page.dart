@@ -1,7 +1,7 @@
 import 'package:ethio_fm_radio/Databases/group_page_database.dart';
 import 'package:ethio_fm_radio/Screens/Group/explore_group_chat.dart';
 import 'package:ethio_fm_radio/Screens/Group/my_group_chat.dart';
-import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 

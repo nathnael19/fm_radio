@@ -1,5 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
-import 'package:ethio_fm_radio/my_app.dart';
+import 'package:ethio_fm_radio/Screens/main/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';

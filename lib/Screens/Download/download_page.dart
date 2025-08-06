@@ -1,5 +1,5 @@
 import 'package:ethio_fm_radio/Screens/Download/components/list_of_downloads.dart';
-import 'package:ethio_fm_radio/bottom_navigation.dart';
+import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

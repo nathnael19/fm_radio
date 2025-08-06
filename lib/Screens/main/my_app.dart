@@ -1,5 +1,5 @@
 import 'package:ethio_fm_radio/cubit/language/language_cubit.dart';
-import 'package:ethio_fm_radio/first_time.dart';
+import 'package:ethio_fm_radio/Screens/main/first_time.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:ethio_fm_radio/theme/theme_data.dart';
 import 'package:flutter/material.dart';
