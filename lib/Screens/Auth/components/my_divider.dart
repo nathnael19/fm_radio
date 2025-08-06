@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyDivider extends StatelessWidget {
           style: TextStyle(
             color: Colors.blueGrey,
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: getMobileFontSize(context, 16),
           ),
         ),
         const Expanded(

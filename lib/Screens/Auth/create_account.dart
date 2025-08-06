@@ -4,12 +4,13 @@ import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/Screens/constants/app_color.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreactAccountPage extends StatefulWidget {
   const CreactAccountPage({super.key});
@@ -32,6 +33,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
     final loginCubit = BlocProvider.of<LoginCubit>(context);
+    final appColor = AppColor();
 
     final String fullnameError = local.form_name_error;
     final String emailError = local.form_email_error;
@@ -45,10 +47,11 @@ class _SignUpPageState extends State<CreactAccountPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Top background image
-              MyPhoto(height: 191.h),
-              SizedBox(height: 27.h),
+              MyPhoto(height: getMobileHeight(context, 191)),
+              SizedBox(height: getMobileHeight(context, 27)),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getMobileWidth(context, 16)),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -58,14 +61,14 @@ class _SignUpPageState extends State<CreactAccountPage> {
                       Text(
                         local.signup_page_title,
                         style: TextStyle(
-                          color: Color(0xff1A0101),
-                          fontSize: 36.sp,
+                          color: appColor.titleTextColor,
+                          fontSize: getMobileFontSize(context, 36),
                           fontWeight: FontWeight.w700,
                           fontFamily: "Poppins",
                         ),
                       ),
 
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       //Full Name
                       MyTextField(
@@ -80,7 +83,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           hint: local.full_name,
                           controller: nameController),
 
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       // Email
                       MyTextField(
@@ -96,7 +99,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           hint: local.email,
                           controller: emailController),
 
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       //Phone Number
                       MyTextField(
@@ -112,7 +115,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                         hint: local.phone_number,
                         controller: phoneController,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 //pass
                       MyTextField(
                         validator: (value) {
@@ -126,7 +129,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                         controller: passwordController,
                       ),
 
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 //confirm pass
                       MyTextField(
                         validator: (value) {
@@ -139,7 +142,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                         hint: local.confirm_pass,
                         controller: confirmPasswordController,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: getMobileHeight(context, 16)),
 
                       LoginContainer(
                         title: local.create_acc,
@@ -163,10 +166,11 @@ class _SignUpPageState extends State<CreactAccountPage> {
                         },
                       ),
                       // Account Button
-                      const SizedBox(height: 20),
+                      SizedBox(height: getMobileHeight(context, 20)),
 
                       MyDivider(),
 
+                      SizedBox(height: getMobileHeight(context, 7)),
                       // Already have account link
                       TextContainer(
                         onTap: () {
@@ -184,7 +188,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: getMobileHeight(context, 30)),
             ],
           ),
         ),

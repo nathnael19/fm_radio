@@ -1,5 +1,5 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextContainer extends StatelessWidget {
   final VoidCallback onTap;
@@ -21,7 +21,7 @@ class TextContainer extends StatelessWidget {
           "$leftText ",
           style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: 16.sp,
+            fontSize: getMobileFontSize(context, 16),
             color: Color(0xff001420),
           ),
         ),
@@ -32,7 +32,7 @@ class TextContainer extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               color: Color(0xff80011F),
-              fontSize: 16,
+              fontSize: getMobileFontSize(context, 16),
               decorationColor: Color(0xff80011F),
               decorationThickness: 2,
               decoration: TextDecoration.underline,

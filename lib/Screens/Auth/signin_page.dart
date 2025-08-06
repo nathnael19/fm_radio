@@ -4,6 +4,7 @@ import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
 import 'package:ethio_fm_radio/Screens/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
+import 'package:ethio_fm_radio/Screens/constants/app_color.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
 import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
@@ -27,6 +28,7 @@ class _SigninPageState extends State<SigninPage> {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
     final loginCubit = BlocProvider.of<LoginCubit>(context);
+    final appColor = AppColor();
 
     return SafeArea(
       child: Scaffold(
@@ -48,7 +50,7 @@ class _SigninPageState extends State<SigninPage> {
                       Text(
                         local.login_page_title,
                         style: TextStyle(
-                          color: const Color(0xff1A0101),
+                          color: appColor.titleTextColor,
                           fontSize:
                               getMobileFontSize(context, 36), // original 36.sp
                           fontWeight: FontWeight.w700,

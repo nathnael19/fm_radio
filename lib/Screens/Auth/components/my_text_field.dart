@@ -1,6 +1,6 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyTextField extends StatelessWidget {
   final String hint;
@@ -25,7 +25,7 @@ class MyTextField extends StatelessWidget {
           hint,
           style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: 12.sp,
+            fontSize: getMobileFontSize(context, 12),
             fontFamily: "Poppins",
             color: Color(0xff648CA3),
           ),
@@ -39,7 +39,7 @@ class MyTextField extends StatelessWidget {
             border: UnderlineInputBorder(),
             hintStyle: TextStyle(
               fontWeight: FontWeight.w400,
-              fontSize: 11.sp,
+              fontSize: getMobileFontSize(context, 11),
               fontFamily: "Poppins",
               color: Color(0xff648CA3),
             ),
