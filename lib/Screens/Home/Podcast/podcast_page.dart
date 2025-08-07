@@ -74,7 +74,7 @@ class PodcastPage extends StatelessWidget {
     required String buttonText,
   }) {
     final audioCubit = context.read<AudioCubit>();
-    final isPlayingSameAudio = audioCubit.state.url == pathToPlay;
+    final isPlayingSameAudio = audioCubit.state.errorMessage == pathToPlay;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
@@ -85,11 +85,7 @@ class PodcastPage extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (!isPlayingSameAudio) {
-                audioCubit.play(
-                  url: pathToPlay,
-                  title: title,
-                  imageUrl: imageAsset,
-                );
+                audioCubit.play();
               }
 
               Navigator.push(
@@ -136,16 +132,12 @@ class PodcastPage extends StatelessWidget {
         final path = paths[(index + pathOffset) % paths.length];
 
         final audioCubit = context.read<AudioCubit>();
-        final isPlayingSameAudio = audioCubit.state.url == path;
+        final isPlayingSameAudio = audioCubit.state.errorMessage == path;
 
         return GestureDetector(
           onTap: () {
             if (!isPlayingSameAudio) {
-              audioCubit.play(
-                url: path,
-                title: title,
-                imageUrl: imageUrl,
-              );
+              audioCubit.play();
             }
 
             Navigator.push(

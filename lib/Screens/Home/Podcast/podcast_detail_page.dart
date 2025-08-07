@@ -30,7 +30,7 @@ class PodcastDetailPage extends StatelessWidget {
       ),
       body: BlocBuilder<AudioCubit, AudioState>(
         builder: (context, state) {
-          final isSameAudio = state.url == audioUrl;
+          final isSameAudio = state.errorMessage == audioUrl;
           final position = isSameAudio ? state.position : Duration.zero;
           final duration = isSameAudio ? state.duration : Duration.zero;
 
@@ -163,7 +163,7 @@ class PodcastDetailPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              context.read<AudioCubit>().togglePlayPause();
+              context.read<AudioCubit>().play();
             },
           ),
           IconButton(
