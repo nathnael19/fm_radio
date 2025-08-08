@@ -1,7 +1,7 @@
 import 'package:ethio_fm_radio/Screens/Home/Live/components/today_card.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LivePlayButtons extends StatelessWidget {
   const LivePlayButtons({super.key});
@@ -13,40 +13,45 @@ class LivePlayButtons extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.play_circle, size: 56.r, color: Color(0xffFEF9F9)),
+          icon: Icon(Icons.play_circle,
+              size: getMobileFontSize(context, 52), color: Color(0xffFEF9F9)),
         ),
-        SizedBox(width: 3.w),
+        SizedBox(width: getMobileWidth(context, 3)),
         IconButton(
           onPressed: () {},
           icon: Icon(
             Icons.notifications_none,
-            size: 24.r,
+            size: getMobileFontSize(context, 24),
             color: Color(0xffFEF9F9),
           ),
         ),
-        SizedBox(width: 3.w),
+        SizedBox(width: getMobileWidth(context, 3)),
         IconButton(
           onPressed: () {
             _showBottomSheet(context);
           },
           icon: Icon(
             Icons.calendar_month_outlined,
-            size: 24.r,
+            size: getMobileFontSize(context, 24),
             color: Color(0xffFEF9F9),
           ),
         ),
-        SizedBox(width: 3.w),
+        SizedBox(width: getMobileWidth(context, 3)),
         Container(
           decoration: BoxDecoration(
             color: Color(0xffEDE4E6),
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(getMobileFontSize(context, 8)),
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+              padding: EdgeInsets.symmetric(
+                  vertical: getMobileHeight(context, 8),
+                  horizontal: getMobileWidth(context, 10)),
               child: Text(
                 local.tip_creator_text,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: getMobileFontSize(context, 12),
+                    fontWeight: FontWeight.w400),
               ),
             ),
           ),
@@ -59,15 +64,16 @@ class LivePlayButtons extends StatelessWidget {
 void _showBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+          top: Radius.circular(getMobileFontSize(context, 20))),
     ),
     backgroundColor: Colors.white,
     builder: (context) {
       return SizedBox(
-        height: 350.h,
+        height: getMobileHeight(context, 350),
         child: Padding(
-          padding: EdgeInsets.all(5.0.r),
+          padding: EdgeInsets.all(getMobileFontSize(context, 5)),
           child: Column(
             children: [
               // Drag Handle & Cancel Button
@@ -77,12 +83,15 @@ void _showBottomSheet(BuildContext context) {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: 60.w,
-                      height: 5.h,
-                      margin: EdgeInsets.only(top: 8.h, bottom: 12.h),
+                      width: getMobileWidth(context, 60),
+                      height: getMobileHeight(context, 5),
+                      margin: EdgeInsets.only(
+                          top: getMobileWidth(context, 8),
+                          bottom: getMobileWidth(context, 12)),
                       decoration: BoxDecoration(
                         color: Colors.grey[400],
-                        borderRadius: BorderRadius.circular(10.r),
+                        borderRadius: BorderRadius.circular(
+                            getMobileFontSize(context, 10)),
                       ),
                     ),
                   ),
@@ -102,18 +111,19 @@ void _showBottomSheet(BuildContext context) {
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getMobileWidth(context, 8)),
                   child: Text(
                     "የዚህ ፕሮግራሞ ቀን", // Title text
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: getMobileFontSize(context, 16),
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: getMobileHeight(context, 10)),
 
               // Content goes here
               TodayCard(
@@ -130,7 +140,7 @@ void _showBottomSheet(BuildContext context) {
                 icon: Icons.notifications,
                 onTap: () {},
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: getMobileHeight(context, 5)),
             ],
           ),
         ),

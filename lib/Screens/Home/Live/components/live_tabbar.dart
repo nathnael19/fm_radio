@@ -2,9 +2,9 @@ import 'package:ethio_fm_radio/Screens/Home/Live/components/currency_list_cards.
 import 'package:ethio_fm_radio/Screens/Home/Live/components/recent_list_cards.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/todays_list_cards.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/whether_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LiveTabBars extends StatefulWidget {
   const LiveTabBars({
@@ -41,15 +41,17 @@ class _MytTabBarState extends State<LiveTabBars> {
         children: [
           // Button TabBar
           Container(
-            margin: EdgeInsets.symmetric(vertical: 14.h),
-            height: 27.h,
+            margin:
+                EdgeInsets.symmetric(vertical: getMobileHeight(context, 14)),
+            height: getMobileHeight(context, 27),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: tabTitles.length,
               itemBuilder: (context, index) {
                 final isSelected = selectedIndex == index;
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 6.w),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: getMobileWidth(context, 6)),
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -63,17 +65,18 @@ class _MytTabBarState extends State<LiveTabBars> {
                       foregroundColor:
                           isSelected ? Colors.white : Color(0xff1A0101),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(
+                            getMobileFontSize(context, 8)),
                       ),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 10.w,
-                        vertical: 4.h,
+                        horizontal: getMobileWidth(context, 10),
+                        vertical: getMobileHeight(context, 4),
                       ),
                     ),
                     child: Text(
                       tabTitles[index],
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: getMobileFontSize(context, 14),
                         fontWeight: FontWeight.w600,
                       ),
                     ),

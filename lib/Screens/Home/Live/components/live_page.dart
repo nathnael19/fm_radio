@@ -2,8 +2,8 @@ import 'package:ethio_fm_radio/Databases/live_database.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/live_play_buttons.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/live_tabbar.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/side_contaier.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LivePage extends StatelessWidget {
   const LivePage({super.key});
@@ -13,8 +13,8 @@ class LivePage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 390.w,
-          height: 330.h,
+          width: getMobileWidth(context, 390),
+          height: getMobileHeight(context, 330),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -22,19 +22,18 @@ class LivePage extends StatelessWidget {
               colors: [Color(0xff80011F), Color(0xff4A0000)],
             ),
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40.r),
-              bottomRight: Radius.circular(40.r),
+              bottomLeft: Radius.circular(getMobileWidth(context, 40)),
+              bottomRight: Radius.circular(getMobileWidth(context, 40)),
             ),
           ),
           child: Container(
             margin: EdgeInsets.only(
-              left: 20.w,
-              right: 20.w,
-              bottom: 9.h,
-              top: 12.h,
+              left: getMobileWidth(context, 20),
+              right: getMobileWidth(context, 20),
+              top: getMobileHeight(context, 10),
             ),
-            height: 288.h,
-            width: 344.w,
+            height: getMobileHeight(context, 288),
+            width: getMobileWidth(context, 344),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [LeftContainer(), SideContainer()],
@@ -61,31 +60,33 @@ class LeftContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 256.h,
-      width: 272.w,
-      margin: EdgeInsets.only(right: 16.w, top: 10.h),
+      height: getMobileHeight(context, 256),
+      width: getMobileWidth(context, 272),
+      margin: EdgeInsets.only(
+          right: getMobileWidth(context, 16),
+          top: getMobileHeight(context, 10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 50.r,
+            radius: getMobileFontSize(context, 40),
             backgroundImage: AssetImage("assets/images/girl.png"),
           ),
-          SizedBox(height: 6.h),
+          SizedBox(height: getMobileHeight(context, 6)),
           Text(
             "ታዲያስ አዲስ",
             style: TextStyle(
               fontWeight: FontWeight.w600,
               color: Colors.white,
-              fontSize: 14.sp,
+              fontSize: getMobileFontSize(context, 14),
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: getMobileHeight(context, 8)),
           Image.asset(
             "assets/images/soundwave.png",
-            width: 123.w,
-            height: 42.h,
+            width: getMobileWidth(context, 123),
+            height: getMobileHeight(context, 42),
           ),
           LivePlayButtons(),
         ],

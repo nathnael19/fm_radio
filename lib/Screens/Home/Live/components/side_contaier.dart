@@ -1,5 +1,6 @@
 import 'package:ethio_fm_radio/Screens/Home/News/comment_bottom_sheet.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/side_container_icons.dart';
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
 
 class SideContainer extends StatelessWidget {
@@ -7,22 +8,16 @@ class SideContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    double heightPercent(double h) => h * screenHeight / 844;
-    double widthPercent(double w) => w * screenWidth / 390;
-
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: widthPercent(5),
-        vertical: heightPercent(2),
+        horizontal: getMobileWidth(context, 5),
+        vertical: getMobileHeight(context, 1),
       ),
-      width: widthPercent(56),
-      height: heightPercent(256),
+      width: getMobileWidth(context, 56),
+      height: getMobileHeight(context, 270),
       decoration: BoxDecoration(
         color: Colors.black54,
-        borderRadius: BorderRadius.circular(widthPercent(55)),
+        borderRadius: BorderRadius.circular(getMobileFontSize(context, 50)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -36,7 +31,7 @@ class SideContainer extends StatelessWidget {
             icon: Icons.messenger_outline,
             number: 400,
             onTap: () {
-              _showBottomSheet(context, widthPercent, heightPercent);
+              _showBottomSheet(context);
             },
           ),
           SideContainerIcon(icon: Icons.send, number: 400, onTap: () {}),
@@ -50,16 +45,13 @@ class SideContainer extends StatelessWidget {
     );
   }
 
-  void _showBottomSheet(
-    BuildContext context,
-    double Function(double) wp,
-    double Function(double) hp,
-  ) {
+  void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(getMobileFontSize(context, 20))),
       ),
       builder: (context) {
         return FractionallySizedBox(
@@ -72,15 +64,16 @@ class SideContainer extends StatelessWidget {
               children: [
                 // Drag handle
                 Container(
-                  width: wp(60),
-                  height: hp(5),
+                  width: getMobileWidth(context, 60),
+                  height: getMobileWidth(context, 5),
                   margin: EdgeInsets.only(
-                    top: hp(8),
-                    bottom: hp(12),
+                    top: getMobileHeight(context, 8),
+                    bottom: getMobileHeight(context, 10),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey[400],
-                    borderRadius: BorderRadius.circular(wp(10)),
+                    borderRadius:
+                        BorderRadius.circular(getMobileWidth(context, 10)),
                   ),
                 ),
                 // Comments section
@@ -101,8 +94,8 @@ class SideContainer extends StatelessWidget {
                 // Input area
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: wp(12),
-                    vertical: hp(8),
+                    horizontal: getMobileWidth(context, 12),
+                    vertical: getMobileHeight(context, 8),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey[100],
@@ -117,19 +110,20 @@ class SideContainer extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Write a comment...",
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(wp(20)),
+                              borderRadius: BorderRadius.circular(
+                                  getMobileFontSize(context, 20)),
                               borderSide: BorderSide.none,
                             ),
                             fillColor: Colors.white,
                             filled: true,
                             contentPadding: EdgeInsets.symmetric(
-                              horizontal: wp(16),
-                              vertical: hp(10),
+                              horizontal: getMobileWidth(context, 16),
+                              vertical: getMobileHeight(context, 10),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: wp(8)),
+                      SizedBox(width: getMobileWidth(context, 8)),
                       IconButton(
                         icon: const Icon(Icons.send, color: Colors.blueAccent),
                         onPressed: () {},

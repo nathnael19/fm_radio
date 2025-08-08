@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,11 +22,14 @@ class OverlayPlay extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             opacity: 1.0,
             child: Container(
-              margin: const EdgeInsets.all(12),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin: EdgeInsets.all(getMobileFontSize(context, 8)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getMobileWidth(context, 16),
+                  vertical: getMobileHeight(context, 7)),
               decoration: BoxDecoration(
-                color: const Color(0xff1A0101),
-                borderRadius: BorderRadius.circular(16),
+                color: Color(0xff1A0101),
+                borderRadius:
+                    BorderRadius.circular(getMobileFontSize(context, 14)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.3),
@@ -37,11 +41,13 @@ class OverlayPlay extends StatelessWidget {
               child: Row(
                 children: [
                   const Icon(Icons.music_note, color: Colors.white70),
-                  const SizedBox(width: 12),
+                  SizedBox(width: getMobileWidth(context, 12)),
                   Expanded(
                     child: Text(
                       state.isPlaying.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: getMobileFontSize(context, 14)),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -49,7 +55,7 @@ class OverlayPlay extends StatelessWidget {
                     icon: Icon(
                       state.isPlaying ? Icons.pause : Icons.play_arrow,
                       color: Colors.white,
-                      size: 24,
+                      size: getMobileFontSize(context, 24),
                     ),
                     onPressed: () {
                       state.isPlaying ? audioCubit.pause() : audioCubit.play();

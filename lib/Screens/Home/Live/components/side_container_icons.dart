@@ -21,7 +21,7 @@ class SideContainerIcon extends StatelessWidget {
           onPressed: onTap,
           icon: Icon(
             icon,
-            size: getMobileFontSize(context, 24),
+            size: getMobileFontSize(context, 20),
             color: Colors.white,
           ),
         ),
