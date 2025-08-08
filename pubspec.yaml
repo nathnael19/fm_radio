@@ -32,6 +32,7 @@ dependencies:
   permission_handler: ^12.0.1
   flutter_svg: ^2.0.7
   equatable: ^2.0.7
+  liquid_pull_to_refresh: ^3.0.1
 
 dev_dependencies:
   flutter_test:
