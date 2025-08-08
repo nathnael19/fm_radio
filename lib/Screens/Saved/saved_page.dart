@@ -36,9 +36,14 @@ class SavedPage extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (contex) => SavedPageNewsCard()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (contex) => SavedPageNewsCard(
+                          title: AppLocalizations.of(context)!.saved_page_title,
+                          index: 0,
+                        ),
+                      ),
+                    );
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
