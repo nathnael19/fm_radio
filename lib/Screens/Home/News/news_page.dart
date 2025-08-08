@@ -4,6 +4,7 @@ import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/data_model.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_page.dart';
+import 'package:ethio_fm_radio/Screens/Saved/saved_page_news_card.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -156,7 +157,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildSectionHeader(local.breaking_news, key: _topNewsKey),
+                _buildSectionHeader(local.breaking_news,
+                    key: _topNewsKey, index: 0),
                 SizedBox(height: 16.h),
                 breakingNewsCard(context, breakingNews),
                 SizedBox(
@@ -176,10 +178,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
                 ///Sport News
                 SizedBox(height: 24.h),
-                _buildSectionHeader(
-                  local.home_page_news_page_second_tab_bar,
-                  key: _sportKey,
-                ),
+                _buildSectionHeader(local.home_page_news_page_second_tab_bar,
+                    key: _sportKey, index: 1),
                 SizedBox(height: 16.h),
                 smallCardNews(context, sportNews, _sportPage),
                 SizedBox(
@@ -199,10 +199,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
                 //Foreign News
                 SizedBox(height: 24.h),
-                _buildSectionHeader(
-                  local.home_page_news_page_third_tab_bar,
-                  key: _worldKey,
-                ),
+                _buildSectionHeader(local.home_page_news_page_third_tab_bar,
+                    key: _worldKey, index: 2),
                 SizedBox(height: 16.h),
                 smallCardNews(context, foreignNews, _foreignPage),
                 SizedBox(
@@ -222,10 +220,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
                 //Business News
                 SizedBox(height: 24.h),
-                _buildSectionHeader(
-                  local.home_page_news_page_fourth_tab_bar,
-                  key: _businessKey,
-                ),
+                _buildSectionHeader(local.home_page_news_page_fourth_tab_bar,
+                    key: _businessKey, index: 3),
                 SizedBox(height: 16.h),
                 smallCardNews(context, businessNews, _businessPage),
                 SizedBox(
@@ -245,10 +241,8 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
 
                 //Other News
                 SizedBox(height: 24.h),
-                _buildSectionHeader(
-                  local.home_page_news_page_fifth_tab_bar,
-                  key: _otherKey,
-                ),
+                _buildSectionHeader(local.home_page_news_page_fifth_tab_bar,
+                    key: _otherKey, index: 4),
                 SizedBox(height: 16.h),
                 smallCardNews(context, otherNews, _otherPage),
                 SizedBox(
@@ -259,10 +253,11 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
                     controller: _otherPage,
                     count: otherNews.length,
                     effect: ExpandingDotsEffect(
-                        activeDotColor: Color(0xff80011F),
-                        expansionFactor: 2,
-                        dotWidth: 8.w,
-                        dotHeight: 8.h),
+                      activeDotColor: Color(0xff80011F),
+                      expansionFactor: 2,
+                      dotWidth: 8.w,
+                      dotHeight: 8.h,
+                    ),
                   ),
                 ),
               ],
@@ -356,7 +351,7 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     );
   }
 
-  Widget _buildSectionHeader(String title, {Key? key}) {
+  Widget _buildSectionHeader(String title, {Key? key, required index}) {
     return Row(
       key: key,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -368,16 +363,45 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        Text(
-          AppLocalizations.of(context)!.home_page_news_page_open_all,
-          style: GoogleFonts.notoSansEthiopic(
-            fontSize: 12.sp,
-            color: const Color(0xff1A0101),
-            decoration: TextDecoration.underline,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SavedPageNewsCard(
+                  index: index,
+                  title: sendTitle(index),
+                ),
+              ),
+            );
+          },
+          child: Text(
+            AppLocalizations.of(context)!.home_page_news_page_open_all,
+            style: GoogleFonts.notoSansEthiopic(
+              fontSize: 12.sp,
+              color: const Color(0xff1A0101),
+              decoration: TextDecoration.underline,
+            ),
           ),
         ),
       ],
     );
+  }
+
+  String sendTitle(int index) {
+    switch (index) {
+      case 0:
+        return AppLocalizations.of(context)!.breaking_news;
+      case 1:
+        return AppLocalizations.of(context)!.home_page_news_page_second_tab_bar;
+      case 2:
+        return AppLocalizations.of(context)!.home_page_news_page_third_tab_bar;
+      case 3:
+        return AppLocalizations.of(context)!.home_page_news_page_fourth_tab_bar;
+      case 4:
+        return AppLocalizations.of(context)!.home_page_news_page_fifth_tab_bar;
+    }
+    return "";
   }
 
   void _showBottomSheet(

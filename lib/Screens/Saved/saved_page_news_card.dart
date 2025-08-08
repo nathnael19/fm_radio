@@ -2,12 +2,14 @@ import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_card.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/news_detail_card.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
-import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SavedPageNewsCard extends StatefulWidget {
-  const SavedPageNewsCard({super.key});
+  final int index;
+  final String title;
+  const SavedPageNewsCard(
+      {super.key, required this.index, required this.title});
 
   @override
   State<SavedPageNewsCard> createState() => _SavedPageNewsCardState();
@@ -28,7 +30,7 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
           },
           icon: Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text(AppLocalizations.of(context)!.saved_page_title),
+        title: Text(widget.title),
         centerTitle: true,
       ),
       body: BlocBuilder<NewsCubit, NewsState>(
@@ -36,7 +38,7 @@ class _SavedPageNewsCardState extends State<SavedPageNewsCard> {
           if (state is NewsLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (state is NewsLoaded) {
-            final categorySaved = state.category[0].data;
+            final categorySaved = state.category[widget.index].data;
             return Column(
               children: [
                 Expanded(
