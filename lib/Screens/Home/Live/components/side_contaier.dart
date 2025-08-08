@@ -1,7 +1,9 @@
 import 'package:ethio_fm_radio/Screens/Home/News/comment_bottom_sheet.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/side_container_icons.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SideContainer extends StatelessWidget {
   const SideContainer({super.key});
@@ -24,12 +26,12 @@ class SideContainer extends StatelessWidget {
         children: [
           SideContainerIcon(
             icon: Icons.thumb_up_off_alt,
-            number: 400,
+            number: 20,
             onTap: () {},
           ),
           SideContainerIcon(
             icon: Icons.messenger_outline,
-            number: 400,
+            number: 40,
             onTap: () {
               _showBottomSheet(context);
             },
@@ -37,7 +39,7 @@ class SideContainer extends StatelessWidget {
           SideContainerIcon(icon: Icons.send, number: 400, onTap: () {}),
           SideContainerIcon(
             icon: Icons.bookmark_outline_rounded,
-            number: 400,
+            number: 4,
             onTap: () {},
           ),
         ],
@@ -79,15 +81,26 @@ class SideContainer extends StatelessWidget {
                 // Comments section
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CommentBottomSheet(
-                          comments: [],
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
+                    child: BlocBuilder<NewsCubit, NewsState>(
+                      builder: (context, state) {
+                        if (state is NewsLoading) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (state is NewsLoaded) {
+                          final comments =
+                              state.category[0].data[0].meta.comments;
+                          return Column(
+                            children: [
+                              CommentBottomSheet(
+                                comments: comments,
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                        return SizedBox.shrink();
+                      },
                     ),
                   ),
                 ),

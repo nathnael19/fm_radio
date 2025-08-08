@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,14 +38,16 @@ class _NewsCardState extends State<NewsCard> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
-        height: 355.h,
+        margin: EdgeInsets.symmetric(
+            horizontal: getMobileWidth(context, 10),
+            vertical: getMobileHeight(context, 10)),
+        height: getMobileHeight(context, 335),
         decoration: BoxDecoration(
           border: Border.all(color: Color(0xffEDE4E6), width: 1),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(getMobileFontSize(context, 10)),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.w),
+          padding: EdgeInsets.all(getMobileFontSize(context, 16)),
           child: Column(
             children: [
               Row(
@@ -53,25 +56,25 @@ class _NewsCardState extends State<NewsCard> {
                     widget.date,
                     style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.sp,
+                      fontSize: getMobileFontSize(context, 10),
                       color: Colors.black,
                     ),
                   ),
                   SizedBox(
-                    width: 20.w,
+                    width: getMobileWidth(context, 20),
                   ),
                   Icon(
                     Icons.rectangle,
-                    size: 10.r,
+                    size: getMobileFontSize(context, 10),
                   ),
                   SizedBox(
-                    width: 5.w,
+                    width: getMobileWidth(context, 5),
                   ),
                   Text(
                     widget.channel,
                     style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.sp,
+                      fontSize: getMobileFontSize(context, 10),
                       color: Colors.black,
                     ),
                   ),
@@ -81,8 +84,8 @@ class _NewsCardState extends State<NewsCard> {
                         ? Row(
                             children: [
                               Image.asset("assets/images/soundwave.png",
-                                  height: 30.h),
-                              SizedBox(width: 10.w),
+                                  height: getMobileHeight(context, 30)),
+                              SizedBox(width: getMobileHeight(context, 10)),
                               InkWell(
                                 onTap: () {
                                   setState(() {
@@ -91,7 +94,7 @@ class _NewsCardState extends State<NewsCard> {
                                 },
                                 child: Icon(
                                   Icons.pause_circle_filled,
-                                  size: 32.r,
+                                  size: getMobileFontSize(context, 32),
                                   color: Colors.black87,
                                 ),
                               ),
@@ -105,7 +108,7 @@ class _NewsCardState extends State<NewsCard> {
                             },
                             child: Icon(
                               Icons.play_circle,
-                              size: 32.r,
+                              size: getMobileFontSize(context, 32),
                               color: Colors.black87,
                             ),
                           ),
@@ -113,15 +116,15 @@ class _NewsCardState extends State<NewsCard> {
                 ],
               ),
               Image.asset(
-                width: 331.w,
-                height: 160.h,
+                width: getMobileWidth(context, 330),
+                height: getMobileHeight(context, 153),
                 fit: BoxFit.fitWidth,
                 widget.imageUrl,
               ),
               Text(widget.title,
                   style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w500,
-                      fontSize: 16.sp,
+                      fontSize: getMobileFontSize(context, 16),
                       color: Color(0xff1A0101))),
               Text(
                 overflow: TextOverflow.ellipsis,
@@ -129,12 +132,12 @@ class _NewsCardState extends State<NewsCard> {
                 widget.subtitle,
                 style: GoogleFonts.notoSansEthiopic(
                   fontWeight: FontWeight.w300,
-                  fontSize: 12.sp,
+                  fontSize: getMobileFontSize(context, 11),
                   color: Color(0xff4B4242),
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: getMobileHeight(context, 5),
               ),
               Row(
                 children: [
@@ -142,18 +145,18 @@ class _NewsCardState extends State<NewsCard> {
                     widget.likes.toString(),
                     style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.sp,
+                      fontSize: getMobileFontSize(context, 10),
                       color: Color(0xff1A0101),
                     ),
                   ),
                   SizedBox(
-                    width: 5.w,
+                    width: getMobileHeight(context, 5),
                   ),
                   InkWell(
                       onTap: () {},
                       child: Icon(
                         Icons.thumb_up,
-                        size: 24.r,
+                        size: getMobileFontSize(context, 24),
                       )),
                   SizedBox(
                     width: 10.w,
@@ -162,49 +165,50 @@ class _NewsCardState extends State<NewsCard> {
                     widget.comments.toString(),
                     style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.sp,
+                      fontSize: getMobileFontSize(context, 10),
                       color: Color(0xff1A0101),
                     ),
                   ),
                   SizedBox(
-                    width: 5.w,
+                    width: getMobileWidth(context, 5),
                   ),
                   InkWell(
                       onTap: () {},
                       child: Icon(
                         Icons.chat_bubble_outline,
-                        size: 24.r,
+                        size: getMobileFontSize(context, 24),
                       )),
                   SizedBox(
-                    width: 10.w,
+                    width: getMobileWidth(context, 10),
                   ),
                   Text(
                     widget.shares.toString(),
                     style: GoogleFonts.notoSansEthiopic(
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.sp,
+                      fontSize: getMobileFontSize(context, 10),
                       color: Color(0xff1A0101),
                     ),
                   ),
                   SizedBox(
-                    width: 5.w,
+                    width: getMobileWidth(context, 5),
                   ),
                   InkWell(
                       onTap: () {},
                       child: Icon(
                         Icons.share,
-                        size: 24.r,
+                        size: getMobileFontSize(context, 24),
                       )),
                   SizedBox(
-                    width: 10.w,
+                    width: getMobileWidth(context, 10),
                   ),
                   Spacer(),
                   InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.bookmark,
-                        size: 24.r,
-                      ))
+                    onTap: () {},
+                    child: Icon(
+                      Icons.bookmark,
+                      size: getMobileFontSize(context, 24),
+                    ),
+                  )
                 ],
               )
             ],
