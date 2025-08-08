@@ -137,135 +137,145 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
     }
   }
 
+  Future<void> _refreshPage() async {
+    await context.read<NewsCubit>().loadNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-    return BlocBuilder<NewsCubit, NewsState>(
-      builder: (context, state) {
-        if (state is NewsLoading) {
-          return Center(child: CircularProgressIndicator());
-        } else if (state is NewsLoaded) {
-          final breakingNews = state.category[0].data;
-          final sportNews = state.category[1].data;
-          final foreignNews = state.category[2].data;
-          final businessNews = state.category[3].data;
-          final otherNews = state.category[4].data;
+    return RefreshIndicator(
+      color: Colors.white,
+      edgeOffset: getMobileHeight(context, -50),
+      backgroundColor: Color(0xff80011F).withAlpha(200),
+      onRefresh: _refreshPage,
+      child: BlocBuilder<NewsCubit, NewsState>(
+        builder: (context, state) {
+          if (state is NewsLoading) {
+            return Center(child: CircularProgressIndicator());
+          } else if (state is NewsLoaded) {
+            final breakingNews = state.category[0].data;
+            final sportNews = state.category[1].data;
+            final foreignNews = state.category[2].data;
+            final businessNews = state.category[3].data;
+            final otherNews = state.category[4].data;
 
-          return SingleChildScrollView(
-            controller: _scrollController,
-            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSectionHeader(local.breaking_news,
-                    key: _topNewsKey, index: 0),
-                SizedBox(height: 16.h),
-                breakingNewsCard(context, breakingNews),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: SmoothPageIndicator(
-                    controller: _breakingPage,
-                    count: breakingNews.length,
-                    effect: ExpandingDotsEffect(
-                        activeDotColor: Color(0xff80011F),
-                        expansionFactor: 2,
-                        dotWidth: 8.w,
-                        dotHeight: 8.h),
+            return SingleChildScrollView(
+              controller: _scrollController,
+              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildSectionHeader(local.breaking_news,
+                      key: _topNewsKey, index: 0),
+                  SizedBox(height: 16.h),
+                  breakingNewsCard(context, breakingNews),
+                  SizedBox(
+                    height: 5.h,
                   ),
-                ),
-
-                ///Sport News
-                SizedBox(height: 24.h),
-                _buildSectionHeader(local.home_page_news_page_second_tab_bar,
-                    key: _sportKey, index: 1),
-                SizedBox(height: 16.h),
-                smallCardNews(context, sportNews, _sportPage),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: SmoothPageIndicator(
-                    controller: _sportPage,
-                    count: sportNews.length,
-                    effect: ExpandingDotsEffect(
-                        activeDotColor: Color(0xff80011F),
-                        expansionFactor: 2,
-                        dotWidth: 8.w,
-                        dotHeight: 8.h),
-                  ),
-                ),
-
-                //Foreign News
-                SizedBox(height: 24.h),
-                _buildSectionHeader(local.home_page_news_page_third_tab_bar,
-                    key: _worldKey, index: 2),
-                SizedBox(height: 16.h),
-                smallCardNews(context, foreignNews, _foreignPage),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: SmoothPageIndicator(
-                    controller: _foreignPage,
-                    count: foreignNews.length,
-                    effect: ExpandingDotsEffect(
-                        activeDotColor: Color(0xff80011F),
-                        expansionFactor: 2,
-                        dotWidth: 8.w,
-                        dotHeight: 8.h),
-                  ),
-                ),
-
-                //Business News
-                SizedBox(height: 24.h),
-                _buildSectionHeader(local.home_page_news_page_fourth_tab_bar,
-                    key: _businessKey, index: 3),
-                SizedBox(height: 16.h),
-                smallCardNews(context, businessNews, _businessPage),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: SmoothPageIndicator(
-                    controller: _businessPage,
-                    count: businessNews.length,
-                    effect: ExpandingDotsEffect(
-                        activeDotColor: Color(0xff80011F),
-                        expansionFactor: 2,
-                        dotWidth: 8.w,
-                        dotHeight: 8.h),
-                  ),
-                ),
-
-                //Other News
-                SizedBox(height: 24.h),
-                _buildSectionHeader(local.home_page_news_page_fifth_tab_bar,
-                    key: _otherKey, index: 4),
-                SizedBox(height: 16.h),
-                smallCardNews(context, otherNews, _otherPage),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: SmoothPageIndicator(
-                    controller: _otherPage,
-                    count: otherNews.length,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor: Color(0xff80011F),
-                      expansionFactor: 2,
-                      dotWidth: 8.w,
-                      dotHeight: 8.h,
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: _breakingPage,
+                      count: breakingNews.length,
+                      effect: ExpandingDotsEffect(
+                          activeDotColor: Color(0xff80011F),
+                          expansionFactor: 2,
+                          dotWidth: 8.w,
+                          dotHeight: 8.h),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        }
-        return SizedBox.shrink();
-      },
+
+                  ///Sport News
+                  SizedBox(height: 24.h),
+                  _buildSectionHeader(local.home_page_news_page_second_tab_bar,
+                      key: _sportKey, index: 1),
+                  SizedBox(height: 16.h),
+                  smallCardNews(context, sportNews, _sportPage),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: _sportPage,
+                      count: sportNews.length,
+                      effect: ExpandingDotsEffect(
+                          activeDotColor: Color(0xff80011F),
+                          expansionFactor: 2,
+                          dotWidth: 8.w,
+                          dotHeight: 8.h),
+                    ),
+                  ),
+
+                  //Foreign News
+                  SizedBox(height: 24.h),
+                  _buildSectionHeader(local.home_page_news_page_third_tab_bar,
+                      key: _worldKey, index: 2),
+                  SizedBox(height: 16.h),
+                  smallCardNews(context, foreignNews, _foreignPage),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: _foreignPage,
+                      count: foreignNews.length,
+                      effect: ExpandingDotsEffect(
+                          activeDotColor: Color(0xff80011F),
+                          expansionFactor: 2,
+                          dotWidth: 8.w,
+                          dotHeight: 8.h),
+                    ),
+                  ),
+
+                  //Business News
+                  SizedBox(height: 24.h),
+                  _buildSectionHeader(local.home_page_news_page_fourth_tab_bar,
+                      key: _businessKey, index: 3),
+                  SizedBox(height: 16.h),
+                  smallCardNews(context, businessNews, _businessPage),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: _businessPage,
+                      count: businessNews.length,
+                      effect: ExpandingDotsEffect(
+                          activeDotColor: Color(0xff80011F),
+                          expansionFactor: 2,
+                          dotWidth: 8.w,
+                          dotHeight: 8.h),
+                    ),
+                  ),
+
+                  //Other News
+                  SizedBox(height: 24.h),
+                  _buildSectionHeader(local.home_page_news_page_fifth_tab_bar,
+                      key: _otherKey, index: 4),
+                  SizedBox(height: 16.h),
+                  smallCardNews(context, otherNews, _otherPage),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: _otherPage,
+                      count: otherNews.length,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xff80011F),
+                        expansionFactor: 2,
+                        dotWidth: 8.w,
+                        dotHeight: 8.h,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          return SizedBox.shrink();
+        },
+      ),
     );
   }
 
