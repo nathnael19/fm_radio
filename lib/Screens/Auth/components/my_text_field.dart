@@ -7,12 +7,15 @@ class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool isPass;
   final String? Function(String?)? validator;
+  final FocusNode? focusNode;
+
   const MyTextField({
     super.key,
     required this.hint,
     required this.controller,
     this.isPass = false,
     required this.validator,
+    this.focusNode,
   });
 
   @override
@@ -27,21 +30,28 @@ class MyTextField extends StatelessWidget {
             fontWeight: FontWeight.w400,
             fontSize: getMobileFontSize(context, 12),
             fontFamily: "Poppins",
-            color: Color(0xff648CA3),
+            color: const Color(0xff648CA3),
           ),
         ),
         TextFormField(
           validator: validator,
           controller: controller,
-          obscureText: isPass ? true : false,
+          focusNode: focusNode,
+          obscureText: isPass,
+          keyboardType: isPass
+              ? TextInputType.visiblePassword
+              : TextInputType.emailAddress,
+          textInputAction: isPass ? TextInputAction.done : TextInputAction.next,
+          enableInteractiveSelection: true,
+          readOnly: false, // ensure editable
           decoration: InputDecoration(
             hintText: isPass ? "***********" : local.your_answer_text,
-            border: UnderlineInputBorder(),
+            border: const UnderlineInputBorder(),
             hintStyle: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: getMobileFontSize(context, 11),
               fontFamily: "Poppins",
-              color: Color(0xff648CA3),
+              color: const Color(0xff648CA3),
             ),
           ),
         ),

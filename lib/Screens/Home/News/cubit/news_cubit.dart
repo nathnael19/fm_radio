@@ -10,7 +10,7 @@ class NewsCubit extends Cubit<NewsState> {
   NewsCubit() : super(NewsInitial());
 
   // Replace with your actual Bin ID and secret key from jsonbin.io or your JSON URL
-  final String binId = '6895b409203a8b52b5e19ae3';
+  final String binId = '68972f33ae596e708fc5d8c0';
   final String secretKey =
       "\$2a\$10\$OdrPUzOSvGmobZmaalIaC.xV3OJsf4kym57057x7siedund/ZQTMC";
 

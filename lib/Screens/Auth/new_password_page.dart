@@ -16,16 +16,17 @@ class SetNewPasswordPage extends StatefulWidget {
 }
 
 class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
-  final TextEditingController newPasswordController =
-      TextEditingController(); // Controller for new password
+  final TextEditingController newPasswordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-      TextEditingController(); // Controller for confirm password
+      TextEditingController();
+
+  String? passError; // For dynamic error message
 
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
-    String passError = local.form_pass_error;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -38,7 +39,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
 
               SizedBox(height: getMobileHeight(context, 30)),
 
-              // Title
+              // Title and Form
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: getMobileWidth(context, 16)),
@@ -50,7 +51,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                       Text(
                         local.new_pass_page_title,
                         style: TextStyle(
-                          color: Color(0xff1A0101),
+                          color: const Color(0xff1A0101),
                           fontSize: getMobileFontSize(context, 36),
                           fontWeight: FontWeight.w700,
                         ),
@@ -61,32 +62,33 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                       // New password input
                       MyTextField(
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[0-9]').hasMatch(value) ||
-                              value.length != 10) {
-                            return passError;
-                          } else {
-                            return null;
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 8) {
+                            return local.form_pass_error;
                           }
+                          return null;
                         },
                         hint: local.new_pass,
                         controller: newPasswordController,
+                        isPass: true,
                       ),
+
                       SizedBox(height: getMobileHeight(context, 16)),
 
                       // Confirm password input
                       MyTextField(
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[0-9]').hasMatch(value) ||
-                              value.length != 10) {
-                            return passError;
-                          } else {
-                            return null;
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 8) {
+                            return local.form_pass_error;
                           }
+                          return null;
                         },
                         hint: local.new_conf_pass,
                         controller: confirmPasswordController,
+                        isPass: true,
                       ),
 
                       SizedBox(height: getMobileHeight(context, 16)),
@@ -101,19 +103,25 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                               setState(() {
                                 passError = local.form_pass_error2;
                               });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(passError!)),
+                              );
                             } else {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SigninPage(),
+                                  builder: (context) => const SigninPage(),
                                 ),
                               );
                             }
                           }
                         },
                       ),
+
                       SizedBox(height: getMobileHeight(context, 24)),
+
                       MyDivider(),
+
                       SizedBox(height: getMobileHeight(context, 14)),
                     ],
                   ),
@@ -122,7 +130,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
 
               TextContainer(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const SigninPage()),
                   );
@@ -130,6 +138,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                 leftText: local.signup_page_question,
                 rightText: local.signin_text,
               ),
+
               SizedBox(height: getMobileHeight(context, 10)),
             ],
           ),

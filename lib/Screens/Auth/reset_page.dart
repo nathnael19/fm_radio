@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EnterCodePage extends StatefulWidget {
-  const EnterCodePage({super.key});
+  final String phoneNumber; // Add phone number parameter
+
+  const EnterCodePage({super.key, required this.phoneNumber});
 
   @override
   State<EnterCodePage> createState() => _EnterCodePageState();
@@ -85,7 +87,7 @@ class _EnterCodePageState extends State<EnterCodePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Verification code resent')),
       );
-      startTimer(); // Start countdown after resend
+      startTimer(); // Restart countdown after resend
     }
   }
 
@@ -134,9 +136,9 @@ class _EnterCodePageState extends State<EnterCodePage> {
                         ),
                         SizedBox(height: getMobileHeight(context, 10)),
 
-                        // Subtitle
+                        // Subtitle with dynamic phone number
                         Text(
-                          "${local.reset_page_desc} +251 91 234 567",
+                          "${local.reset_page_desc} ${widget.phoneNumber}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: getMobileFontSize(context, 16),
@@ -167,10 +169,10 @@ class _EnterCodePageState extends State<EnterCodePage> {
                                     color: Colors.grey,
                                     fontSize: getMobileFontSize(context, 22),
                                   ),
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFF80011F),
                                       width: 2,

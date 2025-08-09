@@ -23,127 +23,136 @@ class _SigninPageState extends State<SigninPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-    final formKey = GlobalKey<FormState>();
     final loginCubit = BlocProvider.of<LoginCubit>(context);
     final appColor = AppColor();
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true, // allow view to adjust for keyboard
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyPhoto(height: getMobileHeight(context, 247)),
-              SizedBox(height: getMobileHeight(context, 27)),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getMobileFontSize(context, 16)),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        local.login_page_title,
-                        style: TextStyle(
-                          color: appColor.titleTextColor,
-                          fontSize:
-                              getMobileFontSize(context, 36), // original 36.sp
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
+        body: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            // close keyboard when tapping outside
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MyPhoto(height: getMobileHeight(context, 247)),
+                SizedBox(height: getMobileHeight(context, 27)),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getMobileFontSize(context, 16),
+                  ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          local.login_page_title,
+                          style: TextStyle(
+                            color: appColor.titleTextColor,
+                            fontSize: getMobileFontSize(context, 36),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Poppins",
+                          ),
                         ),
-                      ),
-                      SizedBox(height: getMobileHeight(context, 20)),
-                      MyTextField(
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                                  .hasMatch(value)) {
-                            return local.form_email_error;
-                          } else {
+                        SizedBox(height: getMobileHeight(context, 20)),
+                        MyTextField(
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                                    .hasMatch(value)) {
+                              return local.form_email_error;
+                            }
                             return null;
-                          }
-                        },
-                        hint: local.email,
-                        controller: emailController,
-                      ),
-                      SizedBox(height: getMobileHeight(context, 16)),
-                      MyTextField(
-                        validator: (value) {
-                          if (value!.isEmpty || value.length < 8) {
-                            return local.form_pass_error;
-                          } else {
-                            return null;
-                          }
-                        },
-                        hint: local.password,
-                        controller: passwordController,
-                        isPass: true,
-                      ),
-                      SizedBox(height: getMobileHeight(context, 16)),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordPage(),
-                              ),
-                            );
                           },
-                          child: Text(
-                            local.forgot_password_text,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xff001420),
-                              fontSize: getMobileFontSize(
-                                  context, 14), // original 14.sp
-                              fontFamily: "Poppins",
+                          hint: local.email,
+                          controller: emailController,
+                        ),
+                        SizedBox(height: getMobileHeight(context, 16)),
+                        MyTextField(
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 8) {
+                              return local.form_pass_error;
+                            }
+                            return null;
+                          },
+                          hint: local.password,
+                          controller: passwordController,
+                          isPass: true,
+                        ),
+                        SizedBox(height: getMobileHeight(context, 16)),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordPage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              local.forgot_password_text,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xff001420),
+                                fontSize: getMobileFontSize(context, 14),
+                                fontFamily: "Poppins",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: getMobileHeight(context, 16)),
-                      LoginContainer(
-                        title: local.login_text,
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
+                        SizedBox(height: getMobileHeight(context, 16)),
+                        LoginContainer(
+                          title: local.login_text,
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MyBottomNavigation(),
+                                ),
+                              );
+                              loginCubit.completeLogin();
+                            }
+                          },
+                        ),
+                        SizedBox(height: getMobileHeight(context, 20)),
+                        TextContainer(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const MyBottomNavigation(),
+                                builder: (context) => const CreactAccountPage(),
                               ),
                             );
-                            loginCubit.completeLogin();
-                          }
-                        },
-                      ),
-                      SizedBox(height: getMobileHeight(context, 20)),
-                      TextContainer(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CreactAccountPage(),
-                            ),
-                          );
-                        },
-                        leftText: local.signup_question,
-                        rightText: local.signup_text,
-                      ),
-                      SizedBox(height: getMobileHeight(context, 30)),
-                    ],
+                          },
+                          leftText: local.signup_question,
+                          rightText: local.signup_text,
+                        ),
+                        SizedBox(height: getMobileHeight(context, 30)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -25,7 +25,7 @@ void main() async {
         BlocProvider(create: (_) => AudioCubit()),
         BlocProvider(create: (_) => LoginCubit()),
         BlocProvider(create: (_) => BottomNavCubit()),
-        BlocProvider(create: (_) => NewsCubit()..loadNews())
+        BlocProvider(create: (_) => NewsCubit()..loadNews()),
       ],
       child: const MyApp(),
     ),
