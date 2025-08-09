@@ -1,3 +1,4 @@
+import 'package:ethio_fm_radio/Screens/Auth/cubit/user_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/main/my_app.dart';
 import 'package:ethio_fm_radio/cubit/bottomNavbar/bottom_nav_cubit.dart';
@@ -25,6 +26,7 @@ void main() async {
         BlocProvider(create: (_) => AudioCubit()),
         BlocProvider(create: (_) => LoginCubit()),
         BlocProvider(create: (_) => BottomNavCubit()),
+        BlocProvider(create: (_) => UserCubit()),
         BlocProvider(create: (_) => NewsCubit()..loadNews()),
       ],
       child: const MyApp(),

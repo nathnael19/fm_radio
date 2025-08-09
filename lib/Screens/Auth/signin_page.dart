@@ -1,7 +1,8 @@
 import 'package:ethio_fm_radio/Screens/Auth/components/login_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
-import 'package:ethio_fm_radio/Screens/Auth/create_account.dart';
+import 'package:ethio_fm_radio/Screens/Auth/create_account.dart'; // Ensure correct file name
+import 'package:ethio_fm_radio/Screens/Auth/cubit/user_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Auth/forget_password_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/Screens/constants/app_color.dart';
@@ -28,19 +29,15 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-    final loginCubit = BlocProvider.of<LoginCubit>(context);
     final appColor = AppColor();
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true, // allow view to adjust for keyboard
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: () {
-            // close keyboard when tapping outside
-            FocusScope.of(context).unfocus();
-          },
+          onTap: () => FocusScope.of(context).unfocus(),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -71,7 +68,8 @@ class _SigninPageState extends State<SigninPage> {
                         SizedBox(height: getMobileHeight(context, 20)),
                         MyTextField(
                           validator: (value) {
-                            if (value!.isEmpty ||
+                            if (value == null ||
+                                value.isEmpty ||
                                 !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                                     .hasMatch(value)) {
                               return local.form_email_error;
@@ -84,7 +82,9 @@ class _SigninPageState extends State<SigninPage> {
                         SizedBox(height: getMobileHeight(context, 16)),
                         MyTextField(
                           validator: (value) {
-                            if (value!.isEmpty || value.length < 8) {
+                            if (value == null ||
+                                value.isEmpty ||
+                                value.length < 8) {
                               return local.form_pass_error;
                             }
                             return null;
@@ -101,8 +101,7 @@ class _SigninPageState extends State<SigninPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ForgotPasswordPage(),
+                                  builder: (_) => const ForgotPasswordPage(),
                                 ),
                               );
                             },
@@ -118,19 +117,52 @@ class _SigninPageState extends State<SigninPage> {
                           ),
                         ),
                         SizedBox(height: getMobileHeight(context, 16)),
-                        LoginContainer(
-                          title: local.login_text,
-                          onTap: () {
-                            if (formKey.currentState!.validate()) {
-                              Navigator.push(
+                        BlocConsumer<UserCubit, UserState>(
+                          listener: (context, state) {
+                            if (state is UserFailed) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(state.msg)),
+                              );
+                            }
+                            if (state is UserLoaded) {
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const MyBottomNavigation(),
+                                  builder: (_) => const MyBottomNavigation(),
                                 ),
                               );
-                              loginCubit.completeLogin();
+                              LoginCubit().completeLogin();
                             }
+                          },
+                          builder: (context, state) {
+                            if (state is UserLoading) {
+                              return LoginContainer(
+                                title: "",
+                                onTap: () {},
+                                isLoading: true,
+                              );
+                            }
+
+                            return LoginContainer(
+                              title: local.login_text,
+                              onTap: () {
+                                if (formKey.currentState!.validate()) {
+                                  final email = emailController.text.trim();
+                                  final password =
+                                      passwordController.text.trim();
+
+                                  // Debug print on tap
+                                  print('Login tapped with email: $email');
+
+                                  context.read<UserCubit>().loginUser(
+                                        email: email,
+                                        password: password,
+                                      );
+                                } else {
+                                  print('Form validation failed');
+                                }
+                              },
+                            );
                           },
                         ),
                         SizedBox(height: getMobileHeight(context, 20)),
@@ -139,7 +171,7 @@ class _SigninPageState extends State<SigninPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const CreactAccountPage(),
+                                builder: (_) => const CreactAccountPage(),
                               ),
                             );
                           },

@@ -2,11 +2,13 @@ import 'package:ethio_fm_radio/Screens/Auth/components/login_container.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/my_divider.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/my_text_field.dart';
 import 'package:ethio_fm_radio/Screens/Auth/components/text_container.dart';
+import 'package:ethio_fm_radio/Screens/Auth/model/user_element.dart';
 import 'package:ethio_fm_radio/Screens/Auth/signin_page.dart';
 import 'package:ethio_fm_radio/Screens/Onboarding/photo.dart';
 import 'package:ethio_fm_radio/Screens/constants/app_color.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/Screens/main/bottom_navigation.dart';
+import 'package:ethio_fm_radio/Screens/Auth/cubit/user_cubit.dart'; // <-- use UserCubit here
 import 'package:ethio_fm_radio/cubit/login/login_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -28,28 +30,26 @@ class _SignUpPageState extends State<CreactAccountPage> {
       TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  String passError = '';
 
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-    final loginCubit = BlocProvider.of<LoginCubit>(context);
     final appColor = AppColor();
+    final userCubit = context.read<UserCubit>();
 
-    String passError = local.form_pass_error;
+    passError = local.form_pass_error;
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true, // ensure scroll when keyboard shows
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: () {
-            FocusScope.of(context).unfocus(); // dismiss keyboard
-          },
+          onTap: () => FocusScope.of(context).unfocus(),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -57,8 +57,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                 SizedBox(height: getMobileHeight(context, 27)),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getMobileWidth(context, 16),
-                  ),
+                      horizontal: getMobileWidth(context, 16)),
                   child: Form(
                     key: formKey,
                     child: Column(
@@ -136,27 +135,62 @@ class _SignUpPageState extends State<CreactAccountPage> {
                           isPass: true,
                         ),
                         SizedBox(height: getMobileHeight(context, 16)),
-                        LoginContainer(
-                          title: local.create_acc,
-                          onTap: () {
-                            if (formKey.currentState!.validate()) {
-                              if (passwordController.text !=
-                                  confirmPasswordController.text) {
-                                setState(() {
-                                  passError = local.form_pass_error2;
-                                });
-                              } else {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyBottomNavigation(),
-                                  ),
-                                );
-                                loginCubit.completeLogin();
-                              }
+
+                        // Use BlocConsumer to listen for states and build UI accordingly
+                        BlocConsumer<UserCubit, UserState>(
+                          listener: (context, state) {
+                            if (state is UserFailed) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(state.msg)),
+                              );
+                            }
+                            if (state is UserLoaded) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const MyBottomNavigation(),
+                                ),
+                              );
+                              LoginCubit().completeLogin();
                             }
                           },
+                          builder: (context, state) {
+                            if (state is UserLoading) {
+                              return LoginContainer(
+                                title: "",
+                                onTap: () {},
+                                isLoading: true,
+                              );
+                            }
+                            return LoginContainer(
+                              title: local.create_acc,
+                              onTap: () {
+                                if (formKey.currentState!.validate()) {
+                                  if (passwordController.text !=
+                                      confirmPasswordController.text) {
+                                    setState(() {
+                                      passError = local.form_pass_error2;
+                                    });
+                                  } else {
+                                    final newUser = UserElement(
+                                      userId: DateTime.now()
+                                          .millisecondsSinceEpoch
+                                          .toString(),
+                                      username: nameController.text.trim(),
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      phone: phoneController.text.trim(),
+                                      favoriteStations: [],
+                                      listeningHistory: [],
+                                    );
+                                    userCubit.signupUser(newUser);
+                                  }
+                                }
+                              },
+                            );
+                          },
                         ),
+
                         SizedBox(height: getMobileHeight(context, 20)),
                         MyDivider(),
                         SizedBox(height: getMobileHeight(context, 7)),
@@ -165,8 +199,7 @@ class _SignUpPageState extends State<CreactAccountPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const SigninPage(),
-                              ),
+                                  builder: (context) => const SigninPage()),
                             );
                           },
                           leftText: local.signup_page_question,

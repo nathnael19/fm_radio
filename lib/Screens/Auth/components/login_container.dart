@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 
 class LoginContainer extends StatelessWidget {
   final String title;
+  final bool isLoading;
   final VoidCallback onTap;
-  const LoginContainer({super.key, required this.title, required this.onTap});
+  const LoginContainer({
+    super.key,
+    required this.title,
+    required this.onTap,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +29,18 @@ class LoginContainer extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               vertical: getMobileHeight(context, 10),
               horizontal: getMobileWidth(context, 20)),
-          child: Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: getMobileFontSize(context, 12),
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+          child: isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getMobileFontSize(context, 12),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
         ),
       ),
     );

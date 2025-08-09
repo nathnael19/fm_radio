@@ -14,6 +14,19 @@ class UserCubit extends Cubit<UserState> {
   final String secretKey =
       "\$2a\$10\$OdrPUzOSvGmobZmaalIaC.xV3OJsf4kym57057x7siedund/ZQTMC";
 
+  List<dynamic> _extractUsers(dynamic jsonData) {
+    final record = jsonData['record'];
+    if (record is List) {
+      // Old format: record is a list containing an object with users
+      return record.first['users'] as List<dynamic>;
+    } else if (record is Map<String, dynamic>) {
+      // New format: record is an object with users
+      return record['users'] as List<dynamic>;
+    } else {
+      throw Exception('Unexpected JSON record structure');
+    }
+  }
+
   Future<void> loadUsers() async {
     emit(UserLoading());
     try {
@@ -27,8 +40,7 @@ class UserCubit extends Cubit<UserState> {
       }
 
       final jsonData = jsonDecode(response.body);
-      final usersJson = jsonData['record']['users'] as List<dynamic>;
-
+      final usersJson = _extractUsers(jsonData);
       final users = usersJson.map((e) => UserElement.fromJson(e)).toList();
 
       emit(UserLoaded(users: users));
@@ -51,7 +63,7 @@ class UserCubit extends Cubit<UserState> {
       }
 
       final jsonData = jsonDecode(getResponse.body);
-      List<dynamic> existingUsers = jsonData['record']['users'];
+      List<dynamic> existingUsers = _extractUsers(jsonData);
 
       // Check if email exists already
       bool emailExists = existingUsers.any((userJson) =>
@@ -93,10 +105,13 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<String> loginUser({
+  Future<void> loginUser({
     required String email,
     required String password,
   }) async {
+    print(
+        'loginUser called with email: $email, password: $password'); // Debug print
+
     emit(UserLoading());
 
     try {
@@ -105,16 +120,19 @@ class UserCubit extends Cubit<UserState> {
         'X-Master-Key': secretKey,
       });
 
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
       if (response.statusCode != 200) {
-        return "Failed to load users";
+        emit(UserFailed(msg: "Failed to load users"));
+        return;
       }
 
       final jsonData = jsonDecode(response.body);
-      final usersJson = jsonData['record']['users'] as List<dynamic>;
+      final usersJson = _extractUsers(jsonData);
 
       final users = usersJson.map((e) => UserElement.fromJson(e)).toList();
 
-      // Fix here: orElse must return UserElement, so return empty dummy user
       final matchedUser = users.firstWhere(
         (user) =>
             user.email.toLowerCase() == email.toLowerCase() &&
@@ -131,13 +149,12 @@ class UserCubit extends Cubit<UserState> {
       );
 
       if (matchedUser.userId.isEmpty) {
-        return "Invalid email or password";
+        emit(UserFailed(msg: "Invalid email or password"));
       } else {
         emit(UserLoaded(users: users));
-        return "success";
       }
     } catch (e) {
-      return "Error: ${e.toString()}";
+      emit(UserFailed(msg: "Error: ${e.toString()}"));
     }
   }
 }
