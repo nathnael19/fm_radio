@@ -1,13 +1,13 @@
 import 'package:ethio_fm_radio/Screens/Auth/model/user_element.dart';
 
-class User {
+class UserModel {
   final List<UserElement> users;
 
-  User({
+  UserModel({
     required this.users,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         users: List<UserElement>.from(
             json["users"].map((x) => UserElement.fromJson(x))),
       );
