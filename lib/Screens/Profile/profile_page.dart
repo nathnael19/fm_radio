@@ -69,128 +69,130 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context); // ✅ FIXED to avoid duplicating bottom nav
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_sharp),
         ),
         title: Text(local.profile_page_title),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder<NotificationCubit, bool>(
-              builder: (context, state) {
-                return ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(local.profile_page_notification),
-                  trailing: CupertinoSwitch(
-                    activeTrackColor: const Color(0xff80011F),
-                    value: state,
-                    onChanged: _handleNotificationToggle,
-                  ),
-                );
-              },
-            ),
-            const Divider(indent: 5, endIndent: 5),
-
-            /// Language dropdown
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _showLanguageOptions = !_showLanguageOptions;
-                });
-              },
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(local.profile_page_language),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      _selectedLanguage,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BlocBuilder<NotificationCubit, bool>(
+                builder: (context, state) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(local.profile_page_notification),
+                    trailing: CupertinoSwitch(
+                      activeTrackColor: const Color(0xff80011F),
+                      value: state,
+                      onChanged: _handleNotificationToggle,
                     ),
-                    const SizedBox(width: 6),
-                    Icon(
-                      _showLanguageOptions
-                          ? Icons.keyboard_arrow_up
-                          : Icons.keyboard_arrow_down,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            AnimatedCrossFade(
-              duration: const Duration(milliseconds: 200),
-              firstChild: const SizedBox.shrink(),
-              secondChild: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LanguageOption(
-                      label: local.english,
-                      onTap: () {
-                        context.read<LanguageCubit>().setLocale(
-                              const Locale('en'),
-                            );
-                        setState(() {
-                          _selectedLanguage = local.english;
-                          _showLanguageOptions = false;
-                        });
-                      },
-                    ),
-                    LanguageOption(
-                      label: local.amhric,
-                      onTap: () {
-                        context.read<LanguageCubit>().setLocale(
-                              const Locale('am'),
-                            );
-                        setState(() {
-                          _selectedLanguage = local.amhric;
-                          _showLanguageOptions = false;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              crossFadeState: _showLanguageOptions
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
-            ),
-
-            const Divider(indent: 5, endIndent: 5),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
-                local.profile_page_about,
-                style: const TextStyle(fontSize: 18),
-              ),
-            ),
-            const Divider(indent: 5, endIndent: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => SigninPage()),
                   );
-                  loginCubit.completeLogout();
                 },
+              ),
+              const Divider(indent: 5, endIndent: 5),
+
+              /// Language dropdown
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showLanguageOptions = !_showLanguageOptions;
+                  });
+                },
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(local.profile_page_language),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        _selectedLanguage,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 6),
+                      Icon(
+                        _showLanguageOptions
+                            ? Icons.keyboard_arrow_up
+                            : Icons.keyboard_arrow_down,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              AnimatedCrossFade(
+                duration: const Duration(milliseconds: 200),
+                firstChild: const SizedBox.shrink(),
+                secondChild: Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LanguageOption(
+                        label: local.english,
+                        onTap: () {
+                          context.read<LanguageCubit>().setLocale(
+                                const Locale('en'),
+                              );
+                          setState(() {
+                            _selectedLanguage = local.english;
+                            _showLanguageOptions = false;
+                          });
+                        },
+                      ),
+                      LanguageOption(
+                        label: local.amhric,
+                        onTap: () {
+                          context.read<LanguageCubit>().setLocale(
+                                const Locale('am'),
+                              );
+                          setState(() {
+                            _selectedLanguage = local.amhric;
+                            _showLanguageOptions = false;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                crossFadeState: _showLanguageOptions
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+              ),
+
+              const Divider(indent: 5, endIndent: 5),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
-                  local.logout_text,
+                  local.profile_page_about,
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
-            ),
-          ],
+              const Divider(indent: 5, endIndent: 5),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => SigninPage()),
+                    );
+                    loginCubit.completeLogout();
+                  },
+                  child: Text(
+                    local.logout_text,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

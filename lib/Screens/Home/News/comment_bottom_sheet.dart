@@ -59,12 +59,10 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                 return Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: CommentCard(
-                    onReplyTap: () {},
                     username: comment.username,
                     time: comment.timestamp,
                     content: comment.comment,
                     number: 50,
-                    onTap: () {},
                     onMoreTap: () {},
                   ),
                 );
