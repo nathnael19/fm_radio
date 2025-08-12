@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/components/today_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/today/today_card.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -96,13 +96,16 @@ void _showBottomSheet(BuildContext context) {
                     ),
                   ),
                   // Cancel button (top-right)
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.close_fullscreen_rounded),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.close_fullscreen_rounded),
+                      ),
                     ),
                   ),
                 ],

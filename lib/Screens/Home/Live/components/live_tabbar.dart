@@ -1,7 +1,7 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/components/currency_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/components/recent_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/components/todays_list_cards.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/components/whether_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/currency/currency_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/recent/recent_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/today/todays_list_cards.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/whether_list_cards.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _MytTabBarState extends State<LiveTabBars> {
       local.home_page_live_page_bottom_tabbar_three,
       local.home_page_live_page_bottom_tabbar_four,
     ];
-    return Expanded(
+    return SizedBox(
       child: Column(
         children: [
           // Button TabBar

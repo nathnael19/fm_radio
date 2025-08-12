@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/components/today_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/today/today_card.dart';
 import 'package:flutter/material.dart';
 
 class TodaysListCards extends StatelessWidget {
