@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/currency/model/currency_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/currency/model/currency_model.dart';
 
 abstract class CurrencyState {}
 

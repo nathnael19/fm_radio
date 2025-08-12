@@ -1,6 +1,6 @@
 import 'package:ethio_fm_radio/Databases/live_database.dart';
-import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_detail_page.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/recent/recent_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/recent/recent_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Podcast/screens/podcast_detail_page.dart';
 import 'package:ethio_fm_radio/cubit/audio/audio_cubit.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

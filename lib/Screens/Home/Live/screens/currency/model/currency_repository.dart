@@ -1,5 +1,5 @@
 // lib/services/currency_service.dart
-import 'package:ethio_fm_radio/Screens/Home/Live/currency/model/currency_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/currency/model/currency_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

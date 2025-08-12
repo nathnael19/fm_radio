@@ -1,7 +1,7 @@
 // lib/cubit/weather/weather_cubit.dart
 
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_repository.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/cubit/wether_state.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/models/wether_repository.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/cubit/wether_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {

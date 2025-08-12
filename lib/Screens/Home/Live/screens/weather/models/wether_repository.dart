@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/models/wether_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

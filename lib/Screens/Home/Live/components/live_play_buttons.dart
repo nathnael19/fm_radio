@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/today/today_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/today/today_card.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

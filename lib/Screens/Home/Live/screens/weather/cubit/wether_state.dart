@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/models/wether_model.dart';
 
 abstract class WeatherState {}
 

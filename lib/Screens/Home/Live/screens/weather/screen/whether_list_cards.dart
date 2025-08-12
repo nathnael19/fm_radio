@@ -1,8 +1,8 @@
 // lib/Home/components/whether_list_cards.dart
 
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/cubit/wether_cubit.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/weather/cubit/wether_state.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/cubit/wether_cubit.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/weather/cubit/wether_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

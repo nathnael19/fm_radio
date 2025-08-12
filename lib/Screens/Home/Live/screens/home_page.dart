@@ -1,5 +1,5 @@
-import 'package:ethio_fm_radio/Screens/Home/News/news_page.dart';
-import 'package:ethio_fm_radio/Screens/Home/Podcast/podcast_page.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/screens/news_page.dart';
+import 'package:ethio_fm_radio/Screens/Home/Podcast/screens/podcast_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/live_page.dart';
 import 'package:ethio_fm_radio/Screens/Home/Live/components/overlay_play.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';

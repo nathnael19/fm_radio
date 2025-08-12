@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Screens/Home/News/comment_card.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/components/comment_card.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/components/replay_card.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
-import 'package:ethio_fm_radio/Screens/Home/Live/currency/cubit/currency_cubit.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/currency/cubit/currency_state.dart';
-import 'package:ethio_fm_radio/Screens/Home/Live/currency/model/currency_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/currency/cubit/currency_cubit.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/currency/cubit/currency_state.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/screens/currency/model/currency_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import the service
 

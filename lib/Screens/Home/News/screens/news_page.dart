@@ -3,7 +3,7 @@ import 'package:ethio_fm_radio/Screens/Home/News/components/news_page_card_small
 import 'package:ethio_fm_radio/Screens/Home/News/cubit/news_cubit.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/comment_model.dart';
 import 'package:ethio_fm_radio/Screens/Home/News/model/data_model.dart';
-import 'package:ethio_fm_radio/Screens/Home/News/news_detail_page.dart';
+import 'package:ethio_fm_radio/Screens/Home/News/screens/news_detail_page.dart';
 import 'package:ethio_fm_radio/Screens/Saved/saved_page_news_card.dart';
 import 'package:ethio_fm_radio/Screens/constants/responsive.dart';
 import 'package:ethio_fm_radio/l10n/app_localizations.dart';
@@ -273,7 +273,9 @@ class _NewsPageSelectorState extends State<NewsPageSelector> {
               ),
             );
           }
-          return SizedBox.shrink();
+          return Center(
+            child: Text("No Internet Connection!!"),
+          );
         },
       ),
     );
