@@ -1,8 +1,8 @@
 // lib/Home/components/whether_list_cards.dart
 
-import 'package:ethio_fm_radio/Data/models/wether_model.dart';
-import 'package:ethio_fm_radio/cubit/wether/wether_cubit.dart';
-import 'package:ethio_fm_radio/cubit/wether/wether_state.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/cubit/wether_cubit.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/cubit/wether_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +39,7 @@ class _WhetherListCardsState extends State<WhetherListCards> {
         if (state is WeatherLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is WeatherLoaded) {
-          final List<WeatherData> weatherList = state.weatherList;
+          final List<WeatherModel> weatherList = state.weatherList;
 
           return Expanded(
             child: ListView.builder(

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ethio_fm_radio/Data/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,8 +7,8 @@ class WeatherRepository {
   final String _apiKey =
       'b3d14a6241584bcc8e9121326250907'; // Put your WeatherAPI.com key here
 
-  Future<List<WeatherData>> fetchWeatherForCities(List<String> cities) async {
-    List<WeatherData> weatherList = [];
+  Future<List<WeatherModel>> fetchWeatherForCities(List<String> cities) async {
+    List<WeatherModel> weatherList = [];
 
     for (String city in cities) {
       final url = Uri.parse(
@@ -27,7 +27,7 @@ class WeatherRepository {
           final icon = "https:" + data['current']['condition']['icon'];
 
           weatherList.add(
-            WeatherData(
+            WeatherModel(
               cityName: cityName,
               iconUrl: icon,
               temperature: temp,
@@ -38,7 +38,7 @@ class WeatherRepository {
           );
         } else {
           weatherList.add(
-            WeatherData(
+            WeatherModel(
               cityName: city,
               iconUrl: '',
               temperature: 0,
@@ -50,7 +50,7 @@ class WeatherRepository {
         }
       } catch (e) {
         weatherList.add(
-          WeatherData(
+          WeatherModel(
             cityName: city,
             iconUrl: '',
             temperature: 0,

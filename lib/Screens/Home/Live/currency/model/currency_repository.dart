@@ -1,23 +1,52 @@
 // lib/services/currency_service.dart
+import 'package:ethio_fm_radio/Screens/Home/Live/currency/model/currency_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class CurrencyRepository {
-  Future<double?> getETBRate(String currencyCode) async {
-    final url =
-        'https://v6.exchangerate-api.com/v6/4deebf1b88d7f727dd29ae08/latest/$currencyCode';
+  Future<List<CurrencyModel>> getCurrencies(List<String> currencyCode) async {
+    List<CurrencyModel> currencyList = [];
 
-    try {
-      final response = await http.get(Uri.parse(url));
+    for (String currencyy in currencyCode) {
+      final url =
+          'https://v6.exchangerate-api.com/v6/4deebf1b88d7f727dd29ae08/latest/$currencyy';
 
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        return data["conversion_rates"]["ETB"]?.toDouble();
-      } else {
-        return null;
+      try {
+        final result = await http.get(Uri.parse(url));
+        if (result.statusCode == 200) {
+          final currencyData = jsonDecode(result.body);
+          currencyList.add(
+            CurrencyModel(
+              imageUrl: currencyCode[0],
+              title: currencyCode[1],
+              subtitle: currencyCode[2],
+              money: currencyData['conversion_rates']['ETB']?.toDouble(),
+            ),
+          );
+        } else {
+          currencyList.add(
+            CurrencyModel(
+              imageUrl: '',
+              title: '',
+              subtitle: '',
+              money: 0,
+              hasError: true,
+            ),
+          );
+        }
+      } catch (e) {
+        currencyList.add(
+          CurrencyModel(
+            imageUrl: '',
+            title: '',
+            subtitle: '',
+            money: 0,
+            hasError: true,
+          ),
+        );
       }
-    } catch (e) {
-      throw Exception("Error fetching $currencyCode → ETB: $e");
     }
+
+    return currencyList;
   }
 }

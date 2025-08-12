@@ -3,16 +3,15 @@ import 'package:ethio_fm_radio/Screens/Home/Live/currency/model/currency_reposit
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CurrencyCubit extends Cubit<CurrencyState> {
-  CurrencyCubit() : super(CurrencyInitial());
+  final CurrencyRepository currencyRepository;
+  CurrencyCubit(this.currencyRepository) : super(CurrencyInitial());
 
-  Future<void> getCurrency(String currency) async {
-    CurrencyRepository currencyRepository = CurrencyRepository();
-
+  Future<void> getCurrency(List<String> currency) async {
     try {
       emit(CurrencyLoading());
-      final currencyList = await currencyRepository.getETBRate(currency);
+      final currencyList = await currencyRepository.getCurrencies(currency);
 
-      // emit(CurrencyLoaded(currency: currency));
+      emit(CurrencyLoaded(currency: currencyList));
     } catch (e) {
       emit(CurrencyFailed(msg: e.toString()));
     }

@@ -1,4 +1,4 @@
-import 'package:ethio_fm_radio/Data/models/wether_model.dart';
+import 'package:ethio_fm_radio/Screens/Home/Live/weather/models/wether_model.dart';
 
 abstract class WeatherState {}
 
@@ -7,7 +7,7 @@ class WeatherInitial extends WeatherState {}
 class WeatherLoading extends WeatherState {}
 
 class WeatherLoaded extends WeatherState {
-  final List<WeatherData> weatherList;
+  final List<WeatherModel> weatherList;
 
   WeatherLoaded(this.weatherList);
 }

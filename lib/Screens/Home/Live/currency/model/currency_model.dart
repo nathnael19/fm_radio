@@ -3,17 +3,13 @@ class CurrencyModel {
   final String title;
   final String subtitle;
   final int money;
+  final bool hasError;
 
   CurrencyModel({
     required this.imageUrl,
     required this.title,
     required this.subtitle,
     required this.money,
+    this.hasError = false,
   });
-
-  factory CurrencyModel.fromJson(Map<String, dynamic> json) => CurrencyModel(
-      imageUrl: json['image'],
-      title: json['title'],
-      subtitle: json['subtitle'],
-      money: json['money']);
 }
