@@ -17,9 +17,9 @@ class CurrencyRepository {
           final currencyData = jsonDecode(result.body);
           currencyList.add(
             CurrencyModel(
-              imageUrl: currencyCode[0],
-              title: currencyCode[1],
-              subtitle: currencyCode[2],
+              imageUrl: currencyy,
+              title: currencyy,
+              subtitle: currencyy,
               money: currencyData['conversion_rates']['ETB']?.toDouble(),
             ),
           );
