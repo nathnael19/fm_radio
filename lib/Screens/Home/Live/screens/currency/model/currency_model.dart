@@ -2,7 +2,7 @@ class CurrencyModel {
   final String imageUrl;
   final String title;
   final String subtitle;
-  final int money;
+  final double money;
   final bool hasError;
 
   CurrencyModel({

@@ -61,7 +61,14 @@ class _CurrencyListCardsState extends State<CurrencyListCards> {
                           "Error",
                           style: TextStyle(color: Colors.red),
                         )
-                      : Text("${currency.money.toStringAsFixed(3)} birr"),
+                      : Text(
+                          "${currency.money.toStringAsFixed(3)} birr",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
                 );
               },
             ),
